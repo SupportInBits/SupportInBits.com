@@ -4,9 +4,15 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
+<<<<<<< HEAD
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+=======
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
     ports:
       - "5432:5432"
     healthcheck:
@@ -16,9 +22,15 @@ services:
       retries: 5
 
   web:
+<<<<<<< HEAD
     build: .
     env_file:
       - .env
+=======
+    env_file:
+      - .env
+    build: .
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
     volumes:
       - .:/app
     ports:

@@ -1,5 +1,11 @@
 import os
 from pathlib import Path
+<<<<<<< HEAD
+=======
+from dotenv import load_dotenv
+
+load_dotenv()
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -16,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'bootstrap5',
     'rest_framework',
     'cookie_consent',
@@ -23,6 +30,10 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.user',
     'apps.page'
+=======
+    'rest_framework',
+    # tus apps
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
 ]
 
 MIDDLEWARE = [
@@ -36,6 +47,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+<<<<<<< HEAD
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -51,12 +63,16 @@ TEMPLATES = [
         },
     },
 ]
+=======
+TEMPLATES = [ ... ]
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Base de datos común a todos los entornos
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': os.getenv('DB_ENGINE'),
         'NAME': os.getenv("DB_NAME"),
         'USER': os.getenv("DB_USER"),
@@ -73,3 +89,15 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'user.Usuario'
 
+=======
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("POSTGRES_DB"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST': os.getenv("POSTGRES_HOST", "db"),
+        'PORT': os.getenv("POSTGRES_PORT", 5432),
+    }
+}
+
+STATIC_URL = '/static/'
+>>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774
