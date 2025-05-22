@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-4">
+    <p class="h1">Editar Entrada</p>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        
+        <div class="mb-3">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            {% if form.titulo.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.titulo.errors }}
+                </div>
+            {% endif %}
+        </div>
+        
+        <div class="mb-3">
+            {{ form.contenido.label_tag }}
+            {{ form.contenido }}
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.categoria.label_tag }}
+                {{ form.categoria }}
+            </div>
+            
+            <div class="col-md-6 mb-3">
+                {{ form.imagen_portada.label_tag }}
+                {{ form.imagen_portada }}
+                {% if form.imagen_portada.value %}
+                    <div class="mt-2">
+                        <img src="{{ form.imagen_portada.value.url }}" alt="Portada actual" style="max-height: 100px;">
+                        <label class="form-check-label ms-2">
+                            <input type="checkbox" name="imagen_portada-clear" class="form-check-input">
+                            Eliminar imagen actual
+                        </label>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            {{ form.resumen.label_tag }}
+            {{ form.resumen }}
+        </div>
+        
+        <div class="mb-3 form-check">
+            {{ form.publicado }}
+            {{ form.publicado.label_tag }}
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            {% comment %} <a href="{% url 'lista_entradas_admin' %}" class="btn btn-secondary me-md-2">Cancelar</a> {% endcomment %}
+            <a href="#" class="btn btn-secondary me-md-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

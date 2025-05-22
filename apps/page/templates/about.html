@@ -1,0 +1,54 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block content %}
+
+<div id="contenido-about">
+  <h1 class="text-center">Quien Soy</h1>
+  <h2 class="mt-3 text-center">Andrés Martin Bravo Castro</h2>
+
+  <div class="d-flex flex-wrap">
+    <div class="col-12">
+      <img
+        class="img-fluid rounded mx-auto d-block"
+        src="{% static 'supportinbits/img/ambc.jpg' %}"
+        alt="En la imagen se ve un ser humano sentado de espaldas en el borde de un muelle mirando hacia el mar"
+      />
+    </div>
+    <br />
+    <p class="text-justify fs-5 mt-5">
+      Soy Andrés el creador de esta web, un ser humano más de carne y hueso 
+      como tú que estás leyendo esto. Con los conocimientos que tengo sobre 
+      HTML5, CSS y JavaScript intentaré hacer de este mundo un lugar mejor 
+      haciendo de internet un lugar más accesible para todos. 
+    </p>
+    <p class="text-justify fs-5">
+      Si quieres saber más información sobre mi siempre puedes enviar un 
+      correo a <strong>ambc@gmail.com</strong> o escribirme un mensaje en alguna de las redes 
+      sociales que aparecen al final.
+    </p>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12 d-flex justify-content-center flex-wrap">
+      <h3>Redes sociales</h3>
+      <div class="col-12 d-flex justify-content-center fs-1">
+        <a href="https://github.com/andresred94" target="blank" aria-label="Visita mi GitHUb personal para ver mis proyectos"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-12 d-flex justify-content-center flex-wrap">
+      <h3>¿Qué tecnologías manejo?</h3>
+      <div class="col-12 d-flex justify-content-center fs-1">
+        <i class="bi bi-filetype-css"></i>
+        <i class="bi bi-filetype-html"></i>
+        <i class="bi bi-filetype-js"></i>
+        <i class="bi bi-filetype-java"></i>
+        <i class="bi bi-filetype-py"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content%}

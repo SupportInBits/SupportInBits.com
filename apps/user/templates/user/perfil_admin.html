@@ -1,0 +1,86 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load static %}
+{% if user.is_authenticated %}
+    {% if user.is_superuser %}
+    <h1>Bienvenido Administrador, {{ user.username }}!</h1>
+    <p>correo:  {{ user.email }}</p>
+    
+    <p class="fs-3">Panel de administración: </p>
+    
+    <div class="row">
+        <div class="col">
+    
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-entradas" aria-controls="panel-entradas">Entradas</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-paginas" aria-controls="panel-paginas">Páginas</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-usuario" aria-controls="panel-usuario">Usuarios</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-comentarios" aria-controls="panel-comentarios">Comentarios</button>
+    
+            
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-entradas" aria-labelledby="offcanvasWithBothOptionsLabel">
+              <div class="offcanvas-header">
+                <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Paneles de administración de entradas</p>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="/blog/entrada-nueva">Crear entrada</a></li>
+                  <li class="list-group-item"><a href="/blog/entradas-admin">Buscar entrada</a></li>
+                </ul>                
+              </div>
+            </div>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-paginas" aria-labelledby="offcanvasWithBothOptionsLabel">
+              <div class="offcanvas-header">
+                <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de páginas</p>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a>Crear página</a></li>
+                  <li class="list-group-item"><a>Borrar página</a></li>
+                  <li class="list-group-item"><a>Modificar página</a></li>
+                  <li class="list-group-item"><a>Buscar página</a></li>
+                <ul>
+              </div>
+            </div>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-usuario" aria-labelledby="offcanvasWithBothOptionsLabel">
+              <div class="offcanvas-header">
+                <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de usuarios</p>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a>Crear usuario</a></li>
+                  <li class="list-group-item"><a href="/perfil/admin/mostrar-usuarios">Mostrar usuarios</a></li>
+                <ul>
+              </div>
+            </div>
+
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-comentarios" aria-labelledby="offcanvasWithBothOptionsLabel">
+              <div class="offcanvas-header">
+                <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de comentarios</p>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><a href="/blog/comentarios-admin">Ver comentarios</a></li>
+                <ul>
+              </div>
+            </div>
+            
+
+    
+        </div>
+    </div>
+    {% endif %}
+    
+
+{% else %}
+    <p>Por favor inicia sesión.</p>
+{% endif %}
+
+
+
+{% endblock content%}

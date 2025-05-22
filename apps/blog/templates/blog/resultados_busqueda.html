@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resultado búsqueda | Support In Bits
+{% endblock %}
+{% load static %}
+{% block content %}
+<h2>Resultados para "{{ consulta }}"</h2>
+
+{% if resultados %}
+<ul> {% for entrada in resultados %} 
+    <li>
+        <a href="{{ entrada.get_absolute_url }}">{{ entrada.titulo }}</a>
+
+    </li> {% endfor %} 
+</ul> 
+{% else %} 
+<div class="container">
+    <p class="p-3">No se encontraron resultados.</p> 
+<div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3>Confirmar Eliminación</h3>
+        </div>
+        <div class="card-body">
+            <h5>¿Estás seguro de que quieres eliminar esta entrada?</h5>
+            <p class="card-text">
+                <strong>Título:</strong> {{ object.titulo }}<br>
+                <strong>Autor:</strong> {{ object.autor.username }}<br>
+                <strong>Fecha:</strong> {{ object.fecha_publicacion|date:"d/m/Y" }}
+            </p>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'lista_entradas_admin' %}" class="btn btn-secondary me-md-2">Cancelar</a>
+                    <button type="submit" class="btn btn-danger">Confirmar Eliminación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

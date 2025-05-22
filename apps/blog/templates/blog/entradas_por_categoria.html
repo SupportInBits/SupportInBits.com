@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+  {{ categoria.nombre }} | Mi Blog
+{% endblock %}
+{% load static %}
+
+{% block content %}
+<div class="container" class="contenido-seccion">
+    <div class="">
+
+      {% if entradas %}
+      <h1 class="mb-4">Categoría: {{ entradas.0.categoria.nombre }}</h1>
+
+      {% for entrada in entradas %}
+        <div class="card mb-4">
+          {% if entrada.imagen_portada %}
+            <img
+              src="{{ entrada.imagen_portada.url }}"
+              class="card-img-top"
+              alt="{{ entrada.titulo }}"
+            />
+          {% endif %}
+          <div class="card-body">
+            <h2 class="card-title">{{ entrada.titulo }}</h2>
+            <p class="card-text">{{ entrada.resumen|truncatewords:30 }}</p>
+            <a href="{{ entrada.get_absolute_url }}" class="btn btn-primary">
+              Leer más &rarr;
+            </a>
+          </div>
+          <div class="card-footer text-muted">
+            Publicado el {{ entrada.fecha_publicacion|date:"d M Y" }} en
+            <a href="{% url 'entradas_por_categoria' slug_seccion=entrada.categoria.seccion.slug slug_categoria=entrada.categoria.slug %}">
+              {{ entrada.categoria.nombre }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No hay entradas publicadas aún.</p>
+    {% endif %}
+
+
+    </div>
+  </div>
+
+{% endblock content%}

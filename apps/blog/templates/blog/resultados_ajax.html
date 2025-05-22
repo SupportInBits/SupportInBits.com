@@ -1,0 +1,16 @@
+
+{% load static %}
+{% comment %} <h2>Resultados para "{{ consulta }}"</h2> {% endcomment %}
+
+{% if resultados %}
+<ul class="list-group"> 
+    {% for entrada in resultados %} 
+    <li class="list-group-item"> 
+        <a href="{{ entrada.get_absolute_url }}">{{ entrada.titulo }}</a> 
+    </li> {% endfor %} 
+</ul> 
+{% else %} 
+<div class="container">
+    <p class="fs-4">No se encontraron resultados.</p> 
+<div>
+{% endif %}

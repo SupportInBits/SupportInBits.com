@@ -1,0 +1,15 @@
+Django>=4.2
+djangorestframework
+psycopg2-binary
+python-dotenv
+gunicorn
+python-dotenv
+pillow
+django_tinymce
+axe-selenium-python
+django-cryptography
+django-bootstrap-v5
+WhiteNoise==6.9.0
+django_cookie_consent===0.6.0
+django_allauth===65.8.0
+WhiteNoise==6.9.0

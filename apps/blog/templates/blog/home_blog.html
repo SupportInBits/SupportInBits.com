@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% load static %}
+<div class="row" id="contenedor-home-blog">
+  <div class="col-md-8">
+    <h1 class="mb-4">Entradas publicadas</h1>
+
+    {% for entrada in entradas %}
+    <div class="card mb-4">
+      {% if entrada.imagen_portada %}
+      <img
+        src="{{ entrada.imagen_portada.url }}"
+        class="card-img-top"
+        alt="{{ entrada.titulo }}"
+      />
+      {% endif %}
+      <div class="card-body">
+        <h2 class="card-title">{{ entrada.titulo }}</h2>
+        <p class="card-text">{{ entrada.resumen|truncatewords:30 }}</p>
+        <a href="{{ entrada.get_absolute_url }}" class="btn btn-primary"
+          >Leer más &rarr;</a
+        >
+      </div>
+      <div class="card-footer text-muted">
+        Publicado el {{ entrada.fecha_publicacion|date:"d M Y" }}
+      </div>
+    </div>
+    {% empty %}
+    <p>No hay entradas publicadas aún.</p>
+    {% endfor %} 
+    {% if is_paginated %}
+    <nav aria-label="Paginación de entradas">
+      <ul class="pagination justify-content-center mb-4">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+            >&larr; Anterior</a
+          >
+        </li>
+        {% endif %} {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+            >Siguiente &rarr;</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+
+  <div class="col-md-4 mt-5">
+    <div class="card mb-4">
+      <p class="card-header h5">Secciones</p>
+      <div class="accordion" id="accordionCategorias">
+          {% for seccion in secciones %}
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ seccion.id }}" aria-expanded="false" aria-controls="collapse{{ seccion.id }}">
+                <p class="mb-0 h6">{{ seccion.nombre }} 
+                  <a href="{% url 'entradas_por_seccion' slug_seccion=seccion.slug %} " aria-label={{ seccion.descripcion }}>{% comment %} (Slug: {{ seccion.slug }}) {% endcomment %}</a>
+                </p>  <!-- DEBUG: Muestra el slug -->
+            </button>
+        </h2>
+        <div id="collapse{{ seccion.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionCategorias">
+            <div class="accordion-body">
+                <ul class="list-unstyled">
+                    {% for categoria in seccion.categorias.all %}
+                        <li class="mb-2">
+                            <a href="{% url 'entradas_por_categoria' slug_seccion=seccion.slug slug_categoria=categoria.slug %}">
+                                {{ categoria.nombre }} {% comment %} (Slug: {{ categoria.slug }}) {% endcomment %}  <!-- DEBUG: Muestra el slug -->
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content%}

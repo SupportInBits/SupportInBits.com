@@ -1,0 +1,48 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<article class="container mt-4">
+    <header class="mb-5">
+        <h1 class="display-4">{{ post.title }}</h1>
+        <img src="{{ post.cover_image.url }}" alt="{{ post.cover_alt_text }}" class="img-fluid rounded mb-3">
+        <div class="text-muted mb-3">
+            Publicado el {{ post.publication_date|date:"DATE_FORMAT" }} por {{ post.author.get_full_name }}
+        </div>
+    </header>
+
+    <div class="post-content">
+        {% for block in post.blocks.all %}
+            {% if block.block_type == 'paragraph' %}
+                <div class="mb-4 formatted-content">
+                    {{ block.content|safe }}
+                </div>
+            
+            {% elif block.block_type == 'raw_html' %}
+                <div class="mb-4 custom-html">
+                    {{ block.content|safe }}
+                </div>
+            
+            {% elif block.block_type == 'image' %}
+                <figure class="mb-4 text-center">
+                    <img src="{{ block.image.url }}" alt="{{ block.alt_text }}" class="img-fluid rounded">
+                    {% if block.content %}<figcaption class="mt-2 text-muted">{{ block.content }}</figcaption>{% endif %}
+                </figure>
+            
+            {% elif block.block_type == 'heading' %}
+                <h2 class="mb-4 mt-5">{{ block.content }}</h2>
+            
+            {% elif block.block_type == 'quote' %}
+                <blockquote class="blockquote mb-4 pl-3 border-left border-primary">
+                    <p class="mb-0">{{ block.content }}</p>
+                </blockquote>
+            
+            {% elif block.block_type == 'code' %}
+                <div class="mb-4">
+                    <pre><code class="language-python">{{ block.content }}</code></pre>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

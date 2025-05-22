@@ -1,0 +1,377 @@
+{% load static %}
+{% load bootstrap5 %}
+{% load cookie_consent_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      {% block title %}
+      {% if user.is_authenticated %}
+        {% if page.titulo == " - Support In Bits" %}
+          {{ user.username }}
+        {% endif %}
+      {% endif %}
+      {{ page.titulo}} 
+      {% endblock %}
+    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{ page.m_descri }}" />
+    <meta name="robots" content="{{ page.m_robots }}" />
+    <meta name="HandheldFriendly" content="{{ page.m_handF }}" />
+    <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
+    <meta http-equiv="content-language" content="es"/>
+
+    <script src="{% static 'supportinbits/js/accessibility.js' %}"></script>   
+    <!-- TinyMCE CDN -->
+    <script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    
+    <!-- axe-core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.8.2/axe.min.js"></script>
+    <!-- CSS de Bootstrap -->
+    {% bootstrap_css %}
+    <!-- JS de Bootstrap -->
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <link rel="stylesheet" href="{% static 'supportinbits/css/global.css' %}" />   
+    <link rel="stylesheet" href="{% static 'supportinbits/css/accessibility.css' %}" />   
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" >
+
+  </head>
+  <body  class="d-flex flex-column h-100 dark-mode">
+    <div id="lupa">
+      <div id="lupa-content"></div>
+    </div>
+    <div class="container" id="contenedor-pricipal">
+      <!--encabezado-->
+      <header>
+        <div class="container-fluid banner">
+          <div class="d-flex justify-content-end ">
+            {% comment %} <button id="toggle-mode" class="toggle-btn btn"><i class="bi bi-moon-fill p-2"></i></button> {% endcomment %}
+          </div>
+        </div>
+        <!--navegador-->
+        <div class="px-3 py-2 text-bg-dark border-bottom">
+          <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap" aria-label="Navegación principal">
+              <div class="container-fluid">
+                <!--home-icon-->
+                <a class="navbar-brand" href="/" aria-label="home"><i class="bi bi-house fs-1"></i></a>
+                <!--barra de búsqueda-->
+                <div class="search-container col-6 col-lg-6">
+                  <form id="form-busqueda" role="search"> 
+                    <input type="search" id="input-busqueda" class="form-control" name="q" placeholder="Buscar en Support In Bits" aria-label="Buscar"> 
+                  </form>
+                  <!-- Aquí se mostrarán los resultados --> 
+                  <div id="resultados-busqueda" class="results-dropdown"></div>
+                </div>
+                <!--arrow-up-->
+                <i id="boton-up" class="bi bi-arrow-up-circle display-5"></i>
+                <!--botón hamburguesa-->
+                <button class="navbar-toggler" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--si está autenticado-->
+                {% if user.is_authenticated %}
+                  <!--si es super user-->
+                  {% if user.is_superuser %}
+                    <div class="d-none d-md-flex ms-auto">
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="/usuario/perfil/admin">Paneles</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="d-none d-md-flex ms-3">
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="/usuario/perfil">Mis comentarios</a></li>
+                          <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% else %}
+                  <div class="d-none d-md-flex ms-auto">
+                    <div class="dropdown">
+                      <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-box-arrow-in-right"></i> Identifícate
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" href="{% url 'registro' %}">Registrate</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                {% endif %}
+              </div><!--container-fluid-->
+              {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <!--menu-desplegable-->
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="/plantillas">Plantillas</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Servicios</a>
+                        </li>
+                        <li class="nav-item dropdown d-md-none">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="/usuario/perfil/admin">Paneles</a></li>
+                              <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                            </ul>  
+                        </li>
+                    </ul>
+                  </div><!--menu-desplegable-->
+                {% else %}
+                  <!--menu-desplegable-->
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link" aria-current="page" href="/plantillas">Plantillas</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/blog">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Servicios</a>
+                        </li>
+                        <li class="nav-item dropdown d-md-none">
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="/perfil">Mis comentarios</a></li>
+                              <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                            </ul>  
+                        </li>
+                    </ul>
+                  </div><!--menu-desplegable-->
+                {% endif %}
+              {% else %}
+                <!--menu-desplegable-->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/plantillas">Plantillas</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item dropdown d-md-none">
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Identifícate
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="/usuario/login">Iniciar sesión</a></li>
+                          <li><a class="dropdown-item" href="/usuario/registrate">Registrate</a></li>
+                        </ul>
+                      </div>  
+                    </li>
+                  </ul>
+                </div><!--menu-desplegable-->
+              {% endif %}
+            </nav>
+          </div><!--container-->
+        </div><!--navegador-->
+      </header>
+
+      <!--breadcrumbs-->
+      <nav aria-label="Migas de pan" class="container">
+        <ol class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+                <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" 
+                    {% if forloop.last %}aria-current="page"{% endif %}>
+                    {% if breadcrumb.url %}
+                        <a href="{{ breadcrumb.url }}">{{ breadcrumb.name }}</a>
+                    {% else %}
+                        {{ breadcrumb.name }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+      </nav>
+
+      <!--menu accesibilidad-->
+      <!-- Botón flotante de accesibilidad -->
+      <button id="accessibility-btn" aria-label="Opciones de accesibilidad">
+        <i class="bi bi-universal-access-circle fs-1"></i>
+      </button>
+      
+      <!-- Panel de opciones (inicialmente oculto) -->
+       
+      <div id="accessibility-panel" class="hidden">
+          <div class="container">
+            <div class="row">
+              <h2 class="text-fluid">Opciones de accesibilidad</h2>
+            </div>
+
+            <div class="row">
+              <!-- Bloques -->
+              <div class="col-4 ">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="increase-font" z>A+ Aumentar texto</button>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="decrease-font">A- Disminuir texto</button>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="reset-font" class="btn">Tamaño normal</button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <!-- Bloques -->
+              <div class="col-4 ">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="high-contrast">Alto contraste</button>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="reset-contrast">Contraste normal</button>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="toggle-lupa">Activar lupa</button>
+                </div>
+              </div>
+            </div>
+            
+
+          
+          </div>
+      </div>
+
+      <!--contenido-->
+      <main class="flex-shrink-0">
+        <div class="container-fluid">
+          {% block content %} {% endblock %}
+        </div>
+      </main>
+
+      <!--footer-->
+      <footer class="mt-5" aria-label="Pie de pagina">
+        <div class="container mt-auto py-3 ">
+          <div class="d-flex justify-content-evenly flex-wrap pb-3 mb-3">
+            <div class="col-12 col-md-auto"><a href="/politicas-de-privacidad" class="link-opacity-50-hover">Politicas de privacidad</a></div>
+            <div class="col-12 col-md-auto"><a href="/quien-soy" class="link-opacity-50-hover">Quien soy</a></div>
+            <div class="col-12 col-md-auto"><a href="/preguntas-frecuentes" class="link-opacity-50-hover">FAQs</a></div>
+            <div class="col-12 col-md-auto"><a href="/politica-de-cookies" class="link-opacity-50-hover">Cookies</a></div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2025 SupportInBits.com</p>
+            <ul class="list-unstyled d-flex fs-4">
+              <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Facebook"><i class="bi bi-github"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+  </div>
+    {% load static %}
+    {% if user.is_superuser %}
+    <script>
+      window.isSuperuser = true;  // Variable global para JavaScript
+    </script>
+      <script src="{% static 'supportinbits/js/accessibility-audit.js' %}"></script>
+      
+    
+    {% endif %}
+    <script src="{% static 'supportinbits/js/global.js' %}"></script>   
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('input-busqueda');
+        const results = document.getElementById('resultados-busqueda');
+
+        let debounceTimer;
+
+        input.addEventListener('input', function () {
+          const query = input.value.trim();
+
+          clearTimeout(debounceTimer);
+
+          if (!query) {
+            results.style.display = 'none';
+            results.innerHTML = '';
+            return;
+          }
+
+          // Debounce para evitar demasiadas peticiones rápidas
+          debounceTimer = setTimeout(() => {
+            fetch(`/buscar/ajax/?q=${encodeURIComponent(query)}`, {
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              results.innerHTML = data.html;
+              results.style.display = 'block';
+            })
+            .catch(error => {
+              results.innerHTML = '<p>Error al realizar la búsqueda.</p>';
+              results.style.display = 'block';
+              console.error(error);
+            });
+          }, 300); // Espera 300 ms después de dejar de escribir
+        });
+
+        // Ocultar resultados si se hace clic fuera del contenedor
+        document.addEventListener('click', function (event) {
+          if (!document.querySelector('.search-container').contains(event.target)) {
+            results.style.display = 'none';
+          }
+        });
+      });
+    </script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    {% comment %} <script src="{% static 'cookie_consent/cookiebar.module.js' %}"></script> {% endcomment %}
+
+
+      
+{% comment %}     {% if request|cookie_consent_enabled %}
+        <script type="text/javascript">
+            $(document).ready(function() {
+                showCookieBar({
+                    content: '<div class="cookie-bar"> <p>Utilizamos cookies para mejorar su experiencia de navegación. Si continúa navegando, consideramos que acepta su uso.</p> <a href="/accept_cookies" class="cc-cookie-accept">Aceptar</a> <a href="/decline_cookies" class="cc-cookie-decline">Rechazar</a> </div>',
+                    cookie_groups: ['analytics', 'marketing'],
+                    cookie_decline: 'true',
+                    
+                });            
+            });
+        </script>
+    {% endif %} {% endcomment %}
+  </body>
+</html>

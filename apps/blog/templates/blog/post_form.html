@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %} 
+{% load static %}
+
+<h1>Nuevo post</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+
+<script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+tinymce.init({
+  selector: 'textarea',  // asegúrate que el textarea sea el correcto
+  plugins: 'a11ychecker advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+  toolbar: 'a11ycheck accessibilitycheck | undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+  menubar: 'tools edit view insert format',
+  toolbar_mode: 'floating',
+  height: 500,
+});
+</script>
+
+
+{% endblock content%}

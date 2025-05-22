@@ -1,0 +1,83 @@
+{% extends "base.html" %} 
+{% block title %}
+Plantillas | Support In Bits
+{% endblock %}
+{% load static %} 
+{% block content %}
+
+<div class="container" id="container-plantillas">
+    <h1>Plantillas accesibles</h1>
+    <p>En esta página encontrarás plantillas a páginas web estáticas
+      que podrás copiar y pegar para usarlo para lo que quieras. 
+    </p>
+  
+  </div>
+{% comment %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/pages/")
+      .then((response) => response.json())
+      .then((data) => {
+        let html = "";
+        data.forEach((page) => {
+          html += `<p>${page.titulo}</p>`;
+        });
+        document.getElementById("pages-container").innerHTML = html;
+      })
+      .catch((error) => console.error("Error:", error));
+  });
+</script>
+{% endcomment %}
+
+<script>
+  tinymce.init({
+    selector: "#editor",
+    plugins: "image link lists code",
+    toolbar:
+      "undo redo | styles | bold italic underline | alignleft aligncenter alignright | image link | code",
+    height: 400,
+  });
+
+  function runAccessibilityCheck(event) {
+    event.preventDefault();
+
+    const iframe = document.querySelector("iframe"); // el iframe de TinyMCE
+    if (!iframe) {
+      alert("❌ El editor no está disponible aún.");
+      return;
+    }
+
+    const editorBody = iframe.contentDocument.body;
+
+    axe
+      .run(editorBody)
+      .then((results) => {
+        if (results.violations.length === 0) {
+          alert("✅ ¡El contenido del editor es accesible!");
+          document.getElementById("post-form").submit();
+        } else {
+          let errores = results.violations
+            .map((v) => `• ${v.help} (${v.id})`)
+            .join("\n");
+          alert(
+            `⚠️ Se encontraron ${results.violations.length} problemas de accesibilidad SOLO en el contenido del editor:\n\n${errores}`
+          );
+          console.warn("Violaciones encontradas:", results.violations);
+          console.log("Violaciones encontradas:", results.violations);
+        }
+      })
+      .catch((err) => {
+        console.error("Error al ejecutar axe-core:", err);
+        alert("❌ Error al ejecutar la validación de accesibilidad.");
+      });
+  }
+</script>
+
+<form id="post-form" method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn-primary p-2" onclick="runAccessibilityCheck(event)">
+    🧪 Comprobar accesibilidad y publicar
+  </button>
+</form>
+
+{% endblock content%}

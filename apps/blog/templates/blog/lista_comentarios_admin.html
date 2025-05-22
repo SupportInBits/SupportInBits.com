@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}
+Buscar comentarios | Support In Bits
+{% endblock %}
+{% load static %}
+
+{% block extra_head %}
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Administración de Comentarios</h2>
+    
+    <div class="mb-3 row">
+        <div class="col-md-6">
+            <input type="text" id="searchInput" class="form-control" placeholder="Buscar comentarios...">
+        </div>
+        <div class="col-md-6">
+            <div class="btn-group float-end" role="group">
+                <a href="?aprobacion=todos" class="btn btn-outline-secondary {% if filtro_aprobacion == 'todos' or not filtro_aprobacion %}active{% endif %}">Todos</a>
+                <a href="?aprobacion=aprobados" class="btn btn-outline-success {% if filtro_aprobacion == 'aprobados' %}active{% endif %}">Aprobados</a>
+                <a href="?aprobacion=pendientes" class="btn btn-outline-warning {% if filtro_aprobacion == 'pendientes' %}active{% endif %}">Pendientes</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
+        <table id="comentariosTable" class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Contenido</th>
+                    <th>Autor</th>
+                    <th>Entrada</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comentario in comentarios %}
+                <tr>
+                    <td>{{ comentario.contenido|truncatechars:100 }}</td>
+                    <td>{{ comentario.autor.username }}</td>
+                    <td>
+                        <a href="{{ comentario.entrada.get_absolute_url }}" target="_blank">
+                            {{ comentario.entrada.titulo|truncatechars:30 }}
+                        </a>
+                    </td>
+                    <td>{{ comentario.fecha_creacion|date:"d/m/Y H:i" }}</td>
+                    <td>
+                        {% if comentario.aprobado %}
+                            <span class="badge bg-success">Aprobado</span>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column justify-content-around">
+                            <form method="post" action="{% url 'toggle_aprobacion_comentario' comentario.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm {% if comentario.aprobado %}btn-warning{% else %}btn-success{% endif %}">
+                                    {% if comentario.aprobado %}Desaprobar{% else %}Aprobar{% endif %}
+                                </button>
+                            </form>
+                            <form method="post" action="{% url 'eliminar_comentario' comentario.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar este comentario?');">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    var table = $('#comentariosTable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        },
+        "responsive": true,
+        "dom": '<"top"lf>rt<"bottom"ip>',
+        "initComplete": function() {
+            // Integración del buscador personalizado
+            $('#searchInput').keyup(function(){
+                table.search($(this).val()).draw();
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

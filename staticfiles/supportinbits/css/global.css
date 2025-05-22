@@ -1,0 +1,358 @@
+/*app/supportinbits/static/supportinbits/css/global.css
+NOTA: siempre que hagas cambios en este archivo realiza un collectstatic
+Esto hará que se copie el contenido exacto en staticFiles
+*/
+@font-face {
+  font-family: "fuente-principal";
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --bk_principal: #f2f2f2;
+  --tx-nm-lg: #003366;
+  --indigoEnlaceBread: #6f009e;
+  --brown: #514b23;
+  --lemon-lime: #e4ff1a;
+  --orangepantone: #f26419;
+  --texto-boton: #faff24;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --banner-bg: #f0f0f0;
+}
+
+/* Estilos para alto contraste */
+.high-contrast {
+  background-color: black !important;
+  color: white !important;
+}
+
+.high-contrast a {
+  color: #00ff33 !important;
+  background-color: black !important;
+}
+.high-contrast .navbar-toggler {
+  border-color: #00ff33 !important;
+}
+
+.high-contrast .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2300ff33' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+.high-contrast .card-body {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .card-footer {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .col {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .blockquote {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .text-justify {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .text-center {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .card-header {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+.high-contrast .btn.dropdown-toggle {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+.high-contrast .toggle-btn.btn {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+.high-contrast .btn-primary {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+
+.high-contrast .accordion-item {
+  background-color: black !important;
+}
+.high-contrast .accordion-button {
+  background-color: black !important;
+  color: yellow !important;
+  border-color: yellow !important;
+}
+.high-contrast .breadcrumb-item.active {
+  color: #00e1ff !important;
+  border-color: yellow !important;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--bk_principal);
+  color: var(--tx-nm-lg);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  a {
+    color: var(--tx-nm-lg);
+  }
+  a:focus,
+  a:hover {
+    box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
+  }
+  header {
+    .toggle-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background-color: #0056b3;
+    }
+    /* Modo oscuro */
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+      --banner-bg: #1e1e1e;
+      --button-bg: #4caf50;
+      --button-hover: #45a049;
+    }
+
+    .dropdown-item:active {
+      color: var(--texto-boton);
+      background-color: var(--indigoEnlaceBread);
+    }
+    .nav-link:focus {
+      box-shadow: inset 0 -5px 0 var(--indigoEnlaceBread);
+    }
+    .btn {
+      background-color: var(--indigoEnlaceBread);
+      color: var(--texto-boton);
+      border: solid var(--indigoEnlaceBread);
+    }
+    .btn:hover {
+      background-color: var(--texto-boton);
+      border: solid var(--indigoEnlaceBread);
+    }
+    .btn:focus {
+      border: solid var(--texto-boton);
+      box-shadow: var(--texto-boton);
+    }
+  }
+  .breadcrumb {
+    li,
+    a {
+      color: var(--tx-nm-lg);
+    }
+    .active {
+      color: var(--indigoEnlaceBread);
+    }
+  }
+
+  .search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #resultados-busqueda {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  /* Estilos del botón de accesibilidad */
+  /* Estilo del botón principal */
+  #accessibility-btn {
+    position: fixed;
+    bottom: 60vh;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Panel de opciones */
+  #accessibility-panel {
+    position: fixed;
+    bottom: 10vh;
+    right: 5%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  #accessibility-panel h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+  }
+
+  #accessibility-panel button {
+    display: block;
+    width: 100%;
+    height: 10vh;
+    margin-bottom: 8px;
+    padding: 8px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #boton-up {
+    position: fixed;
+    bottom: 100px;
+    right: 2%;
+    cursor: pointer;
+    display: none; /* Oculto por defecto */
+    z-index: 1000;
+  }
+  font-family: "fuente-principal", sans-serif;
+  .container {
+    flex: 1; /* Esto hace que el contenido ocupe el espacio disponible */
+    padding: 20px;
+    .btn-primary,
+    .btn-outline-primary {
+      background-color: var(--indigoEnlaceBread);
+      color: var(--lemon-lime);
+    }
+    .btn-primary:hover {
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
+    .btn-secondary {
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
+    .btn-outline-primary:hover {
+      background-color: var(--texto-boton);
+      color: var(--indigoEnlaceBread);
+    }
+    /*estilos generales de cada page*/
+    #contenido-home,
+    #contenido-privacy,
+    #contenido-about,
+    #contenido-faq,
+    #contenido-cookies {
+      text-align: justify;
+      text-justify: inter-word;
+      p,
+      h1,
+      h2,
+      li,
+      .table {
+        color: var(--tx-nm-lg);
+      }
+    }
+    /*estilos individuales de cada page*/
+    #contenedor-home-blog {
+      .accordion {
+        a:focus,
+        a:hover {
+          box-shadow: inset 0 -2px 0 var(--indigoEnlaceBread);
+        }
+      }
+    }
+    #contenedor-detalle-entrada {
+      .card-body {
+        .btn-primary {
+          background-color: var(--indigoEnlaceBread);
+          color: var(--lemon-lime);
+        }
+      }
+    }
+    #contenido-faq,
+    #contenedor-home-blog {
+      button {
+        background-color: var(--tx-nm-lg);
+        color: var(--texto-boton);
+      }
+      .accordion-button::after {
+        background-image: none;
+      }
+      .accordion-button:focus {
+        box-shadow: inset 0 -5px 0 var(--texto-boton);
+      }
+    }
+  }
+
+  footer {
+    a {
+      text-decoration: none;
+    }
+  }
+  /*barra de cookies*/
+  .cookie-bar {
+    position: fixed;
+    top: 80%;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      margin-left: 10px;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cc-cookie-accept {
+      background-color: #4caf50;
+      color: white;
+    }
+    .cc-cookie-decline {
+      background-color: #f44336;
+      color: white;
+    }
+  }
+}

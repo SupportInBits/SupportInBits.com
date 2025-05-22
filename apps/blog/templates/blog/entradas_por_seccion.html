@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}
+  {{ seccion.nombre }} | Mi Blog
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Columna principal con entradas -->
+        <div class="col-md-8">
+            <h1>Sección: {{ seccion.nombre }}</h1>
+            
+            {% if entradas %}
+            {% regroup entradas by categoria as entradas_por_categoria %}
+        
+            {% for grupo in entradas_por_categoria %}
+                <h2>Categoría: {{ grupo.grouper.nombre }}</h2>
+        
+                {% for entrada in grupo.list %}
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a href="{{ entrada.get_absolute_url }}">{{ entrada.titulo }}</a>
+                            </h2>
+                            <p class="card-text text-muted">
+                                Publicado el {{ entrada.fecha_publicacion|date:"d M Y" }} 
+                                en <a href="{% url 'entradas_por_categoria' slug_seccion=seccion.slug slug_categoria=entrada.categoria.slug %}">
+                                    {{ entrada.categoria.nombre }}
+                                </a>
+                            </p>
+                            <p class="card-text">{{ entrada.resumen|truncatewords:30 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        
+            <!-- Paginación -->
+            {% comment %} {% include 'includes/paginacion.html' %} {% endcomment %}
+            {% else %}
+                <p>No hay entradas publicadas en esta sección.</p>
+            {% endif %}
+            
+        </div>
+        
+        <!-- Sidebar con categorías -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Categorías en {{ seccion.nombre }}</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for categoria in categorias %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <a href="{% url 'entradas_por_categoria' slug_seccion=seccion.slug slug_categoria=categoria.slug %}">
+                                {{ categoria.nombre }}
+                            </a>
+                            <span class="badge bg-primary rounded-pill m-1">{{ categoria.num_entradas }}</span>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No hay categorías en esta sección</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

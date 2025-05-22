@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crear Nueva Entrada | Support In Bits
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Crear Nueva Entrada</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}    
+        {% comment %} {% lorem 9 b random %} {% endcomment %}
+        <!--titulos-->      
+        <div class="mb-3">
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
+            {% if form.titulo.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.titulo.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <!--contenido-->
+        <div class="mb-3">
+            {{ form.contenido.label_tag }}
+            {{ form.contenido }}
+            {% if form.contenido.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.contenido.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <!--resumen-->
+        <div class="mb-3">
+            {{ form.resumen.label_tag }}
+            {{ form.resumen }}
+            <small class="form-text text-muted">Máximo 500 caracteres</small>
+            {% if form.resumen.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.resumen.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <!--categoria-->
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.categoria.label_tag }}
+                {{ form.categoria }}
+                {% if form.categoria.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.categoria.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <!--imagen portada-->
+            <div class="col-md-6 mb-3">
+                {{ form.imagen_portada.label_tag }}
+                {{ form.imagen_portada }}
+                {% if form.imagen_portada.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.imagen_portada.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <!--está publicado-->
+        <div class="mb-3 form-check">
+            {{ form.publicado }}
+            {{ form.publicado.label_tag }}
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Guardar Entrada</button>
+    </form>
+</div>
+
+<!-- Incluye CKEditor si lo estás usando -->
+{% endblock %}
