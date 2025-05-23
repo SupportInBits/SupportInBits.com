@@ -10,7 +10,6 @@ Crear Nueva Entrada | Support In Bits
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}    
-        {% comment %} {% lorem 9 b random %} {% endcomment %}
         <!--titulos-->      
         <div class="mb-3">
             {{ form.titulo.label_tag }}

@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.validators import MinLengthValidator
 from tinymce.models import HTMLField
 
+
 class Comentario(models.Model):
     entrada = models.ForeignKey('Entrada', on_delete=models.CASCADE, related_name='comentarios')
     autor = models.ForeignKey(

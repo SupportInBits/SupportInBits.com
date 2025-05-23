@@ -1,0 +1,1114 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add Cookie",
+    "content_type": 6,
+    "codename": "add_cookie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change Cookie",
+    "content_type": 6,
+    "codename": "change_cookie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete Cookie",
+    "content_type": 6,
+    "codename": "delete_cookie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view Cookie",
+    "content_type": 6,
+    "codename": "view_cookie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Cookie Group",
+    "content_type": 7,
+    "codename": "add_cookiegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Cookie Group",
+    "content_type": 7,
+    "codename": "change_cookiegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Cookie Group",
+    "content_type": 7,
+    "codename": "delete_cookiegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Cookie Group",
+    "content_type": 7,
+    "codename": "view_cookiegroup"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add Log item",
+    "content_type": 8,
+    "codename": "add_logitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change Log item",
+    "content_type": 8,
+    "codename": "change_logitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete Log item",
+    "content_type": 8,
+    "codename": "delete_logitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view Log item",
+    "content_type": 8,
+    "codename": "view_logitem"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 9,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 9,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 9,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 9,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 10,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 10,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 10,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 10,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add Categoría",
+    "content_type": 11,
+    "codename": "add_categoria"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change Categoría",
+    "content_type": 11,
+    "codename": "change_categoria"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete Categoría",
+    "content_type": 11,
+    "codename": "delete_categoria"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view Categoría",
+    "content_type": 11,
+    "codename": "view_categoria"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add Comentario",
+    "content_type": 12,
+    "codename": "add_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change Comentario",
+    "content_type": 12,
+    "codename": "change_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete Comentario",
+    "content_type": 12,
+    "codename": "delete_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view Comentario",
+    "content_type": 12,
+    "codename": "view_comentario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add Entrada",
+    "content_type": 13,
+    "codename": "add_entrada"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change Entrada",
+    "content_type": 13,
+    "codename": "change_entrada"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete Entrada",
+    "content_type": 13,
+    "codename": "delete_entrada"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view Entrada",
+    "content_type": 13,
+    "codename": "view_entrada"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Sección",
+    "content_type": 14,
+    "codename": "add_seccion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Sección",
+    "content_type": 14,
+    "codename": "change_seccion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Sección",
+    "content_type": 14,
+    "codename": "delete_seccion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Sección",
+    "content_type": 14,
+    "codename": "view_seccion"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 15,
+    "codename": "add_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 15,
+    "codename": "change_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 15,
+    "codename": "delete_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 15,
+    "codename": "view_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add page",
+    "content_type": 16,
+    "codename": "add_page"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change page",
+    "content_type": 16,
+    "codename": "change_page"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete page",
+    "content_type": 16,
+    "codename": "delete_page"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view page",
+    "content_type": 16,
+    "codename": "view_page"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "cookie_consent",
+    "model": "cookie"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "cookie_consent",
+    "model": "cookiegroup"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "cookie_consent",
+    "model": "logitem"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "allauth",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "allauth",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "blog",
+    "model": "categoria"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "blog",
+    "model": "comentario"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "blog",
+    "model": "entrada"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "blog",
+    "model": "seccion"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "user",
+    "model": "usuario"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "page",
+    "model": "page"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "98492qzoaldoxzgbyof19jmdn15kd9yr",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCYUhhcuvcMZBhAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hSuIstDj9bpH4kdsO0p3abZY8t3WZotwVedAur3PKz8vh_h1U6vVbF13KiAbBZsyUfEJiiKRJq2IHDRHAGxzBW1bJoLHOMZJlVoN3GVi8P-j9N6w:1uIMuG:vYETdZCBSM_erU6zTng-DJS7OUk7zJSK1-5Lw4g1d4E",
+    "expire_date": "2025-06-06T02:33:28.448"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mohm8u6ppn4nh24nyyel0xufw13es3yn",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCYUhhcuvcMZBhAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hSuIstDj9bpH4kdsO0p3abZY8t3WZotwVedAur3PKz8vh_h1U6vVbF13KiAbBZsyUfEJiiKRJq2IHDRHAGxzBW1bJoLHOMZJlVoN3GVi8P-j9N6w:1uINrA:YDY-mXO4BSF2rMHsfIdk6tcuU2y9eWOXFG108Pkl4NM",
+    "expire_date": "2025-06-06T03:34:20.074"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qzioazhbay6ehoo8p96vg2l3d3kl5mqg",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCgwIBL956BzMBUqoYmpV0Z765NutDtf-_9l0i4rTVtnZc0FXEWRpx-N8L84LaDcsd2m2We27pMJHdFHrTL61z4eTncv4OKvX5rGpWKAMZYcpCVG4tmoOJt0J6QORs1OA3sQ3auYLQUIXhr0SDRYKN4fwDbVjel:1uINHq:PH5m2h6QuaCs99iKhFXysFDd2rByWUpoDdhw1XTNt68",
+    "expire_date": "2025-06-06T02:57:50.904"
+  }
+},
+{
+  "model": "blog.comentario",
+  "pk": 1,
+  "fields": {
+    "entrada": 2,
+    "autor": 2,
+    "contenido": "Un comentario",
+    "fecha_creacion": "2025-05-23T03:34:04.248",
+    "fecha_actualizacion": "2025-05-23T03:34:23.815",
+    "aprobado": true
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 1,
+  "fields": {
+    "nombre": "Tutoriales",
+    "slug": "tutoriales",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 2,
+  "fields": {
+    "nombre": "Reviews",
+    "slug": "reviews",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 3,
+  "fields": {
+    "nombre": "Guías oficiales",
+    "slug": "guias-oficiales",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 4,
+  "fields": {
+    "nombre": "SEO",
+    "slug": "seo",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 5,
+  "fields": {
+    "nombre": "Compartiendo arte",
+    "slug": "compartiendo-arte",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 1,
+  "fields": {
+    "nombre": "Accesibilidad",
+    "slug": "accesibilidad",
+    "seccion": 1,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 2,
+  "fields": {
+    "nombre": "Redes",
+    "slug": "redes",
+    "seccion": 1,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Ordenadores",
+    "slug": "ordenadores",
+    "seccion": 1,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 4,
+  "fields": {
+    "nombre": "Dispositivos móviles",
+    "slug": "dispositivos-moviles",
+    "seccion": 2,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 5,
+  "fields": {
+    "nombre": "Portátiles",
+    "slug": "portatiles",
+    "seccion": 2,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 6,
+  "fields": {
+    "nombre": "Python",
+    "slug": "python",
+    "seccion": 3,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 7,
+  "fields": {
+    "nombre": "Django",
+    "slug": "django",
+    "seccion": 3,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 8,
+  "fields": {
+    "nombre": "W3C",
+    "slug": "w3c",
+    "seccion": 3,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 9,
+  "fields": {
+    "nombre": "Posicionamiento web",
+    "slug": "posicionamiento-web",
+    "seccion": 4,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 10,
+  "fields": {
+    "nombre": "Marketing digital",
+    "slug": "marketing-digital",
+    "seccion": 4,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 11,
+  "fields": {
+    "nombre": "Música",
+    "slug": "musica",
+    "seccion": 5,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 12,
+  "fields": {
+    "nombre": "Libros",
+    "slug": "libros",
+    "seccion": 5,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
+  "pk": 13,
+  "fields": {
+    "nombre": "Artistas",
+    "slug": "artistas",
+    "seccion": 5,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.entrada",
+  "pk": 1,
+  "fields": {
+    "titulo": "Esto es una canción de prueba",
+    "autor": null,
+    "slug": "esto-es-una-cancion-de-prueba",
+    "contenido": "<h1>Lorem Ipsum</h1>\r\n<h4>\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"</h4>\r\n<h5>\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"</h5>\r\n<hr>\r\n<div id=\"Content\">\r\n<div id=\"Panes\">\r\n<div>\r\n<h2>What is Lorem Ipsum?</h2>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>\r\n<div>\r\n<h2>Why do we use it?</h2>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>\r\n<br>\r\n<div>\r\n<h2>Where does it come from?</h2>\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n</div>\r\n<div>\r\n<h2>Where can I get some?</h2>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n</div>\r\n</div>\r\n</div>",
+    "resumen": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+    "categoria": 1,
+    "fecha_publicacion": "2025-05-23T02:43:25.884",
+    "fecha_actualizacion": "2025-05-23T02:43:25.884",
+    "publicado": true,
+    "imagen_portada": "blog/esto-es-una-cancion-de-prueba.jpeg"
+  }
+},
+{
+  "model": "blog.entrada",
+  "pk": 2,
+  "fields": {
+    "titulo": "¡Ay! ¿Qué hay ahí?",
+    "autor": null,
+    "slug": "ay-que-hay-ahi",
+    "contenido": "<h1>Lorem Ipsum</h1>\r\n<h4>\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"</h4>\r\n<h5>\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"</h5>\r\n<hr>\r\n<div id=\"Content\">\r\n<div id=\"Panes\">\r\n<div>\r\n<h2>What is Lorem Ipsum?</h2>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>\r\n<div>\r\n<h2>Why do we use it?</h2>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>\r\n<br>\r\n<div>\r\n<h2>Where does it come from?</h2>\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n</div>\r\n<div>\r\n<h2>Where can I get some?</h2>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n</div>\r\n</div>\r\n</div>",
+    "resumen": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+    "categoria": 1,
+    "fecha_publicacion": "2025-05-23T03:31:24.795",
+    "fecha_actualizacion": "2025-05-23T03:31:24.795",
+    "publicado": true,
+    "imagen_portada": "blog/ay-que-hay-ahi.jpeg"
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VaRFSkVocp9mTMnPZu3sDg$B5y5Cn82UowjqAeuqqKaUbI8QkUJ3KtyyXkxvfCCzhU=",
+    "last_login": "2025-05-23T03:34:20.070",
+    "is_superuser": true,
+    "username": "admin-total",
+    "first_name": "",
+    "last_name": "",
+    "email": "a@a.es",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-23T02:33:19.662",
+    "rol": "administrador",
+    "avatar": "",
+    "biografia": "",
+    "sitio_web": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "user.usuario",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$aNE0XKxmS7XZRSV0AEdA7v$PPzI5+2FYflY6cutwIs3HVcdHhIrZQoo7Dejn7VRAR4=",
+    "last_login": "2025-05-23T03:33:53.828",
+    "is_superuser": false,
+    "username": "andresred94",
+    "first_name": "",
+    "last_name": "",
+    "email": "a@a.es",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-23T02:57:50.475",
+    "rol": "registrado",
+    "avatar": "",
+    "biografia": "",
+    "sitio_web": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "page.page",
+  "pk": 1,
+  "fields": {
+    "titulo": "Inicio - Support In Bits",
+    "m_descri": "Web desarrollada para fomentar la creación de aplicaciones web usables y accesibles",
+    "m_robots": "index",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 2,
+  "fields": {
+    "titulo": "Política de cookies - Support In Bits",
+    "m_descri": "Página web con toda la información relacionada sobre qué hacemos con sus datos en Support In Bits",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 3,
+  "fields": {
+    "titulo": "Quién soy - Support In Bits",
+    "m_descri": "En esta página web se describe al creador de la web",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 4,
+  "fields": {
+    "titulo": "Políticas de privacidad - Support In Bits",
+    "m_descri": "En esta página se muestra las políticas de privacidad de Support In Bits",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 5,
+  "fields": {
+    "titulo": "Preguntas frecuentes - Support In Bits",
+    "m_descri": "En esta página encontrarás las respuestas a tus preguntas de cómo desarrollar una web accesible",
+    "m_robots": "index",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 6,
+  "fields": {
+    "titulo": "Blog - Support In Bits",
+    "m_descri": "En esta página encontrarás todos las entradas publicadas de diversos temas sobre informática y accesibilidad",
+    "m_robots": "index",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 7,
+  "fields": {
+    "titulo": "Crear entrada - Support In Bits",
+    "m_descri": "En esta página puedes crear tu entrada y comprobar que cumple con los requisitos de accesibilidad",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 8,
+  "fields": {
+    "titulo": "Indentifícate - Support In Bits",
+    "m_descri": "En esta página podrás crear una cuenta o iniciar sesión si ya tienes una",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 9,
+  "fields": {
+    "titulo": "Crear cuenta - Support In Bits",
+    "m_descri": "En esta página podrás crear una cuenta y unirte a nuestra comunidad",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 10,
+  "fields": {
+    "titulo": " - Support In Bits",
+    "m_descri": "Web desarrollada para fomentar la creación de aplicaciones web usables y accesibles",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+},
+{
+  "model": "page.page",
+  "pk": 11,
+  "fields": {
+    "titulo": "Error 403 - Support In Bits",
+    "m_descri": "Ha ocurrido un error 403. Ponte en contacto con el administrador",
+    "m_robots": "noindex",
+    "m_handF": "true",
+    "m_mobileOp": "width"
+  }
+}
+]

@@ -2,7 +2,6 @@ Django>=4.2
 djangorestframework
 psycopg2-binary
 python-dotenv
-<<<<<<< HEAD
 gunicorn
 python-dotenv
 pillow
@@ -14,6 +13,4 @@ WhiteNoise==6.9.0
 django_cookie_consent===0.6.0
 django_allauth===65.8.0
 WhiteNoise==6.9.0
-=======
 gunicorn
->>>>>>> a36964bd04a4e4a5cff9b82c96b9b463ede2e774

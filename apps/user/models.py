@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from user.managers import UsuarioManager
 
 class Usuario(AbstractUser):
     ROLES = (
@@ -13,6 +14,8 @@ class Usuario(AbstractUser):
     avatar = models.ImageField(upload_to='avatares/', blank=True, null=True)
     biografia = models.TextField(blank=True)
     sitio_web = models.URLField(blank=True)
+    
+    objects = UsuarioManager()  # Asigna el manager personalizado
     
     @property
     def es_administrador(self):
