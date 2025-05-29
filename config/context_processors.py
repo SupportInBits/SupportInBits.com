@@ -5,8 +5,12 @@ def breadcrumbs(request):
     breadcrumbs = [{'name': 'Inicio', 'url': '/'}]
     
     # Caso especial para la página de login
-    if request.path.startswith('/login') or request.path.startswith('/user/login'):
+    if request.path.startswith('/login') or request.path.startswith('/usuario/login'):
         breadcrumbs.append({'name': 'Login', 'url': None})
+        return {'breadcrumbs': breadcrumbs, 'user': request.user}
+    
+    if request.path.startswith('/registrate') or request.path.startswith('/usuario/registrate'):
+        breadcrumbs.append({'name': 'Registrate', 'url': None})
         return {'breadcrumbs': breadcrumbs, 'user': request.user}
     
     try:
@@ -45,8 +49,8 @@ def breadcrumbs(request):
             except Entrada.DoesNotExist:
                 pass
 
-        # Ignorar ciertas rutas (como /usuarios/)
-        ignore_paths = ['usuario/admin/']  # Añade aquí las rutas que quieres ignorar
+        # Ignorar ciertas rutas (como /usuario/)
+        ignore_paths = ['/usuario/','accounts/']  # Añade aquí las rutas que quieres ignorar
         if not any(part in ignore_paths for part in path_parts):
             current_url = ''
             for i, part in enumerate(path_parts):

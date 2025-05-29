@@ -220,7 +220,6 @@
       </button>
       
       <!-- Panel de opciones (inicialmente oculto) -->
-       
       <div id="accessibility-panel" class="hidden">
           <div class="container">
             <div class="row">
@@ -267,10 +266,29 @@
               </div>
             </div>
             
+            <div class="row">
+              <!-- Bloques -->
+              <div class="col-4 ">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  <button id="toggle-spacing">Espaciado accesible</button>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  {% comment %} <button id="reset-contrast">Contraste normal</button> {% endcomment %}
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="block d-flex flex-column justify-content-between p-3">
+                  {% comment %} <button id="toggle-lupa">Activar lupa</button> {% endcomment %}
+                </div>
+              </div>
+            </div>
 
           
           </div>
-      </div>
+      </div><!--/panel-->
 
       <!--contenido-->
       <main class="flex-shrink-0">

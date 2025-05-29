@@ -34,6 +34,6 @@ urlpatterns = [
     path('buscar/ajax/', buscar_entradas_ajax, name='buscar_entradas_ajax'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

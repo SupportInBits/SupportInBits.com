@@ -80,7 +80,6 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'user.Usuario'
 
-STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Esto apunta al directorio raíz del proyecto
 MEDIA_URL = '/media/'

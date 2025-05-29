@@ -1,145 +1,424 @@
 {% extends "base.html" %} 
 {% load static %} 
 {% block content %}
-<section id="menudia" class="sppb-section carta"><div class="sppb-row-container"><div class="sppb-row"><div class="sppb-col-md-12  " id="column-wrap-id-e9077f3d-6e15-444f-8cfc-44438bbbf10d"><div id="column-id-e9077f3d-6e15-444f-8cfc-44438bbbf10d" class="sppb-column "><div class="sppb-column-addons"></div></div></div><div class="sppb-row-column  " id="column-wrap-id-088c4838-f8ae-4130-8461-afb44d595b33"><div id="column-id-088c4838-f8ae-4130-8461-afb44d595b33" class="sppb-column "><div class="sppb-column-addons"><div id="sppb-addon-wrapper-3e181046-0f99-4b26-a36d-3021711c88c6" class="sppb-addon-wrapper  addon-root-text-block"><div id="sppb-addon-3e181046-0f99-4b26-a36d-3021711c88c6" class="clearfix  "><div class="sppb-addon sppb-addon-text-block "><h3 class="sppb-addon-title">Menú del Día</h3><div class="sppb-addon-content  ">
-			    
-  <p>Exclusivo para disfrutar al mediodía y entre semana</p>
+<section id="menudia" class="sppb-section carta">
+ <style>
+        .code-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+        
+        .code-header {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 0.5rem 1rem;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+        }
+        
+        .copy-btn {
+            background: #3a3a3a;
+            border: none;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #4a4a4a;
+        }
+        
+        .copy-btn.copied {
+            background: #28a745;
+        }
+        
+        pre {
+            margin: 0;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        code {
+            display: block;
+            padding: 1rem;
+            background: #2d2d2d;
+            color: #f8f8f2;
+            border-radius: 0 0 5px 5px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            tab-size: 4;
+        }
+    </style>
 
-  <div id="sppb-addon-wrapper-582e89cb-2fd4-460c-919b-83b84ea93132" class="sppb-addon-wrapper  addon-root-text-block"><div id="sppb-addon-582e89cb-2fd4-460c-919b-83b84ea93132" class="clearfix  "><div class="sppb-addon sppb-addon-text-block "><h2 class="sppb-addon-title">Entradas</h2><div class="sppb-addon-content  "><p>Platos para comenzar a disfrutar de nuestra comida</p></div></div></div></div><div id="section-id-16a70c43-b614-4fdd-a368-3670f41f3561" class="sppb-section"><div class="sppb-container-inner"><div class="sppb-row sppb-nested-row"><div class="sppb-col-md-4  " id="column-wrap-id-e1d380b7-ed76-4e26-8cbe-fdd2c0db7349"><div id="column-id-e1d380b7-ed76-4e26-8cbe-fdd2c0db7349" class="sppb-column "><div class="sppb-column-addons"><div id="sppb-addon-wrapper-92e62e10-4826-4008-b5cd-4204964af944" class="sppb-addon-wrapper  addon-root-module"><div id="sppb-addon-92e62e10-4826-4008-b5cd-4204964af944" class="clearfix  "><div class="sppb-addon sppb-addon-module "><div class="sppb-addon-content">
-    <div id="mod-custom122" class="mod-custom custom">
-        <table border="1" class="cartaM" style="border-collapse: collapse; width: 100%;">
-    <tbody>
-    <tr><th>Tamal Criollo</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Masa de harina de maíz aderezado especies, acompañado aceituna, cerdo o pollo, huevo y salsa criolla</td>
-    </tr>
-    <tr><th>Tamal Verde (Preguntar)</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Masa de harina de maíz aderezado con cilantro, especias, acompañado con pollo y salsa criolla</td>
-    </tr>
-    <tr><th>Осора(Preguntar)</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Crema de salsa a base de huscatay, leche, galleta maría, cacahuete, queso y ají amarillo servido sobre patata cocida</td>
-    </tr>
-    <tr><th><strong id="docs-internal-guid-4d755680-7fff-cc3c-e06d-369e43767743">Aguadito de Pollo</strong></th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Caldo de pollo y menudencia, arroz, zanahoria, guisantes y pasta de cilantro</td>
-    </tr>
-    <tr><th>
-    <p>Caldo de Gallina</p>
-    </th><th>7.00€</th></tr>
-    <tr>
-    <td colspan="2">Caldo de gallina con tallarín, patata, huevo</td>
-    </tr>
-    <tr><th>Papa Rellena</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Masa de patata, rellena de carne picada, cebolla, pasas, huevo, aceituna, acompañada con salsa criolla</td>
-    </tr>
-    <tr><th>Yucas con salsa de huancaína</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Yucas fritas acompañada de salsa huancaína</td>
-    </tr>
-    </tbody>
-    </table></div>
-    </div></div></div></div></div></div></div><div class="sppb-col-md-4  " id="column-wrap-id-dc6774d6-0bef-4ca7-942a-20890b8d7015"><div id="column-id-dc6774d6-0bef-4ca7-942a-20890b8d7015" class="sppb-column "><div class="sppb-column-addons"><div id="sppb-addon-wrapper-522aa763-10a3-41fe-8767-babb4274e134" class="sppb-addon-wrapper  addon-root-module"><div id="sppb-addon-522aa763-10a3-41fe-8767-babb4274e134" class="clearfix  "><div class="sppb-addon sppb-addon-module "><div class="sppb-addon-content">
-    <div id="mod-custom121" class="mod-custom custom">
-        <table class="cartaM" style="border-collapse: collapse; width: 100%;">
-    <tbody>
-    <tr><th>Papa a la Huancaína</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Crema de salsa con aji amarilla, lache, galleta salada y queso servido sobre patatas cocida</td>
-    </tr>
-    <tr><th>Causa Limeña</th><th>6.00€</th></tr>
-    <tr>
-    <td colspan="2">Pastel de patata amasada con ají amarillo, aceite, limón y sal, relleno de atún o pollo, cebolla y mayonesa</td>
-    </tr>
-    <tr><th>Croquetas de Ají de Gallina</th><th>7.00€</th></tr>
-    <tr>
-    <td colspan="2">Croquetas rellenas de pollo desmenuzado con un aderezo en salsa de ají amarillo con leche y queso parmesano</td>
-    </tr>
-    <tr><th>Ceviche de Pescado</th><th>13.00€</th></tr>
-    <tr>
-    <td colspan="2">Trozos de perca marinada con limón, especias y cebolla, acompañada con batata, choclo, lechuga y maíz tostado</td>
-    </tr>
-    <tr><th>Ceviche de Pescado y Mariscos</th><th>15.00€</th></tr>
-    <tr>
-    <td colspan="2">Trozos de perca marinada con limón, mariscos, especias y cebolla, acompañada con batata, choclo, lechuga y maíz tostado</td>
-    </tr>
-    <tr><th>Leche de Tigre</th><th>10.00€</th></tr>
-    <tr><th>Chicharrón de Cerdo</th><th>8.00€</th></tr>
-    <tr>
-    <td colspan="2">Ración de Cerdo frito acompañado de salsa criolla</td>
-    </tr>
-    <tr><th>Causa Acevichada</th><th>12.00€</th></tr>
-    </tbody>
-    </table></div>
-    </div></div></div></div></div></div></div></div></div></div>
-    <h2 class="sppb-addon-title">Segundos</h2>
-    <div id="section-id-207b74ec-3dfe-4bd2-9600-1338a4d22cc1" class="sppb-section"><div class="sppb-container-inner"><div class="sppb-row sppb-nested-row"><div class="sppb-col-md-4  " id="column-wrap-id-0b3b634a-1005-4bfe-a952-1012615e3b1f"><div id="column-id-0b3b634a-1005-4bfe-a952-1012615e3b1f" class="sppb-column "><div class="sppb-column-addons"><div id="sppb-addon-wrapper-544893d1-558e-469b-ae97-939b0a25b085" class="sppb-addon-wrapper  addon-root-module"><div id="sppb-addon-544893d1-558e-469b-ae97-939b0a25b085" class="clearfix  "><div class="sppb-addon sppb-addon-module "><div class="sppb-addon-content">
-      <div id="mod-custom123" class="mod-custom custom">
-          <table class="cartaM" style="border-collapse: collapse; width: 100%;">
-      <tbody>
-      <tr><th>Seco de Ternera con Frejoles (Preguntar)&nbsp;</th><th>12.00€</th></tr>
-      <tr>
-      <td colspan="2">Guiso de ternera con cilantro, acompañado con frejales, arroz y salsa criolla</td>
-      </tr>
-      <tr><th>Arroz Chaufa de Pollo</th><th>10.00€</th></tr>
-      <tr>
-      <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja</td>
-      </tr>
-      <tr><th>Arroz Chaufa de Ternera</th><th>12.00€</th></tr>
-      <tr>
-      <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, ternera y soja</td>
-      </tr>
-      <tr><th>Arroz Chaufa de Pollo y Ternera</th><th>13.00€</th></tr>
-      <tr>
-      <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, pollo, ternera y soja</td>
-      </tr>
-      <tr><th>Arroz Chaufa de Mariscos</th><th>15.00€</th></tr>
-      <tr>
-      <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, mariscos y soja</td>
-      </tr>
-      <tr><th>ChaufaLomo</th><th>14.00€</th></tr>
-      <tr>
-      <td colspan="2">Arroz Chaufa con lomo saltado de ternera</td>
-      </tr>
-      <tr><th>Lomo Saltado de Ternera / Pollo</th><th>12.00€</th></tr>
-      <tr>
-      <td colspan="2">Ternera o Pollo en tiras salteados al wok con soja, tomate, cebolla, acompañado de patatas fritas y arroz</td>
-      </tr>
-      <tr><th>Tallarín Saltado Criollo Ternera o Pollo</th><th>12.00€</th></tr>
-      <tr>
-      <td colspan="2">Ternera o Pollo en tiras con cebolla tomate, soja y tallarines, salteados al wok</td>
-      </tr>
-      </tbody>
-      </table></div>
-      </div></div></div></div></div></div></div><div class="sppb-col-md-4  " id="column-wrap-id-5faafe64-1869-43cd-9727-e4ddd6949c46"><div id="column-id-5faafe64-1869-43cd-9727-e4ddd6949c46" class="sppb-column "><div class="sppb-column-addons"><div id="sppb-addon-wrapper-9d716a0b-bde0-4afd-8543-d7452210c4da" class="sppb-addon-wrapper  addon-root-module"><div id="sppb-addon-9d716a0b-bde0-4afd-8543-d7452210c4da" class="clearfix  "><div class="sppb-addon sppb-addon-module "><div class="sppb-addon-content">
-      <div id="mod-custom124" class="mod-custom custom">
-          <table class="cartaM" style="border-collapse: collapse; width: 100%;">
-      <tbody>
-      <tr><th>Ají de Pollo con Arroz</th><th>10.00€</th></tr>
-      <tr>
-      <td colspan="2">Pollo desmenuzado aderezado en salsa de ají con leche y pan acompañado con arroz, patatas cocidas y huevo cocido</td>
-      </tr>
-      <tr><th>Anticuchos</th><th>10.00€</th></tr>
-      <tr>
-      <td colspan="2">Filetitos de corazón de ternera aderezado con ají panca, salteados al wok acompañado de patata cocida, choclo y ensalada</td>
-      </tr>
-      <tr><th>Anticuchos con Rachi</th><th>11.00€</th></tr>
-      <tr>
-      <td colspan="2">Filetitos de corazón de ternera con librillo aderezado con ají panca, salteados al wok acompañado de patata cocida, choclo y ensalada</td>
-      </tr>
-      <tr><th>Rachi</th><th>10.00€</th></tr>
-      <tr>
-      <td colspan="2">Librillo aderezado con ají panca, salteado al wok y acompañado de patata cocida, choclo y ensalada</td>
-      </tr>
-      <tr><th>Porción de Arroz blanco</th><th>4.00€</th></tr>
-      <tr><th>Porción de Patacones</th><th>5.00€</th></tr>
-      <tr><th>1/2 Porción de Arroz</th><th>2.00€</th></tr>
-      <tr><th>Porción de Frejoles</th><th>3.00€</th></tr>
-      </tbody>
-      </table></div>
-      </div></div></div></div></div></div></div></div></div></div>
-      <div id="accessibility-menu">
+
+
+<h3 class="sppb-addon-title">Menú del Día</h3>
+<pre>
+   <code>
+      < button id="accessibility-btn" aria-label="Opciones de accesibilidad">
+         < i class="bi bi-universal-access-circle fs-1">< /i>
+      < /button>
+   </code>  
+</pre>
+
+ <div class="container my-5">
+        <!-- Tu contenido normal -->
+        <button id="accessibility-btn" aria-label="Opciones de accesibilidad" class="btn btn-primary mb-4">
+            <i class="bi bi-universal-access-circle fs-1"></i>
+        </button>
+        
+        <!-- Contenedor para mostrar el código -->
+        <div class="code-container">
+            <div class="code-header">
+                <span>HTML</span>
+                <button class="copy-btn" id="copyButton">
+                    <i class="bi bi-clipboard me-1"></i> Copiar
+                </button>
+            </div>
+            <pre><code id="codeBlock">&lt;button id="accessibility-btn" aria-label="Opciones de accesibilidad"&gt;
+    &lt;i class="bi bi-universal-access-circle fs-1"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyButton = document.getElementById('copyButton');
+            const codeBlock = document.getElementById('codeBlock');
+            
+            copyButton.addEventListener('click', () => {
+                // Crear área de texto temporal
+                const textArea = document.createElement('textarea');
+                textArea.value = codeBlock.innerText;
+                document.body.appendChild(textArea);
+                
+                // Seleccionar y copiar
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Feedback visual
+                const originalText = copyButton.innerHTML;
+                copyButton.innerHTML = '<i class="bi bi-check2 me-1"></i> ¡Copiado!';
+                copyButton.classList.add('copied');
+                
+                // Restaurar después de 2 segundos
+                setTimeout(() => {
+                    copyButton.innerHTML = originalText;
+                    copyButton.classList.remove('copied');
+                }, 2000);
+            });
+        });
+</script>
+<div class="sppb-addon-content  ">
+<p>Exclusivo para disfrutar al mediodía y entre semana</p>
+<div id="sppb-addon-wrapper-582e89cb-2fd4-460c-919b-83b84ea93132" class="sppb-addon-wrapper  addon-root-text-block">
+   <div id="sppb-addon-582e89cb-2fd4-460c-919b-83b84ea93132" class="clearfix  ">
+      <div class="sppb-addon sppb-addon-text-block ">
+         <h2 class="sppb-addon-title">Entradas</h2>
+         <div class="sppb-addon-content  ">
+            <p>Platos para comenzar a disfrutar de nuestra comida</p>
+         </div>
       </div>
+   </div>
+</div>
+<div id="section" class="sppb-section">
+   <div class="container">
+      <div class="row">
+         <div class="sppb-col-md-4" >
+            <div class="col">
+               <div class="sppb-column-addons">
+                  <div id="" class="sppb-addon-wrapper  addon-root-module">
+                     <div id="sppb-addon-92e62e10-4826-4008-b5cd-4204964af944" class="clearfix  ">
+                        <div class="sppb-addon sppb-addon-module ">
+                           <div class="sppb-addon-content">
+                              <div id="mod-custom122" class="mod-custom custom">
+                                 <table border="1" class="cartaM" style="border-collapse: collapse; width: 100%;">
+                                    <tbody>
+                                        
+                                       <tr>
+                                          <td colspan="2">Masa de harina de maíz aderezado especies, acompañado aceituna, cerdo o pollo, huevo y salsa criolla</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Tamal Verde (Preguntar)</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Masa de harina de maíz aderezado con cilantro, especias, acompañado con pollo y salsa criolla</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Осора(Preguntar)</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Crema de salsa a base de huscatay, leche, galleta maría, cacahuete, queso y ají amarillo servido sobre patata cocida</td>
+                                       </tr>
+                                       <tr>
+                                          <th><strong id="docs-internal-guid-4d755680-7fff-cc3c-e06d-369e43767743">Aguadito de Pollo</strong></th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Caldo de pollo y menudencia, arroz, zanahoria, guisantes y pasta de cilantro</td>
+                                       </tr>
+                                       <tr>
+                                          <th>
+                                             <p>Caldo de Gallina</p>
+                                          </th>
+                                          <th>7.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Caldo de gallina con tallarín, patata, huevo</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Papa Rellena</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Masa de patata, rellena de carne picada, cebolla, pasas, huevo, aceituna, acompañada con salsa criolla</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Yucas con salsa de huancaína</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Yucas fritas acompañada de salsa huancaína</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="sppb-col-md-4  " id="column-wrap-id-dc6774d6-0bef-4ca7-942a-20890b8d7015">
+            <div id="column-id-dc6774d6-0bef-4ca7-942a-20890b8d7015" class="sppb-column ">
+               <div class="sppb-column-addons">
+                  <div id="sppb-addon-wrapper-522aa763-10a3-41fe-8767-babb4274e134" class="sppb-addon-wrapper  addon-root-module">
+                     <div id="sppb-addon-522aa763-10a3-41fe-8767-babb4274e134" class="clearfix  ">
+                        <div class="sppb-addon sppb-addon-module ">
+                           <div class="sppb-addon-content">
+                              <div id="mod-custom121" class="mod-custom custom">
+                                 <table class="cartaM" style="border-collapse: collapse; width: 100%;">
+                                    <tbody>
+                                       <tr>
+                                          <th>Papa a la Huancaína</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Crema de salsa con aji amarilla, lache, galleta salada y queso servido sobre patatas cocida</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Causa Limeña</th>
+                                          <th>6.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Pastel de patata amasada con ají amarillo, aceite, limón y sal, relleno de atún o pollo, cebolla y mayonesa</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Croquetas de Ají de Gallina</th>
+                                          <th>7.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Croquetas rellenas de pollo desmenuzado con un aderezo en salsa de ají amarillo con leche y queso parmesano</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Ceviche de Pescado</th>
+                                          <th>13.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Trozos de perca marinada con limón, especias y cebolla, acompañada con batata, choclo, lechuga y maíz tostado</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Ceviche de Pescado y Mariscos</th>
+                                          <th>15.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Trozos de perca marinada con limón, mariscos, especias y cebolla, acompañada con batata, choclo, lechuga y maíz tostado</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Leche de Tigre</th>
+                                          <th>10.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <th>Chicharrón de Cerdo</th>
+                                          <th>8.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Ración de Cerdo frito acompañado de salsa criolla</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Causa Acevichada</th>
+                                          <th>12.00€</th>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<h2 class="sppb-addon-title">Segundos</h2>
+<div id="section-id-207b74ec-3dfe-4bd2-9600-1338a4d22cc1" class="sppb-section">
+   <div class="sppb-container-inner">
+      <div class="sppb-row sppb-nested-row">
+         <div class="sppb-col-md-4  " id="column-wrap-id-0b3b634a-1005-4bfe-a952-1012615e3b1f">
+            <div id="column-id-0b3b634a-1005-4bfe-a952-1012615e3b1f" class="sppb-column ">
+               <div class="sppb-column-addons">
+                  <div id="sppb-addon-wrapper-544893d1-558e-469b-ae97-939b0a25b085" class="sppb-addon-wrapper  addon-root-module">
+                     <div id="sppb-addon-544893d1-558e-469b-ae97-939b0a25b085" class="clearfix  ">
+                        <div class="sppb-addon sppb-addon-module ">
+                           <div class="sppb-addon-content">
+                              <div id="mod-custom123" class="mod-custom custom">
+                                 <table class="cartaM" style="border-collapse: collapse; width: 100%;">
+                                    <tbody>
+                                       <tr>
+                                          <th>Seco de Ternera con Frejoles (Preguntar)&nbsp;</th>
+                                          <th>12.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Guiso de ternera con cilantro, acompañado con frejales, arroz y salsa criolla</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Arroz Chaufa de Pollo</th>
+                                          <th>10.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Arroz Chaufa de Ternera</th>
+                                          <th>12.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, ternera y soja</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Arroz Chaufa de Pollo y Ternera</th>
+                                          <th>13.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, pollo, ternera y soja</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Arroz Chaufa de Mariscos</th>
+                                          <th>15.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Arroz frito salteado al wok con cebolleta, tortilla, mariscos y soja</td>
+                                       </tr>
+                                       <tr>
+                                          <th>ChaufaLomo</th>
+                                          <th>14.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Arroz Chaufa con lomo saltado de ternera</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Lomo Saltado de Ternera / Pollo</th>
+                                          <th>12.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Ternera o Pollo en tiras salteados al wok con soja, tomate, cebolla, acompañado de patatas fritas y arroz</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Tallarín Saltado Criollo Ternera o Pollo</th>
+                                          <th>12.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Ternera o Pollo en tiras con cebolla tomate, soja y tallarines, salteados al wok</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="sppb-col-md-4  " id="column-wrap-id-5faafe64-1869-43cd-9727-e4ddd6949c46">
+            <div id="column-id-5faafe64-1869-43cd-9727-e4ddd6949c46" class="sppb-column ">
+               <div class="sppb-column-addons">
+                  <div id="sppb-addon-wrapper-9d716a0b-bde0-4afd-8543-d7452210c4da" class="sppb-addon-wrapper  addon-root-module">
+                     <div id="sppb-addon-9d716a0b-bde0-4afd-8543-d7452210c4da" class="clearfix  ">
+                        <div class="sppb-addon sppb-addon-module ">
+                           <div class="sppb-addon-content">
+                              <div id="mod-custom124" class="mod-custom custom">
+                                 <table class="cartaM" style="border-collapse: collapse; width: 100%;">
+                                    <tbody>
+                                       <tr>
+                                          <th>Ají de Pollo con Arroz</th>
+                                          <th>10.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Pollo desmenuzado aderezado en salsa de ají con leche y pan acompañado con arroz, patatas cocidas y huevo cocido</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Anticuchos</th>
+                                          <th>10.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Filetitos de corazón de ternera aderezado con ají panca, salteados al wok acompañado de patata cocida, choclo y ensalada</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Anticuchos con Rachi</th>
+                                          <th>11.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Filetitos de corazón de ternera con librillo aderezado con ají panca, salteados al wok acompañado de patata cocida, choclo y ensalada</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Rachi</th>
+                                          <th>10.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="2">Librillo aderezado con ají panca, salteado al wok y acompañado de patata cocida, choclo y ensalada</td>
+                                       </tr>
+                                       <tr>
+                                          <th>Porción de Arroz blanco</th>
+                                          <th>4.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <th>Porción de Patacones</th>
+                                          <th>5.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <th>1/2 Porción de Arroz</th>
+                                          <th>2.00€</th>
+                                       </tr>
+                                       <tr>
+                                          <th>Porción de Frejoles</th>
+                                          <th>3.00€</th>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div id="accessibility-menu">
+</div>
 {% endblock content%}

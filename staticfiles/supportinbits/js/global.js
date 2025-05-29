@@ -3,7 +3,7 @@ const body = document.body;
 
 // toggleBtn.addEventListener("click", () => {
 //   body.classList.toggle("dark-mode");
-// 
+//
 //   // Cambiar el texto del botón según el modo actual
 //   if (body.classList.contains("dark-mode")) {
 //     toggleBtn.innerHTML = '<i class="bi bi-sun-fill p-2"></i>';
@@ -32,232 +32,289 @@ botonUp.addEventListener("click", () => {
   });
 });
 
-// validar formulario de registro
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos del formulario
-    const usernameInput = document.getElementById('id_username');
-    const emailInput = document.getElementById('id_email');
-    const password1Input = document.getElementById('id_password1');
-    const password2Input = document.getElementById('id_password2');
-    const termsCheckbox = document.getElementById('id_terms');
-    const form = document.querySelector('form');
-    
-    // Expresiones regulares para validación
-    const USERNAME_REGEX = /^[\w.@+-]{8,}$/; // Mínimo 8 caracteres, letras, dígitos y @/./+/-/_
-    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Validación básica de email
-    const PASSWORD_MIN_LENGTH = 8;
-    
-    // Validación en tiempo real
-    usernameInput.addEventListener('input', validateUsername);
-    emailInput.addEventListener('input', validateEmail);
-    password1Input.addEventListener('input', validatePassword1);
-    password2Input.addEventListener('input', validatePassword2);
-    termsCheckbox.addEventListener('change', validateTerms);
-    
-    // Validación al perder foco (para campos que podrían necesitar verificación con el servidor)
-    usernameInput.addEventListener('blur', checkUsernameAvailability);
-    emailInput.addEventListener('blur', checkEmailAvailability);
-    
-    // Validación antes de enviar el formulario
-    form.addEventListener('submit', function(e) {
-        if (!validateForm()) {
-            e.preventDefault();
-        }
-    });
-    
-    // Funciones de validación
-    function validateUsername() {
-        const value = usernameInput.value.trim();
-        const isValid = USERNAME_REGEX.test(value);
-        
-        if (value.length === 0) {
-            showError(usernameInput, 'El nombre de usuario es requerido');
-            return false;
-        }
-        
-        if (!isValid) {
-            showError(usernameInput, 'Mínimo 8 caracteres. Letras, dígitos y @/./+/-/_ solamente.');
-            return false;
-        }
-        
-        showSuccess(usernameInput);
-        return true;
+document.addEventListener("DOMContentLoaded", () => {
+  // Configuración centralizada
+  const config = {
+    username: {
+      minLength: 8,
+      regex: /^[\w.@+-]{8,}$/,
+      errorMessages: {
+        required: "El nombre de usuario es requerido",
+        invalid: "Mínimo 8 caracteres. Letras, dígitos y @/./+/-/_ solamente.",
+        notAvailable: "Este nombre de usuario ya está en uso",
+      },
+    },
+    email: {
+      regex: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      errorMessages: {
+        required: "El correo electrónico es requerido",
+        invalid: "Por favor ingresa un correo electrónico válido",
+        notAvailable: "Este correo electrónico ya está registrado",
+      },
+    },
+    password: {
+      minLength: 8,
+      errorMessages: {
+        required: "La contraseña es requerida",
+        tooShort: (length) =>
+          `La contraseña debe tener al menos ${length} caracteres`,
+        allNumeric: "La contraseña no puede ser enteramente numérica",
+        similarUsername:
+          "La contraseña no puede ser similar a tu nombre de usuario",
+        mismatch: "Las contraseñas no coinciden",
+        confirmation: "Por favor confirma tu contraseña",
+      },
+    },
+    terms: {
+      errorMessage: "Debes aceptar los términos y condiciones",
+    },
+    endpoints: {
+      username: "/check-username/",
+      email: "/check-email/",
+    },
+  };
+
+  // Referencias a elementos del DOM
+  const elements = {
+    username: document.getElementById("id_username"),
+    email: document.getElementById("id_email"),
+    password1: document.getElementById("id_password1"),
+    password2: document.getElementById("id_password2"),
+    terms: document.getElementById("id_terms"),
+    form: document.querySelector("form"),
+  };
+
+  // Inicialización de eventos
+  function initEventListeners() {
+    elements.username.addEventListener("input", validateUsername);
+    elements.email.addEventListener("input", validateEmail);
+    elements.password1.addEventListener("input", validatePassword1);
+    elements.password2.addEventListener("input", validatePassword2);
+    elements.terms.addEventListener("change", validateTerms);
+
+    elements.username.addEventListener("blur", () =>
+      checkAvailability("username")
+    );
+    elements.email.addEventListener("blur", () => checkAvailability("email"));
+
+    elements.form.addEventListener("submit", handleSubmit);
+  }
+
+  // Manejador de envío de formulario
+  function handleSubmit(e) {
+    if (!validateForm()) {
+      e.preventDefault();
     }
-    
-    function validateEmail() {
-        const value = emailInput.value.trim();
-        const isValid = EMAIL_REGEX.test(value);
-        
-        if (value.length === 0) {
-            showError(emailInput, 'El correo electrónico es requerido');
-            return false;
-        }
-        
-        if (!isValid) {
-            showError(emailInput, 'Por favor ingresa un correo electrónico válido');
-            return false;
-        }
-        
-        showSuccess(emailInput);
-        return true;
+  }
+
+  // Validación general del formulario
+  function validateForm() {
+    return [
+      validateUsername(),
+      validateEmail(),
+      validatePassword1(),
+      validatePassword2(),
+      validateTerms(),
+    ].every((valid) => valid);
+  }
+
+  // Validación de nombre de usuario
+  function validateUsername() {
+    const value = elements.username.value.trim();
+
+    if (!value) {
+      showError(elements.username, config.username.errorMessages.required);
+      return false;
     }
-    
-    function validatePassword1() {
-        const value = password1Input.value;
-        
-        if (value.length === 0) {
-            showError(password1Input, 'La contraseña es requerida');
-            return false;
-        }
-        
-        if (value.length < PASSWORD_MIN_LENGTH) {
-            showError(password1Input, `La contraseña debe tener al menos ${PASSWORD_MIN_LENGTH} caracteres`);
-            return false;
-        }
-        
-        if (/^\d+$/.test(value)) {
-            showError(password1Input, 'La contraseña no puede ser enteramente numérica');
-            return false;
-        }
-        
-        // Validar si es similar al username (si ya está ingresado)
-        const usernameValue = usernameInput.value.trim();
-        if (usernameValue && value.toLowerCase().includes(usernameValue.toLowerCase())) {
-            showError(password1Input, 'La contraseña no puede ser similar a tu nombre de usuario');
-            return false;
-        }
-        
-        showSuccess(password1Input);
-        
-        // Si hay algo en password2, validar de nuevo la coincidencia
-        if (password2Input.value) {
-            validatePassword2();
-        }
-        
-        return true;
+
+    if (!config.username.regex.test(value)) {
+      showError(elements.username, config.username.errorMessages.invalid);
+      return false;
     }
-    
-    function validatePassword2() {
-        const value = password2Input.value;
-        const password1Value = password1Input.value;
-        
-        if (value.length === 0) {
-            showError(password2Input, 'Por favor confirma tu contraseña');
-            return false;
+
+    showSuccess(elements.username);
+    return true;
+  }
+
+  // Validación de email
+  function validateEmail() {
+    const value = elements.email.value.trim();
+
+    if (!value) {
+      showError(elements.email, config.email.errorMessages.required);
+      return false;
+    }
+
+    if (!config.email.regex.test(value)) {
+      showError(elements.email, config.email.errorMessages.invalid);
+      return false;
+    }
+
+    showSuccess(elements.email);
+    return true;
+  }
+
+  // Validación de contraseña principal
+  function validatePassword1() {
+    const value = elements.password1.value;
+    const usernameValue = elements.username.value.trim();
+
+    if (!value) {
+      showError(elements.password1, config.password.errorMessages.required);
+      return false;
+    }
+
+    if (value.length < config.password.minLength) {
+      showError(
+        elements.password1,
+        config.password.errorMessages.tooShort(config.password.minLength)
+      );
+      return false;
+    }
+
+    if (/^\d+$/.test(value)) {
+      showError(elements.password1, config.password.errorMessages.allNumeric);
+      return false;
+    }
+
+    if (
+      usernameValue &&
+      value.toLowerCase().includes(usernameValue.toLowerCase())
+    ) {
+      showError(
+        elements.password1,
+        config.password.errorMessages.similarUsername
+      );
+      return false;
+    }
+
+    showSuccess(elements.password1);
+    if (elements.password2.value) validatePassword2();
+
+    return true;
+  }
+
+  // Validación de confirmación de contraseña
+  function validatePassword2() {
+    const value = elements.password2.value;
+
+    if (!value) {
+      showError(elements.password2, config.password.errorMessages.confirmation);
+      return false;
+    }
+
+    if (value !== elements.password1.value) {
+      showError(elements.password2, config.password.errorMessages.mismatch);
+      return false;
+    }
+
+    showSuccess(elements.password2);
+    return true;
+  }
+
+  // Validación de términos y condiciones
+  function validateTerms() {
+    if (!elements.terms.checked) {
+      showError(elements.terms, config.terms.errorMessage);
+      return false;
+    }
+
+    showSuccess(elements.terms);
+    return true;
+  }
+
+  // Verificación de disponibilidad (AJAX)
+  function checkAvailability(field) {
+    const inputElement = elements[field];
+    const value = inputElement.value.trim();
+    const endpoint = config.endpoints[field];
+
+    if (!validateField(field)) return;
+
+    // Construir URL con el parámetro correcto según el tipo de campo
+    const urlParams = new URLSearchParams();
+    if (field === "username") {
+      urlParams.append("username", value);
+    } else if (field === "email") {
+      urlParams.append("email", value);
+    }
+
+    // Usar URL absoluta con prefijo /usuario/
+    const url = `/usuario${endpoint}?${urlParams.toString()}`;
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
         }
-        
-        if (value !== password1Value) {
-            showError(password2Input, 'Las contraseñas no coinciden');
-            return false;
+        return response.json();
+      })
+      .then((data) => {
+        if (!data.available) {
+          showError(inputElement, config[field].errorMessages.notAvailable);
+        } else {
+          showSuccess(inputElement);
         }
-        
-        showSuccess(password2Input);
-        return true;
+      })
+      .catch((error) => {
+        console.error("Error en la verificación:", error);
+        showError(inputElement, "Error al verificar disponibilidad");
+      });
+  }
+
+  // Función auxiliar para validar campos específicos
+  function validateField(field) {
+    switch (field) {
+      case "username":
+        return validateUsername();
+      case "email":
+        return validateEmail();
+      default:
+        return false;
     }
-    
-    function validateTerms() {
-        if (!termsCheckbox.checked) {
-            showError(termsCheckbox, 'Debes aceptar los términos y condiciones');
-            return false;
-        }
-        
-        showSuccess(termsCheckbox);
-        return true;
-    }
-    
-    // Función para verificar disponibilidad del username (AJAX)
-    function checkUsernameAvailability() {
-        if (!validateUsername()) return;
-        
-        const username = usernameInput.value.trim();
-        
-        // Aquí harías una petición AJAX a tu backend Django
-        fetch(`/check-username/?username=${encodeURIComponent(username)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.available) {
-                    showSuccess(usernameInput);
-                } else {
-                    showError(usernameInput, 'Este nombre de usuario ya está en uso');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-    
-    // Función para verificar disponibilidad del email (AJAX)
-    function checkEmailAvailability() {
-        if (!validateEmail()) return;
-        
-        const email = emailInput.value.trim();
-        
-        // Aquí harías una petición AJAX a tu backend Django
-        fetch(`/check-email/?email=${encodeURIComponent(email)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.available) {
-                    showSuccess(emailInput);
-                } else {
-                    showError(emailInput, 'Este correo electrónico ya está registrado');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-    
-    // Función para validar todo el formulario
-    function validateForm() {
-        const isUsernameValid = validateUsername();
-        const isEmailValid = validateEmail();
-        const isPassword1Valid = validatePassword1();
-        const isPassword2Valid = validatePassword2();
-        const isTermsValid = validateTerms();
-        
-        return isUsernameValid && isEmailValid && isPassword1Valid && isPassword2Valid && isTermsValid;
-    }
-    
-    // Funciones auxiliares para mostrar errores/éxito
-    function showError(input, message) {
-        const formControl = input.closest('.form-floating, .form-check');
-        if (!formControl) return;
-        
-        // Remover clases de éxito
-        input.classList.remove('is-valid');
-        formControl.querySelector('.valid-feedback')?.remove();
-        
-        // Agregar clases de error
-        input.classList.add('is-invalid');
-        
-        // Mostrar mensaje de error
-        let errorElement = formControl.querySelector('.invalid-feedback');
-        if (!errorElement) {
-            errorElement = document.createElement('div');
-            errorElement.className = 'invalid-feedback';
-            formControl.appendChild(errorElement);
-        }
-        errorElement.textContent = message;
-    }
-    
-    function showSuccess(input) {
-        const formControl = input.closest('.form-floating, .form-check');
-        if (!formControl) return;
-        
-        // Remover clases de error
-        input.classList.remove('is-invalid');
-        formControl.querySelector('.invalid-feedback')?.remove();
-        
-        // Agregar clases de éxito
-        input.classList.add('is-valid');
-        
-        // Mostrar mensaje de éxito (opcional)
-        let successElement = formControl.querySelector('.valid-feedback');
-        if (!successElement) {
-            successElement = document.createElement('div');
-            successElement.className = 'valid-feedback';
-            formControl.appendChild(successElement);
-        }
-        successElement.textContent = '✓ Correcto';
-    }
+  }
+
+  // Mostrar mensaje de error
+  function showError(input, message) {
+    const formControl = input.closest(".form-floating, .form-check");
+    if (!formControl) return;
+
+    clearFeedback(input);
+
+    input.classList.add("is-invalid");
+    const errorElement = document.createElement("div");
+    errorElement.className = "invalid-feedback";
+    errorElement.textContent = message;
+    formControl.appendChild(errorElement);
+  }
+
+  // Mostrar indicación de éxito
+  function showSuccess(input) {
+    const formControl = input.closest(".form-floating, .form-check");
+    if (!formControl) return;
+
+    clearFeedback(input);
+
+    input.classList.add("is-valid");
+    const successElement = document.createElement("div");
+    successElement.className = "valid-feedback";
+    successElement.textContent = "✓ Correcto";
+    formControl.appendChild(successElement);
+  }
+
+  // Limpiar estados anteriores
+  function clearFeedback(input) {
+    const formControl = input.closest(".form-floating, .form-check");
+    if (!formControl) return;
+
+    input.classList.remove("is-invalid", "is-valid");
+
+    const existingFeedback = formControl.querySelector(
+      ".invalid-feedback, .valid-feedback"
+    );
+    if (existingFeedback) existingFeedback.remove();
+  }
+
+  // Inicializar la aplicación
+  initEventListeners();
 });

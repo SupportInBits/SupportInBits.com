@@ -106,12 +106,12 @@
                     
                     <!-- Términos y condiciones -->
                     <div class="form-check mb-4">
-                        <input class="form-check-input {% if form.terms.errors %}is-invalid{% endif %}" 
+                        <input class="form-check-input fs-4 {% if form.terms.errors %}is-invalid{% endif %}" 
                                type="checkbox" 
                                name="terms" 
                                id="id_terms" 
                                required>
-                        <label class="form-check-label" for="id_terms">
+                        <label class="form-check-label fs-5" for="id_terms">
                             Acepto los <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">términos y condiciones</a>
                         </label>
                         {% if form.terms.errors %}
@@ -140,5 +140,5 @@
         </div>
     </div>
 </div>
-
+<script src="{% static 'supportinbits/js/form-reg-validate.js' %}"></script>   
 {% endblock content%}

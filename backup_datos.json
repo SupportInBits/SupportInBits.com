@@ -705,52 +705,41 @@
 },
 {
   "model": "sessions.session",
-  "pk": "98492qzoaldoxzgbyof19jmdn15kd9yr",
+  "pk": "79r38aot6y4hm9lkzd40chokh6su1ami",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hCYUhhcuvcMZBhAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hSuIstDj9bpH4kdsO0p3abZY8t3WZotwVedAur3PKz8vh_h1U6vVbF13KiAbBZsyUfEJiiKRJq2IHDRHAGxzBW1bJoLHOMZJlVoN3GVi8P-j9N6w:1uIMuG:vYETdZCBSM_erU6zTng-DJS7OUk7zJSK1-5Lw4g1d4E",
-    "expire_date": "2025-06-06T02:33:28.448"
+    "session_data": ".eJxVjEEOwiAQRe_C2pCRaUFcuu8ZCMwMUjU0Ke3KeHfbpAvd_vf-e6sQ16WEtckcRlZXdVan3y1FekrdAT9ivU-aprrMY9K7og_a9DCxvG6H-xcosZXt7UyUjn0PgM4zkbdIAij-glski2EkSj4j-I4gM6UIzI6MzdgDWvX5Avy1OLo:1uKjBZ:5J4TEyYKMfE5VihbawWxhiOURcGIpu2OI_Ot1CHLhn8",
+    "expire_date": "2025-06-12T14:45:05.854"
   }
 },
 {
   "model": "sessions.session",
-  "pk": "mohm8u6ppn4nh24nyyel0xufw13es3yn",
+  "pk": "i8j0l08pg3zmvoqrlp3wgsk7tnsxwdbs",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hCYUhhcuvcMZBhAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hSuIstDj9bpH4kdsO0p3abZY8t3WZotwVedAur3PKz8vh_h1U6vVbF13KiAbBZsyUfEJiiKRJq2IHDRHAGxzBW1bJoLHOMZJlVoN3GVi8P-j9N6w:1uINrA:YDY-mXO4BSF2rMHsfIdk6tcuU2y9eWOXFG108Pkl4NM",
-    "expire_date": "2025-06-06T03:34:20.074"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "qzioazhbay6ehoo8p96vg2l3d3kl5mqg",
-  "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2hCgwIBL956BzMBUqoYmpV0Z765NutDtf-_9l0i4rTVtnZc0FXEWRpx-N8L84LaDcsd2m2We27pMJHdFHrTL61z4eTncv4OKvX5rGpWKAMZYcpCVG4tmoOJt0J6QORs1OA3sQ3auYLQUIXhr0SDRYKN4fwDbVjel:1uINHq:PH5m2h6QuaCs99iKhFXysFDd2rByWUpoDdhw1XTNt68",
-    "expire_date": "2025-06-06T02:57:50.904"
-  }
-},
-{
-  "model": "blog.comentario",
-  "pk": 1,
-  "fields": {
-    "entrada": 2,
-    "autor": 2,
-    "contenido": "Un comentario",
-    "fecha_creacion": "2025-05-23T03:34:04.248",
-    "fecha_actualizacion": "2025-05-23T03:34:23.815",
-    "aprobado": true
+    "session_data": ".eJxVjEEOwiAQRe_C2pCRaUFcuu8ZCMwMUjU0Ke3KeHfbpAvd_vf-e6sQ16WEtckcRlZXdVan3y1FekrdAT9ivU-aprrMY9K7og_a9DCxvG6H-xcosZXt7UyUjn0PgM4zkbdIAij-glski2EkSj4j-I4gM6UIzI6MzdgDWvX5Avy1OLo:1uKjyC:gnrIlBMOs7-XQjvLHK3fu1QNNimeHdPMpSMynm3R3sE",
+    "expire_date": "2025-06-12T15:35:20.766"
   }
 },
 {
   "model": "blog.seccion",
   "pk": 1,
   "fields": {
-    "nombre": "Tutoriales",
-    "slug": "tutoriales",
+    "nombre": "Tutoriales DIY",
+    "slug": "tutoriales-diy",
     "descripcion": ""
   }
 },
 {
   "model": "blog.seccion",
   "pk": 2,
+  "fields": {
+    "nombre": "Novedades y Tendencias",
+    "slug": "novedades-y-tendencias",
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.seccion",
+  "pk": 3,
   "fields": {
     "nombre": "Reviews",
     "slug": "reviews",
@@ -759,25 +748,7 @@
 },
 {
   "model": "blog.seccion",
-  "pk": 3,
-  "fields": {
-    "nombre": "Guías oficiales",
-    "slug": "guias-oficiales",
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.seccion",
   "pk": 4,
-  "fields": {
-    "nombre": "SEO",
-    "slug": "seo",
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.seccion",
-  "pk": 5,
   "fields": {
     "nombre": "Compartiendo arte",
     "slug": "compartiendo-arte",
@@ -788,16 +759,6 @@
   "model": "blog.categoria",
   "pk": 1,
   "fields": {
-    "nombre": "Accesibilidad",
-    "slug": "accesibilidad",
-    "seccion": 1,
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.categoria",
-  "pk": 2,
-  "fields": {
     "nombre": "Redes",
     "slug": "redes",
     "seccion": 1,
@@ -806,7 +767,7 @@
 },
 {
   "model": "blog.categoria",
-  "pk": 3,
+  "pk": 2,
   "fields": {
     "nombre": "Ordenadores",
     "slug": "ordenadores",
@@ -816,10 +777,20 @@
 },
 {
   "model": "blog.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Informática",
+    "slug": "informatica",
+    "seccion": 1,
+    "descripcion": ""
+  }
+},
+{
+  "model": "blog.categoria",
   "pk": 4,
   "fields": {
-    "nombre": "Dispositivos móviles",
-    "slug": "dispositivos-moviles",
+    "nombre": "Programación",
+    "slug": "programacion",
     "seccion": 2,
     "descripcion": ""
   }
@@ -828,8 +799,8 @@
   "model": "blog.categoria",
   "pk": 5,
   "fields": {
-    "nombre": "Portátiles",
-    "slug": "portatiles",
+    "nombre": "Inteligencia Artificial",
+    "slug": "inteligencia-artificial",
     "seccion": 2,
     "descripcion": ""
   }
@@ -838,8 +809,8 @@
   "model": "blog.categoria",
   "pk": 6,
   "fields": {
-    "nombre": "Python",
-    "slug": "python",
+    "nombre": "Software",
+    "slug": "software",
     "seccion": 3,
     "descripcion": ""
   }
@@ -848,8 +819,8 @@
   "model": "blog.categoria",
   "pk": 7,
   "fields": {
-    "nombre": "Django",
-    "slug": "django",
+    "nombre": "Hardware",
+    "slug": "hardware",
     "seccion": 3,
     "descripcion": ""
   }
@@ -858,9 +829,9 @@
   "model": "blog.categoria",
   "pk": 8,
   "fields": {
-    "nombre": "W3C",
-    "slug": "w3c",
-    "seccion": 3,
+    "nombre": "Música",
+    "slug": "musica",
+    "seccion": 4,
     "descripcion": ""
   }
 },
@@ -868,8 +839,8 @@
   "model": "blog.categoria",
   "pk": 9,
   "fields": {
-    "nombre": "Posicionamiento web",
-    "slug": "posicionamiento-web",
+    "nombre": "Libros",
+    "slug": "libros",
     "seccion": 4,
     "descripcion": ""
   }
@@ -878,39 +849,9 @@
   "model": "blog.categoria",
   "pk": 10,
   "fields": {
-    "nombre": "Marketing digital",
-    "slug": "marketing-digital",
+    "nombre": "Metrajes",
+    "slug": "metrajes",
     "seccion": 4,
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.categoria",
-  "pk": 11,
-  "fields": {
-    "nombre": "Música",
-    "slug": "musica",
-    "seccion": 5,
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.categoria",
-  "pk": 12,
-  "fields": {
-    "nombre": "Libros",
-    "slug": "libros",
-    "seccion": 5,
-    "descripcion": ""
-  }
-},
-{
-  "model": "blog.categoria",
-  "pk": 13,
-  "fields": {
-    "nombre": "Artistas",
-    "slug": "artistas",
-    "seccion": 5,
     "descripcion": ""
   }
 },
@@ -918,48 +859,32 @@
   "model": "blog.entrada",
   "pk": 1,
   "fields": {
-    "titulo": "Esto es una canción de prueba",
+    "titulo": "¡Domina la Red! Aprende a Montar tu Propio Cable RJ-45",
     "autor": null,
-    "slug": "esto-es-una-cancion-de-prueba",
-    "contenido": "<h1>Lorem Ipsum</h1>\r\n<h4>\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"</h4>\r\n<h5>\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"</h5>\r\n<hr>\r\n<div id=\"Content\">\r\n<div id=\"Panes\">\r\n<div>\r\n<h2>What is Lorem Ipsum?</h2>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>\r\n<div>\r\n<h2>Why do we use it?</h2>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>\r\n<br>\r\n<div>\r\n<h2>Where does it come from?</h2>\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n</div>\r\n<div>\r\n<h2>Where can I get some?</h2>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n</div>\r\n</div>\r\n</div>",
-    "resumen": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+    "slug": "domina-la-red-aprende-a-montar-tu-propio-cable-rj-45",
+    "contenido": "<p>&iquest;Te has encontrado necesitando un cable de red de una medida espec&iacute;fica y no lo encuentras en ninguna tienda? &iquest;O simplemente quieres ahorrar dinero y personalizar tu instalaci&oacute;n de red? &iexcl;Montar tus propios cables RJ-45 (los t&iacute;picos cables de red Ethernet) es una habilidad pr&aacute;ctica, relativamente sencilla y muy gratificante! M&aacute;s all&aacute; de la comodidad, entender c&oacute;mo se construyen te da un mayor control sobre tu red dom&eacute;stica u oficina peque&ntilde;a. No necesitas ser un ingeniero en telecomunicaciones; con las herramientas adecuadas, un poco de paciencia y esta gu&iacute;a, estar&aacute;s creando cables como un profesional en poco tiempo. Olv&iacute;date de depender de cables prefabricados y da el salto al \"Hazlo T&uacute; Mismo\" en el mundo de la red.</p>\r\n<h2><strong>Herramientas y Materiales</strong></h2>\r\n<p>Para crear un cable Ethernet funcional, necesitar&aacute;s reunir lo siguiente:</p>\r\n<ol>\r\n<li><strong>Materiales :</strong>\r\n<ul>\r\n<li><strong>Cable Ethernet</strong></li>\r\n<li><strong>Conectores RJ-45</strong></li>\r\n</ul>\r\n</li>\r\n<li><strong>Herramientas Especializadas:</strong>\r\n<ul>\r\n<li><strong>Crimpadora (Pinza de Crimpar) para RJ-45</strong></li>\r\n<li><strong>Pelacables (Stripper)</strong></li>\r\n<li><strong>Tijeras o Cutter</strong></li>\r\n<li><strong>Probador de Cables RJ-45 (Opcional pero MUY Recomendado</strong></li>\r\n</ul>\r\n</li>\r\n</ol>\r\n<h2><strong>Recomendaciones</strong></h2>\r\n<h3><strong>&iquest;Qu&eacute; tipo de cable debo usar?</strong></h3>\r\n<p>El tipo de cable depender&aacute; de distintos factores, como por ejemplo por donde pasar&aacute; el cable o la velocidad que necesitas en el dispositivo donde vaya a conectarse.</p>\r\n<p>Los cables m&aacute;s usados para redes locales en casa son:</p>\r\n<p><strong>Cable Ethernet Categor&iacute;a 5 y 5e</strong></p>\r\n<p>La principal diferencia entre ambos cables es la velocidad, el cable de categor&iacute;a 5 llega a una velocidad m&aacute;xima de 100 Mbps mientras que el cable de categor&iacute;a 5e llega a velocidades de hasta 1GB. No es recomendable usar este cable si su recorrido pasa por cables electricos, no llevan protecci&oacute;n y esto puede hacer que haya interferencias.</p>\r\n<p><strong>Cable Ethernet Categor&iacute;a 6 y 6A</strong></p>\r\n<p>La velocidad que alcanza el cable en esta categor&iacute;a es de 1GigaBit. El cable <strong>Categor&iacute;a 6 Aumentada</strong> o m&aacute;s frecuentemente \"Categor&iacute;a 6A\", operan en una frecuencia de hasta 500 <a href=\"https://es.wikipedia.org/wiki/MHz\">MHz</a>. La principal diferencia entre ambas es que la categor&iacute;a 6A lleva cables trenzados brindados, lo cual reduce considerablemente las interferencias.</p>\r\n<h2>Pasos a seguir para el montaje</h2>\r\n<h3><strong>Paso 1: Cortar y Pelar</strong></h3>\r\n<ul>\r\n<li>Corta un trozo de cable recto con el cutter/tijeras.</li>\r\n<li>Usa el pelacables para retirar unos 2-3 cm de la cubierta exterior (jacket). Ten cuidado de no rayar los hilos de cobre internos. Tira de la cubierta cortada para retirarla.</li>\r\n<li>Desenreda suavemente los pares trenzados y endereza los hilos individuales todo lo posible.</li>\r\n</ul>\r\n<h3><strong>Paso 2: Ordenar los Hilos (&iexcl;CRUCIAL!)</strong></h3>\r\n<ul>\r\n<li>Aqu&iacute; est&aacute; el coraz&oacute;n del asunto. Debes ordenar los 8 hilos seg&uacute;n un est&aacute;ndar. Los dos m&aacute;s comunes son <strong>T568A</strong> y <strong>T568B</strong>. <strong>Usa el mismo est&aacute;ndar en AMBOS extremos para un cable directo (el 99% de los casos)</strong>. El <strong>T568B</strong> es el m&aacute;s extendido:\r\n<ul>\r\n<li><strong>Orden T568B (De Izquierda a Derecha con el clip del conector hacia abajo):</strong>\r\n<ol>\r\n<li>Blanco Naranja</li>\r\n<li>Naranja</li>\r\n<li>Blanco Verde</li>\r\n<li>Azul</li>\r\n<li>Blanco Azul</li>\r\n<li>Verde</li>\r\n<li>Blanco Marr&oacute;n</li>\r\n<li>Marr&oacute;n</li>\r\n</ol>\r\n</li>\r\n</ul>\r\n</li>\r\n<li>Alinea los hilos perfectamente uno al lado del otro, manteniendo este orden. Comprueba el orden DOS veces antes de seguir.</li>\r\n</ul>\r\n<h3><strong>Paso 3: Recortar e Insertar</strong></h3>\r\n<ul>\r\n<li>Con los hilos perfectamente alineados y en orden, usa el cutter/tijeras para recortarlos de forma que queden todos exactamente a la misma longitud (unos 1 - 1.5 cm desde el final de la cubierta exterior). La punta debe quedar recta y limpia.</li>\r\n<li><strong>Con cuidado y firmeza</strong>, inserta los hilos recortados en el conector RJ-45 <strong>nuevo</strong>, asegur&aacute;ndote de que:\r\n<ul>\r\n<li>El clip del conector est&aacute; hacia ABAJO (o lejos de ti).</li>\r\n<li>Cada hilo entra en su canal correspondiente (el blanco/naranja en el pin 1, naranja en el pin 2, etc.). Debes ver el extremo de cobre de cada hilo llegando hasta el frente del conector.</li>\r\n<li>La cubierta exterior (jacket) queda metida dentro del conector, justo debajo de la pesta&ntilde;a de pl&aacute;stico que sujetar&aacute; el cable. Esto es clave para la resistencia.</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n<h3><strong>Paso 4: Crimpar (Fijar)</strong></h3>\r\n<ul>\r\n<li>Introduce el conector (con los hilos dentro) firmemente en la ranura correspondiente (normalmente marcada como \"8P\") de la crimpadora.</li>\r\n<li><strong>Aprieta las manijas de la crimpadora con fuerza firme y constante hasta que haga un clic o ya no puedas apretar m&aacute;s.</strong> Esto empuja los contactos met&aacute;licos del conector hacia abajo, perforando el aislante de cada hilo y haciendo contacto el&eacute;ctrico, y a la vez sujeta la pesta&ntilde;a de pl&aacute;stico sobre la cubierta exterior del cable.</li>\r\n</ul>\r\n<h3><strong>Paso 5: Repetir y Probar</strong></h3>\r\n<ul>\r\n<li>Repite los pasos 1 a 4 en el otro extremo del cable, <strong>usando EXACTAMENTE el mismo est&aacute;ndar de orden (T568B)</strong>.</li>\r\n<li><strong>&iexcl;Usa el Probador!</strong> Conecta cada extremo del cable en el probador. Enci&eacute;ndelo. Debe encenderse una secuencia de luces verde (o a veces roja/verde) en el mismo orden (1-2-3-4-5-6-7-8) en ambos lados del probador. Si alguna luz no se enciende, parpadea o se enciende en un orden diferente, significa que hay un error (cable mal ordenado, contacto defectuoso, hilo roto). Tendr&aacute;s que cortar el conector defectuoso y volver a empezar.</li>\r\n</ul>\r\n<p><!-- notionvc: 96c8dc6a-7f31-40ab-9e3e-5668ef2987d4 --></p>",
+    "resumen": "¿Necesitas más velocidad de internet en tu ordenador? ¿Necesitas instalar una cámara de vigilancia y no llega la señal Wi-Fi?. Aprende cómo hacer tu propio cable a medida y ahorrate tiempo en llamadas al servicio técnico.",
     "categoria": 1,
-    "fecha_publicacion": "2025-05-23T02:43:25.884",
-    "fecha_actualizacion": "2025-05-23T02:43:25.884",
+    "fecha_publicacion": "2025-05-29T14:45:55.005",
+    "fecha_actualizacion": "2025-05-29T15:37:25.115",
     "publicado": true,
-    "imagen_portada": "blog/esto-es-una-cancion-de-prueba.jpeg"
-  }
-},
-{
-  "model": "blog.entrada",
-  "pk": 2,
-  "fields": {
-    "titulo": "¡Ay! ¿Qué hay ahí?",
-    "autor": null,
-    "slug": "ay-que-hay-ahi",
-    "contenido": "<h1>Lorem Ipsum</h1>\r\n<h4>\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"</h4>\r\n<h5>\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"</h5>\r\n<hr>\r\n<div id=\"Content\">\r\n<div id=\"Panes\">\r\n<div>\r\n<h2>What is Lorem Ipsum?</h2>\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n</div>\r\n<div>\r\n<h2>Why do we use it?</h2>\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n</div>\r\n<br>\r\n<div>\r\n<h2>Where does it come from?</h2>\r\n<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</p>\r\n<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\r\n</div>\r\n<div>\r\n<h2>Where can I get some?</h2>\r\n<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\r\n</div>\r\n</div>\r\n</div>",
-    "resumen": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
-    "categoria": 1,
-    "fecha_publicacion": "2025-05-23T03:31:24.795",
-    "fecha_actualizacion": "2025-05-23T03:31:24.795",
-    "publicado": true,
-    "imagen_portada": "blog/ay-que-hay-ahi.jpeg"
+    "imagen_portada": "blog/domina-la-red-aprende-a-montar-tu-propio-cable-rj-45_AxPL75g.jpg"
   }
 },
 {
   "model": "user.usuario",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$VaRFSkVocp9mTMnPZu3sDg$B5y5Cn82UowjqAeuqqKaUbI8QkUJ3KtyyXkxvfCCzhU=",
-    "last_login": "2025-05-23T03:34:20.070",
+    "password": "pbkdf2_sha256$600000$ayc9ulLKfLeuTdMYbQrWie$OdWtXtHMNKFNiI6rEsy5wVPZ6QKEzq+lgVD30zRAhF4=",
+    "last_login": "2025-05-29T15:35:20.763",
     "is_superuser": true,
     "username": "admin-total",
     "first_name": "",
     "last_name": "",
-    "email": "a@a.es",
+    "email": "admin@supportinbits.es",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-05-23T02:33:19.662",
+    "date_joined": "2025-05-29T14:44:53.490",
     "rol": "administrador",
     "avatar": "",
     "biografia": "",
@@ -972,16 +897,16 @@
   "model": "user.usuario",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$600000$aNE0XKxmS7XZRSV0AEdA7v$PPzI5+2FYflY6cutwIs3HVcdHhIrZQoo7Dejn7VRAR4=",
-    "last_login": "2025-05-23T03:33:53.828",
+    "password": "pbkdf2_sha256$600000$xFTQNEfMHvvbXVhOC8wvIL$b6XHlcPsvqj86zXzTs9OQ27clqqdHebSCbXqZd98Xeg=",
+    "last_login": "2025-05-29T15:32:12.003",
     "is_superuser": false,
-    "username": "andresred94",
+    "username": "LeandroGado",
     "first_name": "",
     "last_name": "",
-    "email": "a@a.es",
+    "email": "leandro@gmail.com",
     "is_staff": false,
     "is_active": true,
-    "date_joined": "2025-05-23T02:57:50.475",
+    "date_joined": "2025-05-29T15:32:11.605",
     "rol": "registrado",
     "avatar": "",
     "biografia": "",

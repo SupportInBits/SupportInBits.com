@@ -4,80 +4,144 @@ Plantillas | Support In Bits
 {% endblock %}
 {% load static %} 
 {% block content %}
-
 <div class="container" id="container-plantillas">
-    <h1>Plantillas accesibles</h1>
-    <p>En esta página encontrarás plantillas a páginas web estáticas
-      que podrás copiar y pegar para usarlo para lo que quieras. 
-    </p>
-  
-  </div>
-{% comment %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    fetch("/pages/")
-      .then((response) => response.json())
-      .then((data) => {
-        let html = "";
-        data.forEach((page) => {
-          html += `<p>${page.titulo}</p>`;
-        });
-        document.getElementById("pages-container").innerHTML = html;
-      })
-      .catch((error) => console.error("Error:", error));
-  });
-</script>
-{% endcomment %}
+   <h1 class="text-center">Plantillas accesibles</h1>
+   <p class="fs-3 text-start">En esta página encontrarás plantillas accesibles con un lector de pantalla incorporado. Cada una de las plantillas
+    cuentan con un código que puedes copiar para usarlo donde queres. Tener en cuenta que se usa bootstrap para dar formato a las plantillas,
+    sin embargo el lector está implementado con JavaScript puro.
+   </p>
+   <article id="menu-Restaurante">
+      <div id="controls" class="d-flex justify-content-around m-5">
+         <button class="btn-primary p-1" id="readAll">Leer todo el menú</button>
+         <button class="btn-primary p-1" id="stopReading">Detener lectura</button>
+         <span class="btn-primary p-1 text-center" >Velocidad de lectura</span>
+         <span class="speed-display btn-primary p-1 text-center" id="speedValue">1x</span>
+         <div class="speed-controls">
+            <button class="speed-button btn-primary p-3" id="decreaseSpeed">más velocidad</button>
+            <button class="speed-button btn-primary p-3" id="increaseSpeed">menos velocidad</button>
+         </div>
+      </div>
+      <h1>Menú del Restaurante</h1>
+      <section class="menu-section" aria-label="Entradas">
+         
 
-<script>
-  tinymce.init({
-    selector: "#editor",
-    plugins: "image link lists code",
-    toolbar:
-      "undo redo | styles | bold italic underline | alignleft aligncenter alignright | image link | code",
-    height: 400,
-  });
 
-  function runAccessibilityCheck(event) {
-    event.preventDefault();
 
-    const iframe = document.querySelector("iframe"); // el iframe de TinyMCE
-    if (!iframe) {
-      alert("❌ El editor no está disponible aún.");
-      return;
-    }
+        <div class="table-responsive menu-item">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th>Plato</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tamal Criollo</td>
+                <td>Masa de harina de maíz aderezado con especias, acompañado con aceituna, cerdo o pollo, huevo y salsa criolla</td>
+                <td>6.00€</td>
+              </tr>
 
-    const editorBody = iframe.contentDocument.body;
+              <tr>
+                <td>Tamal Verde</td>
+                <td>Masa de harina de maíz aderezado con cilantro, especias, acompañado con pollo y salsa criolla</td>
+                <td>6.00€</td>
+              </tr>
+              <tr>
+                <td>Осора</td>
+                <td>Crema de salsa a base de huacatay, leche, galleta maría, cacahuete, queso y ají amarillo servido sobre patata cocida</td>
+                <td>6.00€</td>
+              </tr>
+              <tr>
+                <td>Aguadito de Pollo</td>
+                <td>Caldo de pollo y menudencia, arroz, zanahoria, guisantes y pasta de cilantro</td>
+                <td>6.00€</td>
+              </tr>
+              <tr>
+                <td>Caldo de Gallina</td>
+                <td>Caldo de gallina con tallarín, patata y huevo</td>
+                <td>7.00€</td>
+              </tr>
+              <tr>
+                <td>Papa Rellena</td>
+                <td>Masa de patata, rellena de carne picada, cebolla, pasas, huevo, aceituna, acompañada con salsa criolla</td>
+                <td>6.00€</td>
+              </tr>
+              <tr>
+                <td>aquí</td>
+                <td>puedes colocar más platos...</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-    axe
-      .run(editorBody)
-      .then((results) => {
-        if (results.violations.length === 0) {
-          alert("✅ ¡El contenido del editor es accesible!");
-          document.getElementById("post-form").submit();
-        } else {
-          let errores = results.violations
-            .map((v) => `• ${v.help} (${v.id})`)
-            .join("\n");
-          alert(
-            `⚠️ Se encontraron ${results.violations.length} problemas de accesibilidad SOLO en el contenido del editor:\n\n${errores}`
-          );
-          console.warn("Violaciones encontradas:", results.violations);
-          console.log("Violaciones encontradas:", results.violations);
-        }
-      })
-      .catch((err) => {
-        console.error("Error al ejecutar axe-core:", err);
-        alert("❌ Error al ejecutar la validación de accesibilidad.");
-      });
-  }
-</script>
-
-<form id="post-form" method="POST">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="btn-primary p-2" onclick="runAccessibilityCheck(event)">
-    🧪 Comprobar accesibilidad y publicar
-  </button>
-</form>
-
+      </section>
+      <!-- Más secciones del menú... -->
+      <script>
+         // Configuración de velocidad
+         let currentRate = 1;
+         const minRate = 0.5;
+         const maxRate = 2;
+         
+         // Actualizar display de velocidad
+         function updateSpeedDisplay() {
+             document.getElementById('speedValue').textContent = currentRate.toFixed(1) + 'x';
+             localStorage.setItem('speechRate', currentRate); // Guardar preferencia
+         }
+         
+         // Cargar velocidad guardada
+         if(localStorage.getItem('speechRate')) {
+             currentRate = parseFloat(localStorage.getItem('speechRate'));
+             updateSpeedDisplay();
+         }
+         
+         // Modificar función leerTexto
+         function leerTexto(texto) {
+             if ('speechSynthesis' in window) {
+                 window.speechSynthesis.cancel();
+                 
+                 const utterance = new SpeechSynthesisUtterance();
+                 utterance.text = texto;
+                 utterance.lang = 'es-ES';
+                 utterance.rate = currentRate; // Usar velocidad actual
+                 
+                 window.speechSynthesis.speak(utterance);
+             } else {
+                 alert('Lo siento, tu navegador no soporta la función de lectura de voz.');
+             }
+         }
+         
+         // Eventos para controles de velocidad
+         document.getElementById('increaseSpeed').addEventListener('click', function() {
+             if(currentRate < maxRate) {
+                 currentRate += 0.1;
+                 updateSpeedDisplay();
+             }
+         });
+         
+         document.getElementById('decreaseSpeed').addEventListener('click', function() {
+             if(currentRate > minRate) {
+                 currentRate -= 0.1;
+                 updateSpeedDisplay();
+             }
+         });
+         
+         
+         // Leer todo el menú
+         document.getElementById('readAll').addEventListener('click', function() {
+           const menuText = document.getElementById('menu-Restaurante').innerText;
+           leerTexto(menuText);
+         });
+         
+         // Detener la lectura
+         document.getElementById('stopReading').addEventListener('click', function() {
+           window.speechSynthesis.cancel();
+         });
+         
+         
+      </script>    
+   </article>
+</div>
 {% endblock content%}

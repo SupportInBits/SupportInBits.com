@@ -9,24 +9,20 @@ class Command(BaseCommand):
         # Cargar secciones y categorías (existente)
         secciones_data = [
             {
-                'nombre': 'Tutoriales',
-                'categorias': ['Accesibilidad', 'Redes', 'Ordenadores']
+                'nombre': 'Tutoriales DIY',
+                'categorias': ['Redes', 'Ordenadores','Informática']
+            },
+            {
+                'nombre': 'Novedades y Tendencias',
+                'categorias': ['Programación', 'Inteligencia Artificial']
             },
             {
                 'nombre': 'Reviews',
-                'categorias': ['Dispositivos móviles', 'Portátiles']
-            },
-            {
-                'nombre': 'Guías oficiales',
-                'categorias': ['Python', 'Django','W3C']
-            },
-            {
-                'nombre': 'SEO',
-                'categorias': ['Posicionamiento web','Marketing digital']
+                'categorias': ['Software','Hardware']
             },
             {
                 'nombre': 'Compartiendo arte',
-                'categorias': ['Música','Libros','Artistas']
+                'categorias': ['Música','Libros','Metrajes']
             }
         ]
         
