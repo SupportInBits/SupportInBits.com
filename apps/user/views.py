@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, logout
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
+from django.views.decorators.http import require_POST
 from django.utils.decorators import method_decorator
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
@@ -13,10 +14,6 @@ from apps.page.models import Page
 from apps.user.decorators import rol_requerido
 from apps.user.forms import RegistroForm, LoginForm
 from apps.user.models import Usuario
-# from .api.serializers import UsuarioSerializer
-# from rest_framework.decorators import action
-# from rest_framework import viewsets
-
 
 def check_username(request):
     username = request.GET.get('username', '')
@@ -40,6 +37,9 @@ def registro(request):
             # Iniciar sesión automáticamente después del registro
             auth_login(request,user)
             
+            #if next_param:
+            #    return redirect(next_param)
+
             # Redirección basada en el rol
             if user.is_superuser:
                 return redirect('perfil_admin')
@@ -61,8 +61,6 @@ def registro(request):
         'next': next_param,
         'page': pagina,
     })
-
-
 
 def user_login(request):
     pagina = Page.objects.get(id=8)
@@ -151,11 +149,11 @@ def perfil_admin(request):
     usuario = request.user   
     # debug
     # print(f"Usuario es superuser?: {request.user.is_superuser}")
-    if not request.user.is_superuser:
-        print(f"DEBUG - Usuario NO es superuser: {request.user}")  # Debug
-        raise PermissionDenied
-    else:
-        print(f"DEBUG - Usuario SÍ es superuser: {request.user}")  # Debug
+    # if not request.user.is_superuser:
+    #     print(f"DEBUG - Usuario NO es superuser: {request.user}")  # Debug
+    #     raise PermissionDenied
+    # else:
+    #     print(f"DEBUG - Usuario SÍ es superuser: {request.user}")  # Debug
     return render(
             request,
             'user/perfil_admin.html', 
@@ -164,6 +162,8 @@ def perfil_admin(request):
             'user': usuario,
             'is_admin' : True        
     })
+
+@login_required
 def check_superuser(request):
     return JsonResponse({
         'is_superuser': request.user.is_superuser
@@ -220,3 +220,43 @@ def lista_usuarios(request):
         context={
         'request': request  # Asegúrate de pasar el request al contexto 
     })
+
+@rol_requerido('administrador')  # Puedes usar también `@user_passes_test(is_superuser)`
+def gestionar_usuarios(request):
+    usuarios = Usuario.objects.all().exclude(id=request.user.id).order_by('username')
+    pagina = Page.objects.get(id=11)  # ID de página para la vista si usas sistema CMS
+
+    return render(request, 'user/gestionar_usuarios.html', {
+        'usuarios': usuarios,
+        'page': pagina
+    })
+
+@require_POST
+@rol_requerido('administrador')
+def cambiar_estado_usuario(request, user_id):
+    usuario = get_object_or_404(Usuario, id=user_id)
+    usuario.is_active = not usuario.is_active
+    usuario.save()
+    messages.success(request, f"El estado del usuario {usuario.username} ha sido actualizado.")
+    return redirect('gestionar_usuarios')
+
+@require_POST
+@rol_requerido('administrador')
+def cambiar_rol_usuario(request, user_id):
+    nuevo_rol = request.POST.get('rol')
+    usuario = get_object_or_404(Usuario, id=user_id)
+    if nuevo_rol in ['registrado', 'moderador', 'administrador']:
+        usuario.rol = nuevo_rol
+        usuario.save()
+        messages.success(request, f"El rol de {usuario.username} ha sido cambiado a {nuevo_rol}.")
+    else:
+        messages.error(request, "Rol inválido.")
+    return redirect('gestionar_usuarios')
+
+@require_POST
+@rol_requerido('administrador')
+def eliminar_usuario(request, user_id):
+    usuario = get_object_or_404(Usuario, id=user_id)
+    usuario.delete()
+    messages.success(request, f"El usuario {usuario.username} ha sido eliminado.")
+    return redirect('gestionar_usuarios')

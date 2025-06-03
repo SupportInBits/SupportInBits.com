@@ -21,11 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # librerias
     'bootstrap5',
     'rest_framework',
     'cookie_consent',
     'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     # apps propias
     'apps.blog',
     'apps.user',
@@ -39,6 +42,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -83,3 +87,5 @@ AUTH_USER_MODEL = 'user.Usuario'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Esto apunta al directorio raíz del proyecto
 MEDIA_URL = '/media/'
+
+SITE_ID = 1

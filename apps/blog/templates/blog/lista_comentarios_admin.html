@@ -11,7 +11,7 @@ Buscar comentarios | Support In Bits
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- DataTables JS -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 {% endblock %}
@@ -89,17 +89,16 @@ Buscar comentarios | Support In Bits
 <script>
 $(document).ready(function() {
     var table = $('#comentariosTable').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
         },
-        "responsive": true,
-        "dom": '<"top"lf>rt<"bottom"ip>',
-        "initComplete": function() {
-            // Integración del buscador personalizado
-            $('#searchInput').keyup(function(){
-                table.search($(this).val()).draw();
-            });
-        }
+        responsive: true,
+        dom: '<"top"lf>rt<"bottom"ip>'
+    });
+
+    // Como desactivaste la búsqueda de DataTables, puedes usar tu input personalizado:
+    $('#searchInput').on('keyup', function () {
+        table.search(this.value).draw();
     });
 });
 </script>
