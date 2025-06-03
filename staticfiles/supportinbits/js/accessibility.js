@@ -1,31 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const accBtn = document.getElementById("accessibility-btn");
   const accPanel = document.getElementById("accessibility-panel");
-  const increaseFont = document.getElementById("increase-font");
-  const decreaseFont = document.getElementById("decrease-font");
-  const resetFont = document.getElementById("reset-font");
   const highContrast = document.getElementById("high-contrast");
   const resetContrast = document.getElementById("reset-contrast");
 
   // Toggle del panel
   accBtn.addEventListener("click", function () {
     accPanel.classList.toggle("hidden");
-  });
-
-  // Aumentar tamaño de fuente
-  increaseFont.addEventListener("click", function () {
-    changeFontSize(1);
-  });
-
-  // Disminuir tamaño de fuente
-  decreaseFont.addEventListener("click", function () {
-    changeFontSize(-1);
-  });
-
-  // Resetear tamaño de fuente
-  resetFont.addEventListener("click", function () {
-    document.body.style.fontSize = "";
-    localStorage.removeItem("fontSize");
   });
 
   // Alto contraste
@@ -43,12 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cargar preferencias guardadas
   function loadPreferences() {
-    // Tamaño de fuente
-    const savedFontSize = localStorage.getItem("fontSize");
-    if (savedFontSize) {
-      document.body.style.fontSize = savedFontSize;
-    }
-
     // Contraste
     if (localStorage.getItem("highContrast") === "true") {
       document.body.classList.add("high-contrast");
@@ -57,15 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Espaciado accesible
     const savedSpacing = parseInt(localStorage.getItem("spacingLevel")) || 0;
     applySpacingLevel(savedSpacing);
-  }
+  }  
 
-  // Cambiar tamaño de fuente
-  function changeFontSize(direction) {
-    const currentSize = parseFloat(getComputedStyle(document.body).fontSize);
-    const newSize = currentSize + direction * 2;
-    document.body.style.fontSize = `${newSize}px`;
-    localStorage.setItem("fontSize", `${newSize}px`);
-  }
   // Cambiar espaciado
   const toggleSpacing = document.getElementById("toggle-spacing");
   const MAX_SPACING_LEVEL = 4;
@@ -87,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.removeItem("spacingLevel");
     }
 
-    updateSpacingButtonText(level); // 👈 Actualiza el texto del botón
+    updateSpacingButtonText(level); 
   }
 
   toggleSpacing.addEventListener("click", function () {
@@ -101,7 +69,67 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * función lupa
+ * cambiar tamaño de fuente
+ */
+const fontSizes = ["font-size-small", "font-size-medium", "font-size-large"];
+let currentSizeIndex = 0;
+
+function applyFontSize(className) {
+  const contenido = document.getElementById("contenido");
+  const nav = document.getElementById("navegador");
+  const header = document.querySelector("header");
+  const html = document.documentElement;
+  const btn = document.getElementById("accessibility-btn");
+
+  if (!contenido || !btn) return;
+
+  // Remover clases anteriores
+  fontSizes.forEach((cls) => {
+    document.body.classList.remove(cls);
+    contenido.classList.remove(cls);
+    nav.classList.remove(cls);
+    header.classList.remove(cls);
+    html.classList.remove(cls);
+    btn.classList.remove(cls); 
+  });
+
+  // Aplicar nueva clase
+  document.body.classList.add(className);
+  contenido.classList.add(className);
+  nav.classList.add(className);
+  header.classList.add(className);
+  // html.classList.add(className);
+
+  // Guardar
+  localStorage.setItem("fontSizeClass", className);
+}
+
+function changeFontSize(direction) {
+  currentSizeIndex += direction;
+  currentSizeIndex = Math.max(
+    0,
+    Math.min(currentSizeIndex, fontSizes.length - 1)
+  );
+  applyFontSize(fontSizes[currentSizeIndex]);
+}
+
+function resetFontSize() {
+  currentSizeIndex = 0; 
+  applyFontSize(fontSizes[currentSizeIndex]);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedClass = localStorage.getItem("fontSizeClass");
+  if (savedClass && fontSizes.includes(savedClass)) {
+    currentSizeIndex = fontSizes.indexOf(savedClass);
+    applyFontSize(savedClass);
+  } else {
+    applyFontSize(fontSizes[currentSizeIndex]);
+  }
+});
+
+/**
+ *función lupa
  */
 document.addEventListener("DOMContentLoaded", function () {
   const lupa = document.getElementById("lupa");

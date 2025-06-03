@@ -17,7 +17,7 @@ Buscar Entradas | Support In Bits
 {% block content %}
 
 <div class="container mt-4">
-    <h2>Entradas del Blog</h2>
+    <h1>Entradas del Blog</h1>
     
     <div class="mb-3">
         <input type="text" id="searchInput" class="form-control" placeholder="Buscar entradas...">
@@ -49,12 +49,11 @@ Buscar Entradas | Support In Bits
                             <span class="badge bg-warning text-dark">Borrador</span>
                         {% endif %}
                     </td>
-                    <td class="d-flex justify-content-around flex-md-wrap">
-                        <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary">Ver</a>
+                    <td class="d-flex justify-content-around flex-md-wrap align-items-center">
+                        <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary col-8 mb-2">Ver</a>
                         {% if request.user == entrada.autor or request.user.is_staff %}
-                        <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary">Editar</a>
-                        <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger">Eliminar</a>
-                        {% comment %} <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger">Eliminar</a> {% endcomment %}
+                        <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary col-8">Editar</a>
+                        <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger col-8">Eliminar</a>
                         {% endif %}
                     </td>
                 </tr>

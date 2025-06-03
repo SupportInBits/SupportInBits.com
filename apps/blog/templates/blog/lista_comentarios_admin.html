@@ -73,7 +73,7 @@ Buscar comentarios | Support In Bits
                             </form>
                             <form method="post" action="{% url 'eliminar_comentario' comentario.id %}">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de querer eliminar este comentario?');">
+                                <button type="submit" class="btn btn-sm btn-danger col-12" onclick="return confirm('¿Estás seguro de querer eliminar este comentario?');">
                                     Eliminar
                                 </button>
                             </form>

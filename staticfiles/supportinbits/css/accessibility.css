@@ -64,3 +64,15 @@
   letter-spacing: 0.12em;
   word-spacing: 0.16em;
 }
+
+.font-size-small {
+  font-size: 16px !important;
+}
+
+.font-size-medium {
+  font-size: 26px !important;
+}
+
+.font-size-large {
+  font-size: 36px !important;
+}

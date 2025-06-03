@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
     auditBtn.style.right = '20px';
     auditBtn.style.zIndex = '9999';
     auditBtn.style.padding = '10px 15px';
-    auditBtn.style.backgroundColor = '#007bff';
-    auditBtn.style.color = 'white';
+    auditBtn.style.backgroundColor = '#6f009e';
+    auditBtn.style.color = '#faff24';
     auditBtn.style.border = 'none';
     auditBtn.style.borderRadius = '4px';
     auditBtn.style.cursor = 'pointer';

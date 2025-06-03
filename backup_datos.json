@@ -712,14 +712,6 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "i8j0l08pg3zmvoqrlp3wgsk7tnsxwdbs",
-  "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2pCRaUFcuu8ZCMwMUjU0Ke3KeHfbpAvd_vf-e6sQ16WEtckcRlZXdVan3y1FekrdAT9ivU-aprrMY9K7og_a9DCxvG6H-xcosZXt7UyUjn0PgM4zkbdIAij-glski2EkSj4j-I4gM6UIzI6MzdgDWvX5Avy1OLo:1uKjyC:gnrIlBMOs7-XQjvLHK3fu1QNNimeHdPMpSMynm3R3sE",
-    "expire_date": "2025-06-12T15:35:20.766"
-  }
-},
-{
   "model": "blog.seccion",
   "pk": 1,
   "fields": {

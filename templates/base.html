@@ -21,11 +21,6 @@
     <meta name="HandheldFriendly" content="{{ page.m_handF }}" />
     <meta name="MobileOptimized" content="{{ page.m_mobileOp }}" />
     <meta http-equiv="content-language" content="es"/>
-
-    <script src="{% static 'supportinbits/js/accessibility.js' %}"></script>   
-    <!-- TinyMCE CDN -->
-    {% comment %} <script src="https://cdn.tiny.cloud/1/4ctror8ztivyu5cgoasl3ilo4pmcop3kh56f9ezfohvamo05/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> {% endcomment %}
-    
     <!-- axe-core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.8.2/axe.min.js"></script>
     <!-- CSS de Bootstrap -->
@@ -51,12 +46,12 @@
           </div>
         </div>
         <!--navegador-->
-        <div class="px-3 py-2 text-bg-dark border-bottom">
-          <div class="container">
+        <div class="px-3 py-2 text-bg-dark border-bottom" >
+          <div class="container" >
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap" aria-label="Navegación principal">
-              <div class="container-fluid">
+              <div class="container-fluid" id="navegador">
                 <!--home-icon-->
-                <a class="navbar-brand" href="/" aria-label="home"><i class="bi bi-house fs-1"></i></a>
+                <a class="navbar-bran fs-1" href="/" aria-label="home"><i class="bi bi-house"></i></a>
                 <!--barra de búsqueda-->
                 <div class="search-container col-6 col-lg-6">
                   <form id="form-busqueda" role="search"> 
@@ -75,9 +70,9 @@
                 {% if user.is_authenticated %}
                   <!--si es super user-->
                   {% if user.is_superuser %}
-                    <div class="d-none d-md-flex ms-auto">
+                    <div class="d-none d-md-flex ms-auto" id="navegador">
                       <div class="dropdown">
-                        <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -89,7 +84,7 @@
                     {% else %}
                     <div class="d-none d-md-flex ms-3">
                       <div class="dropdown">
-                        <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -102,7 +97,7 @@
                 {% else %}
                   <div class="d-none d-md-flex ms-auto">
                     <div class="dropdown">
-                      <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-box-arrow-in-right"></i> Identifícate
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -154,7 +149,7 @@
                         </li>
                         <li class="nav-item dropdown d-md-none">
                           <div class="dropdown">
-                            <button class="btn dropdown-toggle fs-6" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                               <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -178,7 +173,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#">Servicios</a>
                     </li>
-                    <li class="nav-item dropdown d-md-none">
+                    <li class="nav-item dropdown d-md-none fs-1">
                       <div class="dropdown">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                           Identifícate
@@ -216,7 +211,7 @@
       <!--menu accesibilidad-->
       <!-- Botón flotante de accesibilidad -->
       <button id="accessibility-btn" aria-label="Opciones de accesibilidad">
-        <i class="bi bi-universal-access-circle fs-1"></i>
+        <i class="bi bi-universal-access-circle"></i>
       </button>
       
       <!-- Panel de opciones (inicialmente oculto) -->
@@ -230,18 +225,21 @@
               <!-- Bloques -->
               <div class="col-4 ">
                 <div class="block d-flex flex-column justify-content-between p-3">
-                  <button id="increase-font" z>A+ Aumentar texto</button>
+                  {% comment %} <button id="increase-font" z>A+ Aumentar texto</button> {% endcomment %}
+                  <button onclick="changeFontSize(-1)">A-</button>
                 </div>
               </div>
-
+              
               <div class="col-4">
                 <div class="block d-flex flex-column justify-content-between p-3">
-                  <button id="decrease-font">A- Disminuir texto</button>
+                  {% comment %} <button id="decrease-font">A- Disminuir texto</button> {% endcomment %}
+                  <button onclick="changeFontSize(1)">A+</button>
                 </div>
               </div>
               <div class="col-4">
                 <div class="block d-flex flex-column justify-content-between p-3">
-                  <button id="reset-font" class="btn">Tamaño normal</button>
+                  {% comment %} <button id="reset-font" class="btn">Tamaño normal</button> {% endcomment %}
+                  <button onclick="resetFontSize()">Restablecer</button>
                 </div>
               </div>
             </div>
@@ -291,9 +289,10 @@
       </div><!--/panel-->
 
       <!--contenido-->
-      <main class="flex-shrink-0">
-        <div class="container-fluid">
-          {% block content %} {% endblock %}
+      <main>
+        <div class="container-fluid" id="contenido">
+          {% block content %} 
+          {% endblock %}
         </div>
       </main>
 
@@ -323,9 +322,8 @@
       window.isSuperuser = true;  // Variable global para JavaScript
     </script>
       <script src="{% static 'supportinbits/js/accessibility-audit.js' %}"></script>
-      
-    
     {% endif %}
+    <script src="{% static 'supportinbits/js/accessibility.js' %}"></script>   
     <script src="{% static 'supportinbits/js/global.js' %}"></script>   
     <script>
       document.addEventListener('DOMContentLoaded', function () {

@@ -11,14 +11,16 @@ Plantillas | Support In Bits
     sin embargo el lector está implementado con JavaScript puro.
    </p>
    <article id="menu-Restaurante">
-      <div id="controls" class="d-flex justify-content-around m-5">
-         <button class="btn-primary p-1" id="readAll">Leer todo el menú</button>
-         <button class="btn-primary p-1" id="stopReading">Detener lectura</button>
-         <span class="btn-primary p-1 text-center" >Velocidad de lectura</span>
-         <span class="speed-display btn-primary p-1 text-center" id="speedValue">1x</span>
-         <div class="speed-controls">
-            <button class="speed-button btn-primary p-3" id="decreaseSpeed">más velocidad</button>
-            <button class="speed-button btn-primary p-3" id="increaseSpeed">menos velocidad</button>
+      <div id="controls" class="d-flex justify-content-around flex-wrap m-5">
+         <button class="btn-primary rounded p-2 align-self-center col-md-4" id="readAll">Leer todo el menú</button>
+         <button class="btn-primary rounded p-2 align-self-center col-md-4" id="stopReading">Detener lectura</button>
+         <div class="speed-controls col-12 d-flex flex-wrap mt-5">
+            <p class="col-6 align-self-center fs-2 text-end" >Velocidad de lectura</p>
+            <p class="speed-display col-6 col-md-3 fs-2 p-2 align-self-center text-start" id="speedValue">1x</p>
+            <div class="col-12 d-flex justify-content-around flex-wrap">
+              <button class="speed-button btn-primary rounded p-2 align-self-center col-12 col-md-4 fs-4" id="decreaseSpeed">+ velocidad</button>
+              <button class="speed-button btn-primary rounded p-2 align-self-center col-12 col-md-4 fs-4" id="increaseSpeed">- velocidad</button>
+            </div>
          </div>
       </div>
       <h1>Menú del Restaurante</h1>
