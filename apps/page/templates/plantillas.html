@@ -1,149 +1,520 @@
 {% extends "base.html" %} 
-{% block title %}
-Plantillas | Support In Bits
-{% endblock %}
+{% block title %} 
+Plantillas | Support In Bits 
+{%endblock %} 
 {% load static %} 
 {% block content %}
-<div class="container" id="container-plantillas">
-   <h1 class="text-center">Plantillas accesibles</h1>
-   <p class="fs-3 text-start">En esta página encontrarás plantillas accesibles con un lector de pantalla incorporado. Cada una de las plantillas
-    cuentan con un código que puedes copiar para usarlo donde queres. Tener en cuenta que se usa bootstrap para dar formato a las plantillas,
-    sin embargo el lector está implementado con JavaScript puro.
-   </p>
-   <article id="menu-Restaurante">
-      <div id="controls" class="d-flex justify-content-around flex-wrap m-5">
-         <button class="btn-primary rounded p-2 align-self-center col-md-4" id="readAll">Leer todo el menú</button>
-         <button class="btn-primary rounded p-2 align-self-center col-md-4" id="stopReading">Detener lectura</button>
-         <div class="speed-controls col-12 d-flex flex-wrap mt-5">
-            <p class="col-6 align-self-center fs-2 text-end" >Velocidad de lectura</p>
-            <p class="speed-display col-6 col-md-3 fs-2 p-2 align-self-center text-start" id="speedValue">1x</p>
-            <div class="col-12 d-flex justify-content-around flex-wrap">
-              <button class="speed-button btn-primary rounded p-2 align-self-center col-12 col-md-4 fs-4" id="decreaseSpeed">+ velocidad</button>
-              <button class="speed-button btn-primary rounded p-2 align-self-center col-12 col-md-4 fs-4" id="increaseSpeed">- velocidad</button>
-            </div>
-         </div>
-      </div>
-      <h1>Menú del Restaurante</h1>
-      <section class="menu-section" aria-label="Entradas">
-         
-
-
-
-        <div class="table-responsive menu-item">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th>Plato</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Tamal Criollo</td>
-                <td>Masa de harina de maíz aderezado con especias, acompañado con aceituna, cerdo o pollo, huevo y salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
-
-              <tr>
-                <td>Tamal Verde</td>
-                <td>Masa de harina de maíz aderezado con cilantro, especias, acompañado con pollo y salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Осора</td>
-                <td>Crema de salsa a base de huacatay, leche, galleta maría, cacahuete, queso y ají amarillo servido sobre patata cocida</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Aguadito de Pollo</td>
-                <td>Caldo de pollo y menudencia, arroz, zanahoria, guisantes y pasta de cilantro</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Caldo de Gallina</td>
-                <td>Caldo de gallina con tallarín, patata y huevo</td>
-                <td>7.00€</td>
-              </tr>
-              <tr>
-                <td>Papa Rellena</td>
-                <td>Masa de patata, rellena de carne picada, cebolla, pasas, huevo, aceituna, acompañada con salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>aquí</td>
-                <td>puedes colocar más platos...</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+<div
+  class="container"
+  id="container-plantillas"
+  aria-label="Contenido principal: Plantillas accesibles con lector de pantalla"
+>
+  <h1 class="text-center">Plantillas accesibles</h1>
+  <p class="fs-3 text-start">
+    En esta página encontrarás plantillas accesibles con un lector de pantalla
+    incorporado. Cada una de las plantillas cuentan con un código que puedes
+    copiar para usarlo donde quieras. Tener en cuenta que se usa bootstrap para
+    dar formato a las plantillas, sin embargo el lector está implementado con
+    JavaScript puro.
+  </p>
+  <!--plantilla carta restaurante-->
+  <article id="menu-Restaurante" class="row mt-4 align-items-center justify-content-center" aria-label="Menú del restaurante" >
+    <!--botones de reproducción-->
+    <p class="text-center fs-1 border-bottom">Plantilla menú restaurante</p>
+    <div id="controls" class="d-flex justify-content-around flex-wrap m-5"  role="region" aria-label="Controles de reproducción y velocidad">
+      <div class="col-6 d-flex justify-content-center">
+        
+        <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
+          <p class="fs-2 text-center">Reproducir</p>
+          <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="readAll" aria-label="Botón para empezar a reproducir" type="button" >
+            <i class="bi bi-play-circle" aria-hidden="true"></i>
+          </button>
+        </div>
+        
+        <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
+            <p class="fs-2 text-center">Detener</p>
+          <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="stopReading" aria-label="Detener la lectura" type="button">
+            <i class="bi bi-stop" aria-hidden="true"></i>
+          </button>
         </div>
 
+      </div>
+
+      <fieldset class="speed-controls col-12 d-flex flex-wrap mt-5" aria-label="Controles de velocidad de lectura">
+        <legend class="visually-hidden">Controles de velocidad de lectura</legend>
+        <div class="col-12 d-flex justify-content-center">
+          <label for="speedValue" class="col-6 align-self-center fs-2 text-center">Velocidad de lectura</label>
+          <output class="speed-display col-6 col-md-3 display-4 p-2 align-self-center text-start" id="speedValue" aria-live="polite">1x</output>
+        </div>
+        <div class="col-12 d-flex justify-content-evenly flex-wrap">
+          <button
+            class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
+            id="decreaseSpeed"
+            aria-label="Disminuir velocidad" 
+            type="button"
+          >
+            <i class="bi bi-dash-circle" aria-hidden="true"></i>
+          </button>
+          <button
+            class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
+            id="increaseSpeed"
+            aria-label="Aumentar velocidad" 
+            type="button"
+          >
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          </button>
+        </div>
+      </fieldset>
+    </div>
+
+      <!--carta menú-->
+      <hr class="hr mb-5 col-5" />
+      <h1 class="display-1 text-center">Menú de Restaurante</h1>
+      <h2 class="display-2 text-center mt-5">Menú del día</h2>
+      <hr class="hr col-2 align-self-center my-4" />
+      <p class="fs-4 text-center my-5">
+        Exclusivo para disfrutar al medio día y entre semana
+      </p>
+      <img
+        src="{% static 'img/plantillas/menudia.jpg' %}"
+        class="img-fluid rounded mb-5 d-block"
+        alt="Imagen del menú del día: primeros platos como leche de tigre, papa rellena, aguadito de pollo. Segundos: seco de ternera con frijoles, chicharrón de cerdo, 1/4 de pollo. Incluye bebida, postre o café. Precio: 12,50 euros."
+      />
+      <h2 class="display-2 text-center mt-5">Entradas</h2>
+      <hr class="hr col-2" />
+      <p class="fs-4 text-center my-5">
+        Platos para comenzar a disfrutar de nuestra comida
+      </p>
+
+      <section class="container" aria-label="Entradas del menú">
+        <div class="row d-flex justify-content-around">
+          <!--Si deseas añadir más contenedores para los platos solo tienes que copar desde aquí-->
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Tamal Criollo</strong></p>
+              <p class="order-3 p-2"><strong>6.00€</strong></p>
+            </div>
+            <div class="col px-3">
+              Masa de harina de maíz aderezado con especias, acompañado con
+              aceituna, cerdo o pollo, huevo y salsa criolla
+            </div>
+          </div>
+          <!--hasta aquí-->
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Papa a la Huancaína</strong></p>
+              <p class="order-3 p-2"><strong>6.00€ </strong></p>
+            </div>
+            <div class="col px-3">
+              Crema de salsa con ají amarillo, leche, galleta salada y queso
+              servido sobre patatas cocida
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Tamal Verde (Preguntar)</strong></p>
+              <p class="order-3 p-2"><strong>6.00€</strong></p>
+            </div>
+            <div class="col px-3">
+              Masa de harina de maíz aderezado con cilantro, especias, acompañado
+              con pollo y salsa criolla
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Causa Limeña</strong></p>
+              <p class="order-3 p-2"><strong>6.00€ </strong></p>
+            </div>
+            <div class="col px-3">
+              Pastel de patata amasada con ají amarillo, aceite, limón y sal,
+              relleno de atún o pollo, cebolla y mayonesa
+            </div>
+          </div>
+        </div>
       </section>
-      <!-- Más secciones del menú... -->
-      <script>
-         // Configuración de velocidad
-         let currentRate = 1;
-         const minRate = 0.5;
-         const maxRate = 2;
-         
-         // Actualizar display de velocidad
-         function updateSpeedDisplay() {
-             document.getElementById('speedValue').textContent = currentRate.toFixed(1) + 'x';
-             localStorage.setItem('speechRate', currentRate); // Guardar preferencia
+
+      <h2 class="display-2 text-center mt-5">Segundos</h2>
+      <hr class="hr col-2" />
+      <p class="fs-4 text-center my-5">
+        Platos principales y contundentes para comer bien
+      </p>
+
+      <section class="container" aria-label="Platos principales del menú">
+        <div class="row d-flex justify-content-around">
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2">
+                <strong>Seco de Ternera con Frejoles (Preguntar)</strong>
+              </p>
+              <p class="order-3 p-2"><strong>12.00€</strong></p>
+            </div>
+            <div class="col px-3">
+              Guiso de ternera con cilantro, acompañado con frijoles, arroz y
+              salsa criolla
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Ají de Pollo con Arroz</strong></p>
+              <p class="order-3 p-2"><strong>10.00€ </strong></p>
+            </div>
+            <div class="col px-3">
+              Pollo desmenuzado aderezado en salsa de ají con leche y pan
+              acompañado con arroz, patatas cocidas y huevo cocido
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Arroz Chaufa de Pollo</strong></p>
+              <p class="order-3 p-2"><strong>10.00€</strong></p>
+            </div>
+            <div class="col px-3">
+              Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Anticuchos</strong></p>
+              <p class="order-3 p-2"><strong>10.00€ </strong></p>
+            </div>
+            <div class="col px-3">
+              Filetitos de corazón de ternera aderezado con ají panca, salteados
+              al wok acompañado de patata cocida, choclo y ensalada
+            </div>
+          </div>
+        </div>
+      </section>
+      <h2 class="display-2 text-center mt-5">Postres</h2>
+      <hr class="hr col-2" />
+      <p class="fs-4 text-center my-5">
+        Finaliza con un broche dulce (Se hacen tartas de cumpleaños por encargo
+        (Consultar Precio))
+      </p>
+
+    <section class="container" aria-label="Postres del menú">
+      <div class="row d-flex">
+          <div class="col-md-6">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Tarta Chocolate</strong></p>
+              <p class="order-3 p-2"><strong>4.00€</strong></p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Tarta Tres Leches</strong></p>
+              <p class="order-3 p-2"><strong>4.00€ </strong></p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2"><strong>Dulce de Leche</strong></p>
+              <p class="order-3 p-2"><strong>4.00€</strong></p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="d-flex justify-content-between">
+              <p class="order-1 p-2">
+                <strong>Crema Volteada / Pie de Manzana</strong>
+              </p>
+              <p class="order-3 p-2"><strong>3.50€ </strong></p>
+            </div>
+          </div>
+
+      </div><!--/row-->
+    </section>
+  </article>
+</div>
+
+<div class="row" role="region" aria-label="Zona de código para copiar o descargar">
+  <!-- Botón para mostrar el código y copiar -->
+  <div class="col-md-6 d-grid">
+    <button class="btn btn-secondary mb-2" id="toggleCode" type="button" aria-controls="codeBlock" aria-expanded="false">
+      Mostrar código HTML
+    </button>
+  </div>
+  <div class="col-md-6 d-grid">
+    <button class="btn btn-secondary mb-2" id="toggleJS"  type="button" aria-controls="jsBlock" aria-expanded="false">
+      Mostrar código JS
+    </button>
+  </div>
+  <div class="my-2 align-self-center">
+    <button
+      class="btn btn-outline-primary mb-2"
+      id="copyCode"
+      style="display: none"
+      type="button"
+    >
+      Copiar código
+    </button>
+    <pre
+      id="codeBlock"
+      style="
+        display: none;
+        background: #f8f9fa;
+        border: 1px solid #ccc;
+        padding: 1em;
+        border-radius: 6px;
+        overflow: auto;
+      "
+    >
+      <code id="htmlCode"></code>
+    </pre>
+  </div>
+  <!-- Botón para mostrar/copiar el JS -->
+  <div class="col">
+    <button
+      class="btn btn-outline-primary mb-2"
+      id="copyJS"
+      style="display: none"
+    >
+      Copiar código JS
+    </button>
+    <a
+      href="{% static 'js/lector-menu.js' %}"
+      class="btn btn-success mb-2"
+      style="display: none"
+      id="downloadJS"
+      download
+      >Descargar código JS</a
+    >
+    <pre
+      id="jsBlock"
+      style="
+        display: none;
+        background: #f8f9fa;
+        border: 1px solid #ccc;
+        padding: 1em;
+        border-radius: 6px;
+        overflow: auto;
+      "
+    >
+      <code id="jsCode"></code>
+    </pre>
+  </div>
+</div>
+
+<!--script-reproductor-->
+<script>
+  // Configuración de velocidad
+  let currentRate = 1;
+  const minRate = 0.9;
+  const maxRate = 2;
+
+  // Actualizar display de velocidad
+  function updateSpeedDisplay() {
+    document.getElementById("speedValue").textContent =
+      currentRate.toFixed(1) + "x";
+    localStorage.setItem("speechRate", currentRate); // Guardar preferencia
+  }
+
+  // Cargar velocidad guardada
+  if (localStorage.getItem("speechRate")) {
+    currentRate = parseFloat(localStorage.getItem("speechRate"));
+    updateSpeedDisplay();
+  }
+
+  // función leerTexto
+  function leerTexto(texto) {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance();
+      utterance.text = texto;
+      utterance.lang = "es-ES";
+      utterance.rate = currentRate; // Usar velocidad actual
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert("Lo siento, tu navegador no soporta la función de lectura de voz.");
+    }
+  }
+
+  // Eventos para controles de velocidad
+  document
+    .getElementById("increaseSpeed")
+    .addEventListener("click", function () {
+      if (currentRate < maxRate) {
+        currentRate += 0.1;
+        updateSpeedDisplay();
+      }
+    });
+
+  document
+    .getElementById("decreaseSpeed")
+    .addEventListener("click", function () {
+      if (currentRate > minRate) {
+        currentRate -= 0.1;
+        updateSpeedDisplay();
+      }
+    });
+  // Extraer texto de un elemento, incluyendo imágenes con alt
+  function extraerTextoOrdenado(element) {
+    let texto = "";
+    for (const node of element.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        texto += node.textContent.trim() + " ";
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        if (node.tagName === "IMG" && node.alt) {
+          texto += node.alt + " ";
+        } else {
+          texto += extraerTextoOrdenado(node);
+        }
+      }
+    }
+    texto += '.';
+    return texto;
+  }
+  // Leer todo el menú
+  document.getElementById("readAll").addEventListener("click", function () {
+    const menu = document.getElementById("menu-Restaurante");
+    const menuText = extraerTextoOrdenado(menu).replace(/\s+/g, " ").trim();
+    console.log(menuText); // Para depuración
+  leerTexto(menuText);
+  });
+
+  // Detener la lectura
+  document.getElementById("stopReading").addEventListener("click", function () {
+    window.speechSynthesis.cancel();
+  });
+</script>
+<!-- Script para mostrar/ocultar el código JS -->
+<script>
+  // Pega aquí el mismo JS que usas para la lectura, como string
+  const lectorJS = `
+    // Configuración de velocidad
+     let currentRate = 1;
+     const minRate = 0.5;
+     const maxRate = 2;
+     
+     // Actualizar display de velocidad
+     function updateSpeedDisplay() {
+         document.getElementById('speedValue').textContent = currentRate.toFixed(1) + 'x';
+         localStorage.setItem('speechRate', currentRate); // Guardar preferencia
+     }
+     
+     // Cargar velocidad guardada
+     if(localStorage.getItem('speechRate')) {
+         currentRate = parseFloat(localStorage.getItem('speechRate'));
+         updateSpeedDisplay();
+     }
+     
+     // Modificar función leerTexto
+     function leerTexto(texto) {
+         if ('speechSynthesis' in window) {
+             window.speechSynthesis.cancel();
+             
+             const utterance = new SpeechSynthesisUtterance();
+             utterance.text = texto;
+             utterance.lang = 'es-ES';
+             utterance.rate = currentRate; // Usar velocidad actual
+             
+             window.speechSynthesis.speak(utterance);
+         } else {
+             alert('Lo siento, tu navegador no soporta la función de lectura de voz.');
          }
-         
-         // Cargar velocidad guardada
-         if(localStorage.getItem('speechRate')) {
-             currentRate = parseFloat(localStorage.getItem('speechRate'));
+     }
+     
+     // Eventos para controles de velocidad
+     document.getElementById('increaseSpeed').addEventListener('click', function() {
+         if(currentRate < maxRate) {
+             currentRate += 0.1;
              updateSpeedDisplay();
          }
-         
-         // Modificar función leerTexto
-         function leerTexto(texto) {
-             if ('speechSynthesis' in window) {
-                 window.speechSynthesis.cancel();
-                 
-                 const utterance = new SpeechSynthesisUtterance();
-                 utterance.text = texto;
-                 utterance.lang = 'es-ES';
-                 utterance.rate = currentRate; // Usar velocidad actual
-                 
-                 window.speechSynthesis.speak(utterance);
-             } else {
-                 alert('Lo siento, tu navegador no soporta la función de lectura de voz.');
-             }
+     });
+     
+     document.getElementById('decreaseSpeed').addEventListener('click', function() {
+         if(currentRate > minRate) {
+             currentRate -= 0.1;
+             updateSpeedDisplay();
          }
-         
-         // Eventos para controles de velocidad
-         document.getElementById('increaseSpeed').addEventListener('click', function() {
-             if(currentRate < maxRate) {
-                 currentRate += 0.1;
-                 updateSpeedDisplay();
-             }
-         });
-         
-         document.getElementById('decreaseSpeed').addEventListener('click', function() {
-             if(currentRate > minRate) {
-                 currentRate -= 0.1;
-                 updateSpeedDisplay();
-             }
-         });
-         
-         
-         // Leer todo el menú
-         document.getElementById('readAll').addEventListener('click', function() {
-           const menuText = document.getElementById('menu-Restaurante').innerText;
-           leerTexto(menuText);
-         });
-         
-         // Detener la lectura
-         document.getElementById('stopReading').addEventListener('click', function() {
-           window.speechSynthesis.cancel();
-         });
-         
-         
-      </script>    
-   </article>
-</div>
+     });
+     
+     
+     // Leer todo el menú
+     document.getElementById('readAll').addEventListener('click', function() {
+       const menuText = document.getElementById('menu-Restaurante').innerText;
+       leerTexto(menuText);
+     });
+     
+     // Detener la lectura
+     document.getElementById('stopReading').addEventListener('click', function() {
+       window.speechSynthesis.cancel();
+     });
+    `;
+  document.getElementById("toggleJS").addEventListener("click", function () {
+    const jsBlock = document.getElementById("jsBlock");
+    const downloadJS = document.getElementById("downloadJS");
+    const copyBtn = document.getElementById("copyJS");
+    if (jsBlock.style.display === "none") {
+      document.getElementById("jsCode").textContent = lectorJS.trim();
+      jsBlock.style.display = "block";
+      downloadJS.style.display = "inline-block";
+      copyBtn.style.display = "inline-block";
+      this.textContent = "Ocultar código JS";
+    } else {
+      jsBlock.style.display = "none";
+      copyBtn.style.display = "none";
+      downloadJS.style.display = "none";
+      this.textContent = "Mostrar código JS";
+    }
+  });
+
+  document.getElementById("copyJS").addEventListener("click", function () {
+    const code = document.getElementById("jsCode").innerText;
+    navigator.clipboard.writeText(code);
+    this.textContent = "¡Copiado!";
+    setTimeout(() => {
+      this.textContent = "Copiar JS";
+    }, 1500);
+  });
+</script>
+<!-- Script para copiar el código HTML -->
+<script>
+  // Función para escapar HTML
+  function escapeHtml(html) {
+    return html
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Mostrar/ocultar el código
+  document.getElementById("toggleCode").addEventListener("click", function () {
+    const codeBlock = document.getElementById("codeBlock");
+    const copyBtn = document.getElementById("copyCode");
+    if (codeBlock.style.display === "none") {
+      // Obtener el HTML del contenedor
+      const html = document.getElementById("menu-Restaurante").innerHTML.trim();
+      document.getElementById("htmlCode").innerHTML = escapeHtml(html);
+      codeBlock.style.display = "block";
+      copyBtn.style.display = "inline-block";
+      this.textContent = "Ocultar código";
+    } else {
+      codeBlock.style.display = "none";
+      copyBtn.style.display = "none";
+      this.textContent = "Mostrar código";
+    }
+  });
+
+  // Copiar el código al portapapeles
+  document.getElementById("copyCode").addEventListener("click", function () {
+    const code = document.getElementById("htmlCode").innerText;
+    navigator.clipboard.writeText(code);
+    this.textContent = "¡Copiado!";
+    setTimeout(() => {
+      this.textContent = "Copiar código";
+    }, 1500);
+  });
+</script>
+
 {% endblock content%}

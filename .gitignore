@@ -172,8 +172,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-
+backup_*.json
 *.sqlite3
-/static/
-media/
-.env.*
+# /static/
+# media/
+# .env.*

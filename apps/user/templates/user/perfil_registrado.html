@@ -3,148 +3,101 @@
 {% block content %}
 <div id="pages-container"></div>
 {% if user.is_authenticated %}
-  <!--si es supeuser-->
-  {% if user.is_superuser %}
-  <h1>Bienvenido Administrador, {{ user.username }}!</h1>
-  <p>correo:  {{ user.email }}</p>
-
-  <p class="fs-3">Configuraciones: </p>
-  <!--panel-admin-->
-  <div class="row">
-      <div class="col">
-
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Entradas</button>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Páginas</button>
-
-          
-          <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <p>Try scrolling the rest of the page to see this option in action.</p>
-            </div>
-          </div>
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <p>.....</p>
-            </div>
-          </div>
-          <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <p>Try scrolling the rest of the page to see this option in action.</p>
-            </div>
-          </div>
-
-
-      </div>
-  </div>
-  <!--sino ha sido creado con el comando superuser-->
-  {% else %}
-  
   <div class="container">
       <div class="row d-flex justify-content-center">
           <!-- Información del usuario -->
           <div class="col-md-12 mb-3">
               <div class="card">
+                  <div class="row ">
+                      <div class="d-flex justify-content-center flex-column align-items-center">
+                          <div class="align-self-center m-5">
+                              {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="Avatar de {{ user.username }}" class="img-thumbnail align-self-center" style="max-width:150px;"
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+                                <i class="bi bi-person-circle display-1" style="display:none"></i>
+                              {% else %}
+                                  <i class="bi bi-person-circle display-1"></i>
+                              {% endif %}
+                          </div>
+                      </div>
+                  </div>
                   <div class="card-body text-center">
                       <h1 class="text-center">Bienvenido, {{ user.username }}!</h1>
                       <p class="text-muted">Miembro desde el {{ user.date_joined|date:"d F Y " }}</p>
-                      
-                        <div class="mt-3">
-                            <span class="badge bg-primary rounded-pill">
-                                {{ total_comentarios }} comentarios
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Lista de comentarios -->
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Comentarios Recientes</h4>
-                    </div>
+                      <div class="mt-3">
+                          <span class="badge bg-primary rounded-pill">
+                              {{ total_comentarios }} comentarios
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-                    <div class="card-body">
-                        {% if comentarios %}
-                            <ul class="list-group list-group-flush">
-                                {% for comentario in comentarios %}
-                                <li class="list-group-item">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6>
-                                                <a href="{{ comentario.entrada.get_absolute_url }}">
-                                                    {{ comentario.entrada.titulo|truncatechars:40 }}
-                                                </a>
-                                            </h6>
-                                            <p class="mb-1">{{ comentario.contenido|truncatechars:100 }}</p>
-                                            <small class="text-muted">
-                                                {{ comentario.fecha_creacion|date:"d M Y H:i" }}
-                                                {% if not comentario.aprobado %}
-                                                    <span class="badge bg-warning text-dark ms-2">Pendiente</span>
-                                                {% endif %}
-                                            </small>
-                                        </div>
-                                        <div class="d-flex flex-column justify-content-around">
-                                            {% if request.user == comentario.autor %}
-                                            <a href="{% url 'editar_comentario' comentario.id %}" 
-                                               class="btn btn-sm btn-outline-primary">Editar</a>
-                                            <form method="post" action="{% url 'eliminar_comentario' comentario.id %}" 
-                                                  class="d-inline">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" 
-                                                        onclick="return confirm('¿Eliminar este comentario?')">
-                                                    Eliminar
-                                                </button>
-                                            </form>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p class="text-muted">Este usuario no ha realizado comentarios aún.</p>
-                        {% endif %}
-                        </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-  {% endif %}
-  <!--sino está registrado muestra lo siguiente-->
-  {% else %}
-      
-      <div class="container" id="contenido_user_noregistrado">
-          <p class="h1 text-center">¿Todavía no estás registrado?<p>
-          <p class="display-4 text-center">Únete a nuestra comunidad para poder comentar en las
-              entradas del blogs y estar informado de las nuevas publicaciones.
-          </p>
-
-          <div class="row mt-5">
-              <div class="d-flex justify-content-center">
-                  <a href="/identificate/registrate" class="btn btn-outline-primary fs-1 ">
-                      Registrarte
-                  </a>
+          <!-- Lista de comentarios -->
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header">
+                      <h4>Comentarios Recientes</h4>
+                  </div>
+                  <div class="card-body">
+                      {% if comentarios %}
+                          <ul class="list-group list-group-flush">
+                              {% for comentario in comentarios %}
+                              <li class="list-group-item">
+                                  <div class="d-flex justify-content-between">
+                                      <div>
+                                          <h6>
+                                              <a href="{{ comentario.entrada.get_absolute_url }}">
+                                                  {{ comentario.entrada.titulo|truncatechars:40 }}
+                                              </a>
+                                          </h6>
+                                          <p class="mb-1">{{ comentario.contenido|truncatechars:100 }}</p>
+                                          <small class="text-muted">
+                                              {{ comentario.fecha_creacion|date:"d M Y H:i" }}
+                                              {% if not comentario.aprobado %}
+                                                  <span class="badge bg-warning text-dark ms-2">Pendiente</span>
+                                              {% endif %}
+                                          </small>
+                                      </div>
+                                      <div class="d-flex flex-column justify-content-around">
+                                          {% if request.user == comentario.autor %}
+                                          <a href="{% url 'editar_comentario' comentario.id %}" 
+                                             class="btn btn-sm btn-outline-primary">Editar</a>
+                                          <form method="post" action="{% url 'eliminar_comentario' comentario.id %}" 
+                                                class="d-inline">
+                                              {% csrf_token %}
+                                              <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                                      onclick="return confirm('¿Eliminar este comentario?')">
+                                                  Eliminar
+                                              </button>
+                                          </form>
+                                          {% endif %}
+                                      </div>
+                                  </div>
+                              </li>
+                              {% endfor %}
+                          </ul>
+                      {% else %}
+                          <p class="text-muted">Este usuario no ha realizado comentarios aún.</p>
+                      {% endif %}
+                  </div>
               </div>
           </div>
       </div>
-
-
+  </div>
+{% else %}
+  <div class="container" id="contenido_user_noregistrado">
+      <p class="h1 text-center">¿Todavía no estás registrado?<p>
+      <p class="display-4 text-center">Únete a nuestra comunidad para poder comentar en las
+          entradas del blogs y estar informado de las nuevas publicaciones.
+      </p>
+      <div class="row mt-5">
+          <div class="d-flex justify-content-center">
+              <a href="/identificate/registrate" class="btn btn-outline-primary fs-1 ">
+                  Registrarte
+              </a>
+          </div>
+      </div>
+  </div>
 {% endif %}
-
 {% endblock content%}

@@ -12,7 +12,7 @@ from apps.blog.models import Entrada, Comentario, Seccion, Categoria
 from apps.blog.forms import ComentarioForm
 from apps.page.models import Page
 from apps.user.decorators import rol_requerido
-from apps.user.forms import RegistroForm, LoginForm
+from apps.user.forms import RegistroForm, LoginForm, EditarPerfilForm
 from apps.user.models import Usuario
 
 def check_username(request):
@@ -83,7 +83,7 @@ def user_login(request):
                     return redirect(next_url)
                 elif user.is_superuser:
                     return redirect('perfil_admin')
-                elif user.rol == 'moderador':  # Corregido el typo aquí
+                elif user.rol == 'moderador':  
                     return redirect('tests')
                 else:
                     return redirect('perfil_registrado')
@@ -101,12 +101,11 @@ def user_login(request):
 
 @login_required
 def perfil_registrado(request):
-    pagina = Page.objects.get(id=10)
-
-    usuario = request.user     
-    
     if request.user.is_superuser:
-        raise PermissionDenied
+        return redirect('perfil_admin')
+
+    pagina = Page.objects.get(id=10)
+    usuario = request.user     
 
     # Obtener comentarios del usuario, ordenados por fecha descendente
     comentarios = Comentario.objects.filter(
@@ -119,8 +118,6 @@ def perfil_registrado(request):
         'page': pagina,
         'total_comentarios': comentarios.count()
     }
-    # debug
-    # print(f"Usuario es superuser?: {request.user.is_superuser}")
 
     return render(
         request, 
@@ -141,6 +138,16 @@ def editar_comentario(request, comentario_id):
         form = ComentarioForm(instance=comentario)
     
     return render(request, 'user/editar_comentario.html', {'form': form, 'comentario': comentario})
+
+@login_required
+def eliminar_perfil(request):
+    if request.method == 'POST':
+        usuario = request.user
+        logout(request)
+        usuario.delete()
+        messages.success(request, "Tu perfil ha sido eliminado correctamente.")
+        return redirect('inicio')
+    return render(request, 'user/eliminar_perfil_confirmar.html')
 
 def perfil_admin(request):
     if not request.user.is_superuser:
@@ -212,6 +219,19 @@ def moderar_comentario(request, pk, accion):
 def is_superuser(user):
     return user.is_superuser or (hasattr(user, 'rol') and user.rol == 'administrador')
 
+@login_required
+def editar_perfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = EditarPerfilForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Perfil actualizado correctamente.")
+            return redirect('perfil_registrado')
+    else:
+        form = EditarPerfilForm(instance=usuario)
+    return render(request, 'user/editar_perfil.html', {'form': form})
+
 @rol_requerido('administrador')
 def lista_usuarios(request):
     return render(
@@ -221,15 +241,45 @@ def lista_usuarios(request):
         'request': request  # Asegúrate de pasar el request al contexto 
     })
 
-@rol_requerido('administrador')  # Puedes usar también `@user_passes_test(is_superuser)`
+@rol_requerido('administrador') 
 def gestionar_usuarios(request):
     usuarios = Usuario.objects.all().exclude(id=request.user.id).order_by('username')
-    pagina = Page.objects.get(id=11)  # ID de página para la vista si usas sistema CMS
+    pagina = Page.objects.get(id=11)  
 
     return render(request, 'user/gestionar_usuarios.html', {
         'usuarios': usuarios,
         'page': pagina
     })
+
+@rol_requerido('administrador')  
+def crear_pagina(request):
+    from apps.page.forms import PageForm
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('gestionar_paginas')
+    else:
+        form = PageForm()
+    return render(request, 'user/crear_pagina.html', {'form': form})
+
+@rol_requerido('administrador')  
+def gestionar_paginas(request):
+    paginas = Page.objects.all()
+    return render(request, 'user/gestionar_paginas.html', {'paginas': paginas})
+
+@rol_requerido('administrador')  
+def editar_pagina(request, pagina_id):
+    from apps.page.forms import PageForm
+    pagina = get_object_or_404(Page, id=pagina_id)
+    if request.method == 'POST':
+        form = PageForm(request.POST, instance=pagina)
+        if form.is_valid():
+            form.save()
+            return redirect('gestionar_paginas')
+    else:
+        form = PageForm(instance=pagina)
+    return render(request, 'user/editar_pagina.html', {'form': form, 'pagina': pagina})
 
 @require_POST
 @rol_requerido('administrador')

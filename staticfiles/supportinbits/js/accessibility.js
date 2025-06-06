@@ -1,245 +1,234 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // --- Variables de accesibilidad ---
   const accBtn = document.getElementById("accessibility-btn");
   const accPanel = document.getElementById("accessibility-panel");
   const highContrast = document.getElementById("high-contrast");
   const resetContrast = document.getElementById("reset-contrast");
-
-  // Toggle del panel
-  accBtn.addEventListener("click", function () {
-    accPanel.classList.toggle("hidden");
-  });
-
-  // Alto contraste
-  highContrast.addEventListener("click", function () {
-    console.log("ejecutando-alto-contraste");
-    document.body.classList.add("high-contrast");
-    localStorage.setItem("highContrast", "true");
-  });
-
-  // Contraste normal
-  resetContrast.addEventListener("click", function () {
-    document.body.classList.remove("high-contrast");
-    localStorage.removeItem("highContrast");
-  });
-
-  // Cargar preferencias guardadas
-  function loadPreferences() {
-    // Contraste
-    if (localStorage.getItem("highContrast") === "true") {
-      document.body.classList.add("high-contrast");
-    }
-
-    // Espaciado accesible
-    const savedSpacing = parseInt(localStorage.getItem("spacingLevel")) || 0;
-    applySpacingLevel(savedSpacing);
-  }  
-
-  // Cambiar espaciado
   const toggleSpacing = document.getElementById("toggle-spacing");
   const MAX_SPACING_LEVEL = 4;
 
-  function updateSpacingButtonText(level) {
-    toggleSpacing.textContent = `Nivel espaciado (${level})`;
+  // --- Panel de accesibilidad ---
+  accBtn?.addEventListener("click", () => accPanel?.classList.toggle("hidden"));
+
+  // --- Contraste alto ---
+  highContrast?.addEventListener("click", () => setHighContrast(true));
+  resetContrast?.addEventListener("click", () => setHighContrast(false));
+
+  function setHighContrast(enable) {
+    document.body.classList.toggle("high-contrast", enable);
+    if (enable) {
+      localStorage.setItem("highContrast", "true");
+    } else {
+      localStorage.removeItem("highContrast");
+    }
   }
 
+  // --- Espaciado accesible ---
+  toggleSpacing?.addEventListener("click", () => {
+    let currentLevel = parseInt(localStorage.getItem("spacingLevel")) || 0;
+    let nextLevel = (currentLevel + 1) % (MAX_SPACING_LEVEL + 1);
+    applySpacingLevel(nextLevel);
+  });
+
   function applySpacingLevel(level) {
-    // Quita todas las clases anteriores
     for (let i = 1; i <= MAX_SPACING_LEVEL; i++) {
       document.body.classList.remove(`accessible-spacing-${i}`);
     }
-
     if (level > 0) {
       document.body.classList.add(`accessible-spacing-${level}`);
       localStorage.setItem("spacingLevel", level);
     } else {
       localStorage.removeItem("spacingLevel");
     }
-
-    updateSpacingButtonText(level); 
+    updateSpacingButtonText(level);
   }
 
-  toggleSpacing.addEventListener("click", function () {
-    let currentLevel = parseInt(localStorage.getItem("spacingLevel")) || 0;
-    let nextLevel = (currentLevel + 1) % (MAX_SPACING_LEVEL + 1);
-    applySpacingLevel(nextLevel);
-  });
+  function updateSpacingButtonText(level) {
+    if (toggleSpacing) toggleSpacing.textContent = `Nivel espaciado (${level})`;
+  }
 
-  // Cargar preferencias al iniciar
+  // --- Preferencias al cargar ---
+  function loadPreferences() {
+    setHighContrast(localStorage.getItem("highContrast") === "true");
+    const savedSpacing = parseInt(localStorage.getItem("spacingLevel")) || 0;
+    applySpacingLevel(savedSpacing);
+  }
   loadPreferences();
-});
 
-/**
- * cambiar tamaño de fuente
- */
-const fontSizes = ["font-size-small", "font-size-medium", "font-size-large"];
-let currentSizeIndex = 0;
+  // --- Tamaño de fuente ---
+  const fontSizes = ["font-size-small", "font-size-medium", "font-size-large"];
+  let currentSizeIndex = 0;
 
-function applyFontSize(className) {
-  const contenido = document.getElementById("contenido");
-  const nav = document.getElementById("navegador");
-  const header = document.querySelector("header");
-  const html = document.documentElement;
-  const btn = document.getElementById("accessibility-btn");
+  function applyFontSize(className) {
+    const contenido = document.getElementById("contenido");
+    const nav = document.getElementById("navegador");
+    const header = document.querySelector("header");
+    const html = document.documentElement;
+    const btn = document.getElementById("accessibility-btn");
+    const userDropdownBtns = document.querySelectorAll('.dropdown-toggle');
+    if (!contenido || !btn) return;
+    fontSizes.forEach(cls => {
+      document.body.classList.remove(cls);
+      contenido.classList.remove(cls);
+      nav?.classList.remove(cls);
+      header?.classList.remove(cls);
+      html.classList.remove(cls);
+      btn.classList.remove(cls);
+      userDropdownBtns.forEach(b => b.classList.remove(cls));
+    });
+    document.body.classList.add(className);
+    contenido.classList.add(className);
+    nav?.classList.add(className);
+    header?.classList.add(className);
+    userDropdownBtns.forEach(b => b.classList.add(className));
+    localStorage.setItem("fontSizeClass", className);
+  }
 
-  if (!contenido || !btn) return;
-
-  // Remover clases anteriores
-  fontSizes.forEach((cls) => {
-    document.body.classList.remove(cls);
-    contenido.classList.remove(cls);
-    nav.classList.remove(cls);
-    header.classList.remove(cls);
-    html.classList.remove(cls);
-    btn.classList.remove(cls); 
-  });
-
-  // Aplicar nueva clase
-  document.body.classList.add(className);
-  contenido.classList.add(className);
-  nav.classList.add(className);
-  header.classList.add(className);
-  // html.classList.add(className);
-
-  // Guardar
-  localStorage.setItem("fontSizeClass", className);
-}
-
-function changeFontSize(direction) {
-  currentSizeIndex += direction;
-  currentSizeIndex = Math.max(
-    0,
-    Math.min(currentSizeIndex, fontSizes.length - 1)
-  );
-  applyFontSize(fontSizes[currentSizeIndex]);
-}
-
-function resetFontSize() {
-  currentSizeIndex = 0; 
-  applyFontSize(fontSizes[currentSizeIndex]);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const savedClass = localStorage.getItem("fontSizeClass");
-  if (savedClass && fontSizes.includes(savedClass)) {
-    currentSizeIndex = fontSizes.indexOf(savedClass);
-    applyFontSize(savedClass);
-  } else {
+  function changeFontSize(direction) {
+    currentSizeIndex += direction;
+    currentSizeIndex = Math.max(0, Math.min(currentSizeIndex, fontSizes.length - 1));
     applyFontSize(fontSizes[currentSizeIndex]);
   }
-});
 
-/**
- *función lupa
- */
-document.addEventListener("DOMContentLoaded", function () {
+  function resetFontSize() {
+    currentSizeIndex = 0;
+    applyFontSize(fontSizes[currentSizeIndex]);
+  }
+
+  // Inicializar tamaño de fuente
+  (function initFontSize() {
+    const savedClass = localStorage.getItem("fontSizeClass");
+    if (savedClass && fontSizes.includes(savedClass)) {
+      currentSizeIndex = fontSizes.indexOf(savedClass);
+      applyFontSize(savedClass);
+    } else {
+      applyFontSize(fontSizes[currentSizeIndex]);
+    }
+  })();
+
+  // --- Lupa ---
   const lupa = document.getElementById("lupa");
   const lupaContent = document.getElementById("lupa-content");
   let lupaActiva = false;
-  let mouseY = window.innerHeight / 2;
   const zoomLevel = 2;
   let lastTimestamp = 0;
-  const updateInterval = 16; // ~60fps
+  const updateInterval = 16;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
-  // Versión ultra optimizada de cloneNode
   function fastClone(element) {
     const clone = element.cloneNode(false);
-    const children = element.childNodes;
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
+    element.childNodes.forEach(child => {
       if (child.nodeType === Node.ELEMENT_NODE) {
-        if (["SCRIPT", "STYLE", "LINK"].includes(child.tagName)) {
-          continue;
-        }
-        if (child.id === "lupa") continue;
+        if (["SCRIPT", "STYLE", "LINK"].includes(child.tagName) || child.id === "lupa") return;
         clone.appendChild(fastClone(child));
       } else if (child.nodeType === Node.TEXT_NODE) {
         clone.appendChild(child.cloneNode());
       }
-    }
-
+    });
     return clone;
   }
 
+
+  // Actualiza mouseX y mouseY en el evento mousemove
+  document.addEventListener("mousemove", e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  }, { passive: true });
+
   function updateLupa(timestamp) {
     if (!lupaActiva) return;
-
-    // Limitar a ~60fps para mejor rendimiento
     if (timestamp - lastTimestamp < updateInterval) {
       requestAnimationFrame(updateLupa);
       return;
     }
     lastTimestamp = timestamp;
 
-    // Posición vertical centrada
+    // Calcula la posición de la lupa en la ventana
+    const pageHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    );
+
+    const pageWidth = Math.max(
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.offsetWidth,
+      document.body.clientWidth,
+      document.documentElement.clientWidth
+    );
+
     const lupaTop = Math.max(
       0,
       Math.min(
-        mouseY - lupa.offsetHeight / 2,
-        window.innerHeight - lupa.offsetHeight
+        mouseY + window.scrollY - lupa.offsetHeight / 2,
+        pageHeight - lupa.offsetHeight
       )
     );
 
-    lupa.style.top = `${lupaTop}px`;
+    const lupaLeft = Math.max(
+      0,
+      Math.min(
+        mouseX + window.scrollX - lupa.offsetWidth / 2,
+        pageWidth - lupa.offsetWidth
+      )
+    );
 
-    // Calcular área visible a clonar
+    lupa.style.top = `${lupaTop - window.scrollY}px`;
+    lupa.style.left = `${lupaLeft - window.scrollX}px`;
+
+    // El resto igual...
     const visibleTop = lupaTop / zoomLevel;
-    const visibleHeight = lupa.offsetHeight / zoomLevel;
-
-    // Crear clon optimizado
+    const visibleLeft = lupaLeft / zoomLevel;
+    // Clona el DOM y aplica el desplazamiento
     const viewportClone = fastClone(document.body);
     viewportClone.className = "lupa-clone";
+    viewportClone.style.width = `${document.body.scrollWidth}px`;
+    viewportClone.style.height = `${document.body.scrollHeight}px`;
     viewportClone.style.transform = `scale(${zoomLevel})`;
+    viewportClone.style.transformOrigin = "top left";
+    viewportClone.style.position = "absolute";
     viewportClone.style.top = `-${visibleTop}px`;
-    viewportClone.style.left = "0";
+    viewportClone.style.left = `-${visibleLeft}px`;
 
-    // Actualización eficiente del contenido
     if (lupaContent.firstChild) {
       lupaContent.replaceChild(viewportClone, lupaContent.firstChild);
     } else {
       lupaContent.appendChild(viewportClone);
     }
-
     requestAnimationFrame(updateLupa);
   }
 
   function toggleLupa() {
     lupaActiva = !lupaActiva;
     lupa.style.display = lupaActiva ? "block" : "none";
-
-    if (lupaActiva) {
-      requestAnimationFrame(updateLupa);
-    }
+    if (lupaActiva) requestAnimationFrame(updateLupa);
   }
 
-  // Event listeners optimizados
-  const handleMouseMove = (e) => {
-    mouseY = e.clientY;
-  };
-
-  document.addEventListener("mousemove", handleMouseMove, { passive: true });
-  document.getElementById("toggle-lupa").addEventListener("click", toggleLupa);
-
-  document.addEventListener("keydown", function (e) {
-    if (e.altKey && e.key.toLowerCase() === "z") {
-      toggleLupa();
-    }
+  // Eventos lupa
+  document.addEventListener("mousemove", e => { mouseY = e.clientY; }, { passive: true });
+  document.getElementById("toggle-lupa")?.addEventListener("click", toggleLupa);
+  document.addEventListener("keydown", e => {
+    if (e.altKey && e.key.toLowerCase() === "z") toggleLupa();
   });
 
-  // Optimización para resize
+  // Resize para lupa
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       if (lupaActiva) {
-        lupa.style.top = `${Math.max(
-          0,
-          Math.min(
-            mouseY - lupa.offsetHeight / 2,
-            window.innerHeight - lupa.offsetHeight
-          )
-        )}px`;
+        lupa.style.top = `${Math.max(0, Math.min(mouseY - lupa.offsetHeight / 2, window.innerHeight - lupa.offsetHeight))}px`;
       }
     }, 100);
   });
+
+  // Exponer funciones globales si necesitas usarlas desde HTML
+  window.changeFontSize = changeFontSize;
+  window.resetFontSize = resetFontSize;
 });

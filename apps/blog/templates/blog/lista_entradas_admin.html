@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Buscar Entradas | Support In Bits
+Gestionar Entradas | Support In Bits
 {% endblock %}
 {% load static %}
 
@@ -49,12 +49,14 @@ Buscar Entradas | Support In Bits
                             <span class="badge bg-warning text-dark">Borrador</span>
                         {% endif %}
                     </td>
-                    <td class="d-flex justify-content-around flex-md-wrap align-items-center">
-                        <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary col-8 mb-2">Ver</a>
-                        {% if request.user == entrada.autor or request.user.is_staff %}
-                        <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary col-8">Editar</a>
-                        <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger col-8">Eliminar</a>
-                        {% endif %}
+                    <td>
+                        <div class="d-flex justify-content-around flex-md-wrap align-items-center">
+                            <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary col-sm-8 mb-sm-2">Ver</a>
+                            {% if request.user == entrada.autor or request.user.is_staff %}
+                            <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary col-sm-8 mb-sm-2">Editar</a>
+                            <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger col-sm-8">Eliminar</a>
+                            {% endif %}
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
@@ -67,7 +69,7 @@ Buscar Entradas | Support In Bits
 $(document).ready(function() {
     var table = $('#entradasTable').DataTable({
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
         "responsive": true,
         "dom": '<"top"lf>rt<"bottom"ip>',

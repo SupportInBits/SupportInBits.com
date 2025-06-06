@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+Gestionar Entradas | Support In Bits
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div class="table-responsive">
+    <h2>Páginas creadas</h2>
+    <table id="paginasTable" class="table table-striped table-bordered " style="width:100%">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Robots</th>
+                <th>HandF</th>
+                <th>MobileOp</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pagina in paginas %}
+            <tr>
+                <td>{{ pagina.id }}</td>
+                <td>{{ pagina.titulo }}</td>
+                <td>{{ pagina.m_descri }}</td>
+                <td>{{ pagina.m_robots }}</td>
+                <td>{{ pagina.m_handF }}</td>
+                <td>{{ pagina.m_mobileOp }}</td>
+                <td>
+                    <a href="{% url 'editar_pagina' pagina.id %}" class="btn btn-sm btn-primary">Editar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#paginasTable').DataTable({
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        }
+    });
+});
+</script>
+{% endblock %}

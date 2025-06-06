@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Buscar comentarios | Support In Bits
+Gestionar comentarios | Support In Bits
 {% endblock %}
 {% load static %}
 
@@ -24,8 +24,8 @@ Buscar comentarios | Support In Bits
         <div class="col-md-6">
             <input type="text" id="searchInput" class="form-control" placeholder="Buscar comentarios...">
         </div>
-        <div class="col-md-6">
-            <div class="btn-group float-end" role="group">
+        <div class="d-flex justify-content-center mt-4 mt-md-auto col-md-6">
+            <div class="float-end" role="group">
                 <a href="?aprobacion=todos" class="btn btn-outline-secondary {% if filtro_aprobacion == 'todos' or not filtro_aprobacion %}active{% endif %}">Todos</a>
                 <a href="?aprobacion=aprobados" class="btn btn-outline-success {% if filtro_aprobacion == 'aprobados' %}active{% endif %}">Aprobados</a>
                 <a href="?aprobacion=pendientes" class="btn btn-outline-warning {% if filtro_aprobacion == 'pendientes' %}active{% endif %}">Pendientes</a>
@@ -67,7 +67,7 @@ Buscar comentarios | Support In Bits
                         <div class="d-flex flex-column justify-content-around">
                             <form method="post" action="{% url 'toggle_aprobacion_comentario' comentario.id %}" class="d-inline">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-sm {% if comentario.aprobado %}btn-warning{% else %}btn-success{% endif %}">
+                                <button type="submit" class="btn btn-sm col-12 mb-2 {% if comentario.aprobado %}btn-warning{% else %}btn-success{% endif %}">
                                     {% if comentario.aprobado %}Desaprobar{% else %}Aprobar{% endif %}
                                 </button>
                             </form>
@@ -90,7 +90,7 @@ Buscar comentarios | Support In Bits
 $(document).ready(function() {
     var table = $('#comentariosTable').DataTable({
         language: {
-            url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+            url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
         responsive: true,
         dom: '<"top"lf>rt<"bottom"ip>'

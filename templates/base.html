@@ -36,13 +36,6 @@
 
     <div class="container" id="contenedor-principal">
       <header>
-        <div class="container-fluid banner">
-          <div class="d-flex justify-content-end">
-            {# Botón modo oscuro deshabilitado #}
-            {# <button id="toggle-mode" class="toggle-btn btn"><i class="bi bi-moon-fill p-2"></i></button> #}
-          </div>
-        </div>
-
         <div class="px-3 py-2 text-bg-dark border-bottom">
           <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap" aria-label="Navegación principal">
@@ -66,7 +59,7 @@
                 </div>
 
                 <!-- Botón subir -->
-                <i id="boton-up" class="bi bi-arrow-up-circle display-5"></i>
+                <i id="boton-up" class="bi bi-arrow-up-circle display-1"></i>
 
                 <!-- Botón hamburguesa -->
                 <button
@@ -95,10 +88,11 @@
                         <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}" >Editar perfil</a></li>
                         {% if user.is_superuser %}
                           <li><a class="dropdown-item" href="/usuario/admin">Paneles</a></li>
                         {% else %}
-                          <li><a class="dropdown-item" href="/usuario/perfil">Mis comentarios</a></li>
+                          <li><a class="dropdown-item" href="/usuario/perfil">Mi perfil</a></li>
                         {% endif %}
                         <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
                       </ul>
@@ -130,7 +124,7 @@
                 <ul class="navbar-nav">
                   <li class="nav-item"><a class="nav-link" href="/plantillas">Plantillas</a></li>
                   <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                  <li class="nav-item"><a class="nav-link disabled" href="#">Servicios</a></li>
                   <li class="nav-item dropdown d-md-none">
                     <div class="dropdown">
                       <button
@@ -148,10 +142,11 @@
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         {% if user.is_authenticated %}
+                          <li><a class="dropdown-item" href="{% url 'editar_perfil' %}" >Editar perfil</a></li>
                           {% if user.is_superuser %}
                             <li><a class="dropdown-item" href="/usuario/admin/">Paneles</a></li>
                           {% else %}
-                            <li><a class="dropdown-item" href="/perfil">Mis comentarios</a></li>
+                            <li><a class="dropdown-item" href="/usuario/perfil">Mis comentarios</a></li>
                           {% endif %}
                           <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
                         {% else %}
@@ -183,15 +178,17 @@
         </ol>
       </nav>
 
-      <!-- Menú accesibilidad -->
+      <!-- botón accesibilidad -->
       <button id="accessibility-btn" aria-label="Opciones de accesibilidad">
         <i class="bi bi-universal-access-circle"></i>
       </button>
-
-      <div id="accessibility-panel" class="hidden">
-        <div class="container">
+      
+      <!-- Menú accesibilidad -->
+      <div id="accessibility-panel" class="hidden ">
+        <div class="container justify-content-center ">
           <div class="row">
-            <h2 class="text-fluid">Opciones de accesibilidad</h2>
+            <span class="fs-1 text-dark text-center" role="banner">Opciones de accesibilidad</span>
+            <span class="fs-5 text-dark text-center my-3" role="info">(Control + F para desactivar/activar)</span>
           </div>
           <div class="row">
             <div class="col-4">
@@ -211,7 +208,7 @@
             <div class="col-4">
               <button id="reset-contrast">Contraste normal</button>
             </div>
-            <div class="col-4">
+            <div class="col-4" style=" overflow:hidden; z-index:9999;">
               <button id="toggle-lupa">Activar lupa</button>
             </div>
           </div>
@@ -224,15 +221,12 @@
           </div>
         </div>
       </div>
-
-      <main id="main-content" role="main">
+      
+      <main id="contenido" role="main">
         {% block content %}
         {% endblock %}
       </main>
     </div>
-
-    {% comment %} {% include "cookie_consent/cookie_consent_banner.html" %} {% endcomment %}
-    {% comment %} {% cookie_consent_js %} {% endcomment %}
     
     <!--footer-->
     <footer class="mt-5" aria-label="Pie de pagina">
@@ -255,6 +249,12 @@
 
     <script src="{% static 'supportinbits/js/global.js' %}" defer></script>
     <script src="{% static 'supportinbits/js/accessibility.js' %}" defer></script>
-    {% block extra_scripts %}{% endblock %}
+    {% if user.is_authenticated %}
+      {% if user.is_superuser %}
+      <script src="{% static 'supportinbits/js/accessibility-audit.js' %}" defer></script>
+      {% endif %}
+    {% endif %}
+    {% block extra_scripts %}
+    {% endblock %}
   </body>
 </html>

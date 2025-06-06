@@ -156,5 +156,8 @@ var showCookieBar = async (options = {}) => {
   doInsert(cookieBarNode);
   onShow == null ? void 0 : onShow();
 };
-
+export {
+  loadCookieGroups,
+  showCookieBar
+};
 //# sourceMappingURL=cookiebar.module.js.map

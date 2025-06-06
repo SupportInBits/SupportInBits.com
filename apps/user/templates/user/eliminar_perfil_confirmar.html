@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que deseas eliminar tu perfil?</h2>
+    <p>Esta acción no se puede deshacer y se eliminarán todos tus datos.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar mi perfil</button>
+        <a href="{% url 'perfil_registrado' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
