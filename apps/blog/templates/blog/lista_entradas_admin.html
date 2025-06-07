@@ -68,17 +68,15 @@ Gestionar Entradas | Support In Bits
 <script>
 $(document).ready(function() {
     var table = $('#entradasTable').DataTable({
-        "language": {
-            "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         },
-        "responsive": true,
-        "dom": '<"top"lf>rt<"bottom"ip>',
-        "initComplete": function() {
-            // Integración del buscador personalizado
-            $('#searchInput').keyup(function(){
-                table.search($(this).val()).draw();
-            });
-        }
+        responsive: true,
+        dom: '<"top"lf>rt<"bottom"ip>'
+    });
+    
+    $('#searchInput').on('keyup', function () {
+        table.search(this.value).draw();
     });
 });
 </script>

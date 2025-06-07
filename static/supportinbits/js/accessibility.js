@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateSpacingButtonText(level) {
-    if (toggleSpacing) toggleSpacing.textContent = `Nivel espaciado (${level})`;
+    if (toggleSpacing) toggleSpacing.textContent = `Espaciado (${level})`;
   }
 
   // --- Preferencias al cargar ---
@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const html = document.documentElement;
     const btn = document.getElementById("accessibility-btn");
     const userDropdownBtns = document.querySelectorAll(".dropdown-toggle");
+    const botones = document.querySelectorAll(".btn");
     const userDropdownBtnsitem = document.querySelectorAll(".dropdown-item");
     if (!contenido || !btn) return;
     fontSizes.forEach((cls) => {
@@ -88,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       html.classList.remove(cls);
       btn.classList.remove(cls);
       userDropdownBtns.forEach((b) => b.classList.remove(cls));
+      botones.forEach((b) => b.classList.remove(cls));
       userDropdownBtnsitem.forEach((b) => b.classList.remove(cls));
     });
     document.body.classList.add(className);
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     header?.classList.add(className);
     userDropdownBtns.forEach((b) => b.classList.add(className));
     userDropdownBtnsitem.forEach((b) => b.classList.add(className));
+    botones.forEach((b) => b.classList.add(className));
     localStorage.setItem("fontSizeClass", className);
   }
 

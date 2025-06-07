@@ -18,74 +18,77 @@ Plantillas | Support In Bits
     JavaScript puro.
   </p>
   <!--plantilla carta restaurante-->
-  <article id="menu-Restaurante" class="row mt-4 align-items-center justify-content-center" aria-label="Menú del restaurante" >
-    <!--botones de reproducción-->
-    <p class="text-center fs-1 border-bottom">Plantilla menú restaurante</p>
-    <div id="controls" class="d-flex justify-content-around flex-wrap m-5"  role="region" aria-label="Controles de reproducción y velocidad">
-      <div class="col-6 d-flex justify-content-center">
-        
-        <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
-          <p class="fs-2 text-center">Reproducir</p>
-          <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="readAll" aria-label="Botón para empezar a reproducir" type="button" >
-            <i class="bi bi-play-circle" aria-hidden="true"></i>
-          </button>
-        </div>
-        
-        <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
+  <div id="menu-Restaurante">
+    <article class="row mt-4 align-items-center justify-content-center" aria-label="Menú del restaurante" >
+      <p class="text-center fs-1 border-bottom">Plantilla menú restaurante</p>
+      <!--botones de reproducción-->
+      <div id="controls" class="d-flex justify-content-around flex-wrap m-5"  role="region" aria-label="Controles de reproducción y velocidad">
+        <div class="col-6 d-flex justify-content-center">
+          
+          <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
+            <p class="fs-2 text-center">Reproducir</p>
+            <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="readAll" aria-label="Botón para empezar a reproducir" type="button" >
+              <i class="bi bi-play-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+          
+          <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
             <p class="fs-2 text-center">Detener</p>
-          <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="stopReading" aria-label="Detener la lectura" type="button">
-            <i class="bi bi-stop" aria-hidden="true"></i>
-          </button>
+            <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="stopReading" aria-label="Detener la lectura" type="button">
+              <i class="bi bi-stop" aria-hidden="true"></i>
+            </button>
+          </div>
+          
         </div>
-
+        
+        <!--botones de control de velocidad-->
+        <fieldset class="speed-controls col-12 d-flex flex-wrap mt-5" aria-label="Controles de velocidad de lectura">
+          <legend class="visually-hidden">Controles de velocidad de lectura</legend>
+          <div class="col-12 d-flex justify-content-center">
+            <label for="speedValue" class="col-6 align-self-center fs-2 text-center">Velocidad de lectura</label>
+            <output class="speed-display col-6 col-md-3 display-4 p-2 align-self-center text-start" id="speedValue" aria-live="polite">1x</output>
+          </div>
+          <div class="col-12 d-flex justify-content-evenly flex-wrap">
+            <button
+              class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
+              id="decreaseSpeed"
+              aria-label="Disminuir velocidad" 
+              type="button"
+            >
+              <i class="bi bi-dash-circle" aria-hidden="true"></i>
+            </button>
+            <button
+              class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
+              id="increaseSpeed"
+              aria-label="Aumentar velocidad" 
+              type="button"
+            >
+              <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            </button>
+          </div>
+        </fieldset>
       </div>
-
-      <fieldset class="speed-controls col-12 d-flex flex-wrap mt-5" aria-label="Controles de velocidad de lectura">
-        <legend class="visually-hidden">Controles de velocidad de lectura</legend>
-        <div class="col-12 d-flex justify-content-center">
-          <label for="speedValue" class="col-6 align-self-center fs-2 text-center">Velocidad de lectura</label>
-          <output class="speed-display col-6 col-md-3 display-4 p-2 align-self-center text-start" id="speedValue" aria-live="polite">1x</output>
-        </div>
-        <div class="col-12 d-flex justify-content-evenly flex-wrap">
-          <button
-            class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
-            id="decreaseSpeed"
-            aria-label="Disminuir velocidad" 
-            type="button"
-          >
-            <i class="bi bi-dash-circle" aria-hidden="true"></i>
-          </button>
-          <button
-            class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
-            id="increaseSpeed"
-            aria-label="Aumentar velocidad" 
-            type="button"
-          >
-            <i class="bi bi-plus-circle" aria-hidden="true"></i>
-          </button>
-        </div>
-      </fieldset>
-    </div>
-
-      <!--carta menú-->
-      <hr class="hr mb-5 col-5" />
-      <h1 class="display-1 text-center">Menú de Restaurante</h1>
-      <h2 class="display-2 text-center mt-5">Menú del día</h2>
-      <hr class="hr col-2 align-self-center my-4" />
-      <p class="fs-4 text-center my-5">
-        Exclusivo para disfrutar al medio día y entre semana
-      </p>
-      <img
-        src="{% static 'img/plantillas/menudia.jpg' %}"
-        class="img-fluid rounded mb-5 d-block"
-        alt="Imagen del menú del día: primeros platos como leche de tigre, papa rellena, aguadito de pollo. Segundos: seco de ternera con frijoles, chicharrón de cerdo, 1/4 de pollo. Incluye bebida, postre o café. Precio: 12,50 euros."
-      />
-      <h2 class="display-2 text-center mt-5">Entradas</h2>
-      <hr class="hr col-2" />
-      <p class="fs-4 text-center my-5">
-        Platos para comenzar a disfrutar de nuestra comida
-      </p>
-
+  
+        <!--carta menú-->
+        <hr class="hr mb-5 col-5" />
+        <h1 class="display-1 text-center">Menú de Restaurante</h1>
+        <h2 class="display-2 text-center mt-5">Menú del día</h2>
+        <hr class="hr col-2 align-self-center my-4" />
+        <p class="fs-4 text-center my-5">
+          Exclusivo para disfrutar al medio día y entre semana
+        </p>
+        <img
+          src="{% static 'img/plantillas/menudia.jpg' %}"
+          class="img-fluid rounded mb-5 d-block"
+          alt="Imagen del menú del día: primeros platos como leche de tigre, papa rellena, aguadito de pollo. Segundos: seco de ternera con frijoles, chicharrón de cerdo, 1/4 de pollo. Incluye bebida, postre o café. Precio: 12,50 euros."
+        />
+        <h2 class="display-2 text-center mt-5">Entradas</h2>
+        <hr class="hr col-2" />
+        <p class="fs-4 text-center my-5">
+          Platos para comenzar a disfrutar de nuestra comida
+        </p>
+  
+      <!-- Sección de entradas del menú -->
       <section class="container" aria-label="Entradas del menú">
         <div class="row d-flex justify-content-around">
           <!--Si deseas añadir más contenedores para los platos solo tienes que copar desde aquí-->
@@ -110,7 +113,7 @@ Plantillas | Support In Bits
               servido sobre patatas cocida
             </div>
           </div>
-
+  
           <div class="col-md-6 mb-3">
             <div class="d-flex justify-content-between">
               <p class="order-1 p-2"><strong>Tamal Verde (Preguntar)</strong></p>
@@ -121,7 +124,7 @@ Plantillas | Support In Bits
               con pollo y salsa criolla
             </div>
           </div>
-
+  
           <div class="col-md-6 mb-3">
             <div class="d-flex justify-content-between">
               <p class="order-1 p-2"><strong>Causa Limeña</strong></p>
@@ -134,13 +137,14 @@ Plantillas | Support In Bits
           </div>
         </div>
       </section>
-
-      <h2 class="display-2 text-center mt-5">Segundos</h2>
-      <hr class="hr col-2" />
-      <p class="fs-4 text-center my-5">
-        Platos principales y contundentes para comer bien
-      </p>
-
+  
+        <h2 class="display-2 text-center mt-5">Segundos</h2>
+        <hr class="hr col-2" />
+        <p class="fs-4 text-center my-5">
+          Platos principales y contundentes para comer bien
+        </p>
+        
+      <!-- Sección de platos principales del menú -->
       <section class="container" aria-label="Platos principales del menú">
         <div class="row d-flex justify-content-around">
           <div class="col-md-6 mb-3">
@@ -155,7 +159,7 @@ Plantillas | Support In Bits
               salsa criolla
             </div>
           </div>
-
+  
           <div class="col-md-6 mb-3">
             <div class="d-flex justify-content-between">
               <p class="order-1 p-2"><strong>Ají de Pollo con Arroz</strong></p>
@@ -166,7 +170,7 @@ Plantillas | Support In Bits
               acompañado con arroz, patatas cocidas y huevo cocido
             </div>
           </div>
-
+  
           <div class="col-md-6 mb-3">
             <div class="d-flex justify-content-between">
               <p class="order-1 p-2"><strong>Arroz Chaufa de Pollo</strong></p>
@@ -176,7 +180,7 @@ Plantillas | Support In Bits
               Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja
             </div>
           </div>
-
+  
           <div class="col-md-6 mb-3">
             <div class="d-flex justify-content-between">
               <p class="order-1 p-2"><strong>Anticuchos</strong></p>
@@ -189,59 +193,61 @@ Plantillas | Support In Bits
           </div>
         </div>
       </section>
-      <h2 class="display-2 text-center mt-5">Postres</h2>
-      <hr class="hr col-2" />
-      <p class="fs-4 text-center my-5">
-        Finaliza con un broche dulce (Se hacen tartas de cumpleaños por encargo
-        (Consultar Precio))
-      </p>
-
-    <section class="container" aria-label="Postres del menú">
-      <div class="row d-flex">
-          <div class="col-md-6">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Tarta Chocolate</strong></p>
-              <p class="order-3 p-2"><strong>4.00€</strong></p>
+  
+        <h2 class="display-2 text-center mt-5">Postres</h2>
+        <hr class="hr col-2" />
+        <p class="fs-4 text-center my-5">
+          Finaliza con un broche dulce (Se hacen tartas de cumpleaños por encargo
+          (Consultar Precio))
+        </p>
+      <!-- Sección de postres del menú -->
+      <section class="container" aria-label="Postres del menú">
+        <div class="row d-flex">
+            <div class="col-md-6">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2"><strong>Tarta Chocolate</strong></p>
+                <p class="order-3 p-2"><strong>4.00€</strong></p>
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Tarta Tres Leches</strong></p>
-              <p class="order-3 p-2"><strong>4.00€ </strong></p>
+  
+            <div class="col-md-6">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2"><strong>Tarta Tres Leches</strong></p>
+                <p class="order-3 p-2"><strong>4.00€ </strong></p>
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Dulce de Leche</strong></p>
-              <p class="order-3 p-2"><strong>4.00€</strong></p>
+  
+            <div class="col-md-6">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2"><strong>Dulce de Leche</strong></p>
+                <p class="order-3 p-2"><strong>4.00€</strong></p>
+              </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2">
-                <strong>Crema Volteada / Pie de Manzana</strong>
-              </p>
-              <p class="order-3 p-2"><strong>3.50€ </strong></p>
+  
+            <div class="col-md-6">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2">
+                  <strong>Crema Volteada / Pie de Manzana</strong>
+                </p>
+                <p class="order-3 p-2"><strong>3.50€ </strong></p>
+              </div>
             </div>
-          </div>
-
-      </div><!--/row-->
-    </section>
-  </article>
+  
+        </div><!--/row-->
+      </section>
+    </article>
+  </div>
 </div>
 
 <div class="row" role="region" aria-label="Zona de código para copiar o descargar">
   <!-- Botón para mostrar el código y copiar -->
   <div class="col-md-6 d-grid">
-    <button class="btn btn-secondary mb-2" id="toggleCode" type="button" aria-controls="codeBlock" aria-expanded="false">
+    <button class="btn btn-primary mb-2" id="toggleCode" type="button" aria-controls="codeBlock" aria-expanded="false">
       Mostrar código HTML
     </button>
   </div>
   <div class="col-md-6 d-grid">
-    <button class="btn btn-secondary mb-2" id="toggleJS"  type="button" aria-controls="jsBlock" aria-expanded="false">
+    <button class="btn btn-primary mb-2" id="toggleJS"  type="button" aria-controls="jsBlock" aria-expanded="false">
       Mostrar código JS
     </button>
   </div>
@@ -306,7 +312,7 @@ Plantillas | Support In Bits
   // Configuración de velocidad
   let currentRate = 1;
   const minRate = 0.9;
-  const maxRate = 2;
+  const maxRate = 3;
 
   // Actualizar display de velocidad
   function updateSpeedDisplay() {
