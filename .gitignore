@@ -175,5 +175,6 @@ cython_debug/
 backup_*.json
 *.sqlite3
 # /static/
-# media/
+media/
+backup_data/
 # .env.*

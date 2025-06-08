@@ -3,7 +3,17 @@
 {% load cookie_consent_tags %}
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+  <head>    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NKZHL3M99W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-NKZHL3M99W');
+    </script>
+
     <title>
       {% block title %}
         {% if user.is_authenticated and page.titulo == " - Support In Bits" %}
@@ -249,6 +259,52 @@
 
     <script src="{% static 'supportinbits/js/global.js' %}" defer></script>
     <script src="{% static 'supportinbits/js/accessibility.js' %}" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('input-busqueda');
+        const results = document.getElementById('resultados-busqueda');
+
+        let debounceTimer;
+
+        input.addEventListener('input', function () {
+          const query = input.value.trim();
+
+          clearTimeout(debounceTimer);
+
+          if (!query) {
+            results.style.display = 'none';
+            results.innerHTML = '';
+            return;
+          }
+
+          // Debounce para evitar demasiadas peticiones rápidas
+          debounceTimer = setTimeout(() => {
+            fetch(`/buscar/ajax/?q=${encodeURIComponent(query)}`, {
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              results.innerHTML = data.html;
+              results.style.display = 'block';
+            })
+            .catch(error => {
+              results.innerHTML = '<p>Error al realizar la búsqueda.</p>';
+              results.style.display = 'block';
+              console.error(error);
+            });
+          }, 300); // Espera 300 ms después de dejar de escribir
+        });
+
+        // Ocultar resultados si se hace clic fuera del contenedor
+        document.addEventListener('click', function (event) {
+          if (!document.querySelector('.search-container').contains(event.target)) {
+            results.style.display = 'none';
+          }
+        });
+      });
+    </script>
     {% if user.is_authenticated %}
       {% if user.is_superuser %}
       <script src="{% static 'supportinbits/js/accessibility-audit.js' %}" defer></script>

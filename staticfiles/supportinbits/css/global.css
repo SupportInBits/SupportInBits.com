@@ -69,6 +69,7 @@
 .high-contrast #paginasTable_paginate a,
 .high-contrast #entradasTable_length ,
 .high-contrast #entradasTable_length select,
+.high-contrast .panel-access,
 .high-contrast #entradasTable_paginate a {
   background-color: black !important;
   color: white !important;
@@ -79,7 +80,8 @@
   color: #fff !important;
 }
 
-.high-contrast a {
+.high-contrast a,
+.high-contrast .panel-access button {
   color: #00ff33 !important;
   background-color: black !important;
 }
