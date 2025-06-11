@@ -20,4 +20,4 @@ COPY . .
 
 EXPOSE 80
 
-CMD ["bash", "-c", "python /app/manage.py makemigrations && python /app/manage.py migrate && python /app/manage.py load_initial_data && python /app/manage.py collectstatic --no-input && python /app/manage.py runserver 0.0.0.0:8000"]
+CMD ["bash", "-c", "python /app/manage.py makemigrations && python /app/manage.py migrate && python /app/manage.py load_initial_data && python /app/manage.py collectstatic --no-input && python /app/manage.py runserver 0.0.0.0:80"]
