@@ -16,6 +16,10 @@ def breadcrumbs(request):
         breadcrumbs.append({'name': 'Perfil', 'url': None})
         return {'breadcrumbs': breadcrumbs, 'user': request.user}
     
+    if request.path.startswith('/accounts/password/reset/done/') or request.path.startswith('/accounts/password/reset/'):
+        breadcrumbs.append({'name': 'Restablecer Contraseña', 'url': None})
+        return {'breadcrumbs': breadcrumbs, 'user': request.user}
+    
     
     try:
         resolved = resolve(request.path_info)

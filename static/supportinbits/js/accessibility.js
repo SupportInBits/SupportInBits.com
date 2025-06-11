@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const toggleSpacing = document.getElementById("toggle-spacing");
   const MAX_SPACING_LEVEL = 4;
 
+  
   // --- Panel de accesibilidad ---
   accBtn?.addEventListener("click", () => {
     accPanel?.classList.toggle("hidden");

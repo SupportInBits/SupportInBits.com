@@ -1,5 +1,6 @@
 // static/js/accessibility-audit-enhanced.js
 
+
 document.addEventListener('DOMContentLoaded', function() {
     // Estilos CSS para la visualización de errores
     const style = document.createElement('style');

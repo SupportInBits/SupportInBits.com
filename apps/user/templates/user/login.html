@@ -27,9 +27,8 @@
                     {% endif %}
                 {% endif %}
                 
-                <form method="post" action="{% url 'login' %}">
+                <form method="post" action="{% url 'login' %}"  id="login-form">
                     {% csrf_token %}
-                    
                     <input type="hidden" name="next" value="{{ next }}">
                     
                     <div class="mb-3">
@@ -50,12 +49,15 @@
                                class="form-control {% if form.errors %}is-invalid{% endif %}" 
                                required>
                         <div class="form-text">
-                            <a href="#">¿Olvidaste tu contraseña?</a>
+                            <a href="{% url 'account_reset_password' %}">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                     
+                    <!-- Captcha oculto inicialmente -->
+                    <div id="captcha-container" style="display:none;" class="mb-3 fs-3"></div>
+                    
                     <div class="d-grid gap-2 mt-4">
-                        <button type="submit" class="btn btn-primary btn-lg">
+                        <button type="submit" class="btn btn-primary btn-lg" id="login-btn">
                             <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
                         </button>
                     </div>
@@ -79,5 +81,42 @@
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    const loginBtn = document.getElementById('login-btn');
+    const captchaContainer = document.getElementById('captcha-container');
+    let captchaLoaded = false;
+    let captchaSolved = false;
 
+    // Función para cargar el script de Turnstile
+    function loadTurnstile() {
+        if (captchaLoaded) return;
+        captchaLoaded = true;
+        const script = document.createElement('script');
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+        script.async = true;
+        script.onload = function() {
+            turnstile.render('#captcha-container', {
+                sitekey: '0x4AAAAAABgdjB9c_4f4FLzu',
+                callback: function(token) {
+                    captchaSolved = true;
+                    //console.log("Captcha resuelto, token:", token); // <-- debug
+                    loginForm.submit();
+                }
+            });
+        };
+        document.body.appendChild(script);
+    }
+
+    loginForm.addEventListener('submit', function(e) {
+        if (!captchaSolved) {
+            e.preventDefault();
+            captchaContainer.style.display = 'block';
+            loadTurnstile();
+            loginBtn.disabled = true;
+        }
+    });
+});
+</script>
 {% endblock content%}

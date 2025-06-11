@@ -70,6 +70,8 @@
 .high-contrast #entradasTable_length ,
 .high-contrast #entradasTable_length select,
 .high-contrast .panel-access,
+.high-contrast .lupa-clone,
+.high-contrast #resultados-busqueda,
 .high-contrast #entradasTable_paginate a {
   background-color: black !important;
   color: white !important;

@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
 {% block content %} 
 {% load static %}
-<div class="row" id="contenedor-home-blog">
-  <div class="col-8">
+<div class="row flex-column flex-md-row flex-wrap flex-md-nowrap" id="contenedor-home-blog">
+  <div class="col-auto col-">
     <h1 class="mb-4">Entradas publicadas</h1>
 
     {% for entrada in entradas %}
@@ -48,7 +48,8 @@
     </nav>
     {% endif %}
   </div>
-  <div class="col-4 mt-5" id="acco-secciones">
+
+  <div class="col-auto mt-5" id="acco-secciones">
     <div class="card mt-4">
       <p class="card-header h5">Secciones</p>
       <div class="accordion" id="accordionCategorias">

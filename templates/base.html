@@ -4,16 +4,6 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NKZHL3M99W"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-NKZHL3M99W');
-    </script>
-
     <title>
       {% block title %}
         {% if user.is_authenticated and page.titulo == " - Support In Bits" %}
@@ -238,6 +228,14 @@
       </main>
     </div>
     
+    <!-- Banner de cookies -->
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none;">
+      Usamos cookies para mejorar tu experiencia.
+      <a href="{% url 'politica-cookies' %}" style="color: #ffd700;">Leer más</a>.
+      <button id="accept-cookies" style="margin-left: 20px; background: #ffd700; color: #222; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+        Aceptar
+      </button>
+    </div>
     <!--footer-->
     <footer class="mt-5" aria-label="Pie de pagina">
       <div class="container mt-auto py-3 ">
@@ -259,6 +257,63 @@
 
     <script src="{% static 'supportinbits/js/global.js' %}" defer></script>
     <script src="{% static 'supportinbits/js/accessibility.js' %}" defer></script>
+    <!-- Google Consent Mode v2 -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      // Por defecto, sin consentimiento
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'analytics_storage': 'denied'
+      });
+    </script>
+    <script>
+      // Función para obtener una cookie por nombre
+      function getCookie(name) {
+        console.log("Obteniendo cookie: " + document.cookie);
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+
+      // Mostrar el banner solo si la cookie no existe
+      document.addEventListener('DOMContentLoaded', function() {
+        if (!getCookie('cookies_accepted')) {
+          document.getElementById('cookie-banner').style.display = 'block';
+        } else {
+          loadAnalytics();
+        }
+        document.getElementById('accept-cookies').onclick = function() {
+          // Guarda la cookie por 1 año
+          document.cookie = "cookies_accepted=true; path=/; max-age=" + 60*60*24*365;
+          document.getElementById('cookie-banner').style.display = 'none';
+          loadAnalytics();
+        };
+      });
+
+      // Función para cargar Google Analytics solo si se aceptan las cookies
+      function loadAnalytics() {
+        if (!window.analyticsLoaded) {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-NKZHL3M99W";
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          // Actualiza el consentimiento a 'granted'
+          gtag('consent', 'update', {
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted'
+          });
+          gtag('js', new Date());
+          gtag('config', 'G-NKZHL3M99W');
+          window.analyticsLoaded = true;
+        }
+      }
+    </script>
+    
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const input = document.getElementById('input-busqueda');
@@ -312,5 +367,6 @@
     {% endif %}
     {% block extra_scripts %}
     {% endblock %}
+
   </body>
 </html>

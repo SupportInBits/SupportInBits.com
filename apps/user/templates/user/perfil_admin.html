@@ -20,78 +20,166 @@
     
     <p class="fs-3 text-center">Paneles de administración: </p>
     
-    <div class="row justify-content-center flex-column align-items-center" >
-      <div class="col-3">
-            <div class="m-1 d-grid">
-              <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-entradas" aria-controls="panel-entradas">Entradas</button>
+    
+    
+    
+    
+  <div class="row justify-content-center flex-column align-items-center" >
+    <div class="col-auto">
+        <div class="m-1 d-grid">
+          
+          <!-- button modal entradas-->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-entradas">
+            Gestionar entradas
+          </button>
+          
+        </div>
+
+        <div class="m-1 d-grid">
+          
+          <!-- button modal entradas-->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-paginas">
+            Gestionar páginas
+          </button>
+          
+        </div>
+        
+        <div class="m-1 d-grid">
+          <!-- button modal usuarios-->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-usuarios">
+            Gestionar usuarios
+          </button>
+        </div>
+        
+        <div class="m-1 d-grid">
+          <!-- button modal usuarios-->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-comentarios">
+            Gestionar comentarios
+          </button>            
+        </div>
+  </div>          
+</div>
+
+  <!-- Modal entradas -->
+  <div class="modal fade" id="modal-entradas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-entradas">Panel de administración de entradas</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="d-flex align-items-center flex-column align-items-center">
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  <a href="/blog/entrada-nueva" class="btn btn-primary">Crear entrada</a>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  <a href="/blog/entradas-admin" class="btn btn-primary">Buscar entrada</a>
+                </div>
+              </div>
             </div>
-      </div>
-      <div class="col-3">
-            <div class="m-1 d-grid">
-              <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-paginas" aria-controls="panel-paginas">Páginas</button>
-            </div>
-      </div>
-      <div class="col-3">
-            <div class="m-1 d-grid">
-              <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-usuario" aria-controls="panel-usuario">Usuarios</button>
-            </div>
-      </div>
-      <div class="col-3">
-            <div class="m-1 d-grid">
-              <button class="btn btn-primary " type="button" data-bs-toggle="offcanvas" data-bs-target="#panel-comentarios" aria-controls="panel-comentarios">Comentarios</button>
-            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-entradas" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-          <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Paneles de administración de entradas</p>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="/blog/entrada-nueva">Crear entrada</a></li>
-            <li class="list-group-item"><a href="/blog/entradas-admin">Buscar entrada</a></li>
-          </ul>                
-        </div>
-      </div>
+  </div>
 
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-paginas" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-          <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de páginas</p>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <!-- Modal páginas -->
+  <div class="modal fade" id="modal-paginas" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-paginas">Panel de administración de páginas</h5>
         </div>
-        <div class="offcanvas-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="{% url 'crear_pagina' %}">Crear página</a></li>
-            <li class="list-group-item"><a href="{% url 'gestionar_paginas' %}">Mostrar páginas</a></li>
-          <ul>
-        </div>
-      </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="d-flex align-items-center flex-column align-items-center">
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  
+                  <a href="{% url 'crear_pagina' %}" class="btn btn-primary">Crear página</a>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  <a href="{% url 'gestionar_paginas' %}" class="btn btn-primary">Mostrar páginas</a>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-usuario" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-          <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de usuarios</p>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="/usuario/admin/usuarios">Mostrar usuarios</a></li>
-          <ul>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="panel-comentarios" aria-labelledby="offcanvasWithBothOptionsLabel">
-        <div class="offcanvas-header">
-          <p class="offcanvas-title fs-5" id="offcanvasWithBothOptionsLabel">Panel de administración de comentarios</p>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <!-- Modal usuarios -->
+  <div class="modal fade" id="modal-usuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-usuarios">Panel de administración de usuarios</h5>
         </div>
-        <div class="offcanvas-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="/blog/comentarios-admin">Ver comentarios</a></li>
-          <ul>
+        <div class="modal-body">
+          <div class="row">
+            <div class="d-flex align-items-center flex-column align-items-center">
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  <a href="/usuario/admin/usuarios" class="btn btn-primary">Mostrar usuarios</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
-      {% endif %}
+    </div>
+  </div>
+  <!-- Modal comentarios -->
+  <div class="modal fade" id="modal-comentarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-comentarios">Panel de administración de comentarios</h5>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="d-flex align-items-center flex-column align-items-center">
+              <div class="col-6">
+                <div class="m-1 d-grid">
+                  <a href="/blog/comentarios-admin" class="btn btn-primary">Ver comentarios</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+     
+      </div>
+{% endif %}
       
 
 {% else %}

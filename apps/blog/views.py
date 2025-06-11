@@ -215,6 +215,7 @@ def home_blog(request):
 def buscar_entradas_ajax(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         consulta = request.GET.get('q', '')
+        # filtra por titulo y entrada
         resultados = Entrada.objects.filter(
             Q(titulo__icontains=consulta) |
             Q(contenido__icontains=consulta),

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Configuración centralizada
+  
   const config = {
     username: {
       minLength: 8,
