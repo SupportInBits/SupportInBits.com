@@ -33,7 +33,7 @@ services:
     depends_on:
       - web
     ports:
-      - "80:80"
+      - "8000:8000"
     volumes:
       - ./staticfiles:/staticfiles
       - ./media:/media
