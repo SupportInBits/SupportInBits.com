@@ -8,7 +8,7 @@ urlpatterns = [
     path('contacto/', views.about, name='about'),
     path('preguntas-frecuentes/', views.faq, name='faq'),
     path('politica-de-cookies/', views.cookies, name='politica-cookies'),
-    path('plantillas/', views.plantillas, name='plantillas'),
+    path('herramientas/', views.plantillas, name='plantillas'),
     path('test/', views.test, name='tests'),
     path('pages/', views.getAllPages, name='lista_pages'),
 

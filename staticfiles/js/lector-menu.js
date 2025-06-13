@@ -1,59 +1,81 @@
 // Configuración de velocidad
-let currentRate = 1;
-const minRate = 0.5;
-const maxRate = 2;
+  let currentRate = 1;
+  const minRate = 0.9;
+  const maxRate = 3;
 
-// Actualizar display de velocidad
-function updateSpeedDisplay() {
-    document.getElementById('speedValue').textContent = currentRate.toFixed(1) + 'x';
-    localStorage.setItem('speechRate', currentRate); // Guardar preferencia
-}
+  // Actualizar display de velocidad
+  function updateSpeedDisplay() {
+    document.getElementById("speedValue").textContent =
+      currentRate.toFixed(1) + "x";
+    localStorage.setItem("speechRate", currentRate); // Guardar preferencia
+  }
 
-// Cargar velocidad guardada
-if (localStorage.getItem('speechRate')) {
-    currentRate = parseFloat(localStorage.getItem('speechRate'));
+  // Cargar velocidad guardada
+  if (localStorage.getItem("speechRate")) {
+    currentRate = parseFloat(localStorage.getItem("speechRate"));
     updateSpeedDisplay();
-}
+  }
 
-// Modificar función leerTexto
-function leerTexto(texto) {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
+  // función leerTexto
+  function leerTexto(texto) {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
 
-        const utterance = new SpeechSynthesisUtterance();
-        utterance.text = texto;
-        utterance.lang = 'es-ES';
-        utterance.rate = currentRate; // Usar velocidad actual
+      const utterance = new SpeechSynthesisUtterance();
+      utterance.text = texto;
+      utterance.lang = "es-ES";
+      utterance.rate = currentRate; // Usar velocidad actual
 
-        window.speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(utterance);
     } else {
-        alert('Lo siento, tu navegador no soporta la función de lectura de voz.');
+      alert("Lo siento, tu navegador no soporta la función de lectura de voz.");
     }
-}
+  }
 
-// Eventos para controles de velocidad
-document.getElementById('increaseSpeed').addEventListener('click', function () {
-    if (currentRate < maxRate) {
+  // Eventos para controles de velocidad
+  document
+    .getElementById("increaseSpeed")
+    .addEventListener("click", function () {
+      if (currentRate < maxRate) {
         currentRate += 0.1;
         updateSpeedDisplay();
-    }
-});
+      }
+    });
 
-document.getElementById('decreaseSpeed').addEventListener('click', function () {
-    if (currentRate > minRate) {
+  document
+    .getElementById("decreaseSpeed")
+    .addEventListener("click", function () {
+      if (currentRate > minRate) {
         currentRate -= 0.1;
         updateSpeedDisplay();
+      }
+    });
+  // Extraer texto de un elemento, incluyendo imágenes con alt
+  function extraerTextoOrdenado(element) {
+    let texto = "";
+    for (const node of element.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        texto += node.textContent.trim() + " ";
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        if (node.tagName === "IMG" && node.alt) {
+          texto += node.alt + " ";
+        } else {
+          texto += extraerTextoOrdenado(node);
+        }
+      }
     }
-});
+    texto += '.';
+    return texto;
+  }
+  // Leer todo el menú
+  document.getElementById("readAll").addEventListener("click", function () {
+    const menu = document.getElementById("menu-Restaurante");
+    const menuText = extraerTextoOrdenado(menu).replace(/\s+/g, " ").trim();
+    console.log(menuText); // Para depuración
+  leerTexto(menuText);
+  });
 
-
-// Leer todo el menú
-document.getElementById('readAll').addEventListener('click', function () {
-    const menuText = document.getElementById('menu-Restaurante').innerText;
-    leerTexto(menuText);
-});
-
-// Detener la lectura
-document.getElementById('stopReading').addEventListener('click', function () {
+  // Detener la lectura
+  document.getElementById("stopReading").addEventListener("click", function () {
     window.speechSynthesis.cancel();
-});
+  });

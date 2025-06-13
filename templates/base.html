@@ -38,133 +38,112 @@
       <header>
         <div class="px-3 py-2 text-bg-dark border-bottom">
           <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap" aria-label="Navegación principal">
-              <div class="container-fluid" id="navegador">
-                <!-- Icono Home -->
-                <a class="navbar-brand fs-1" href="/" aria-label="home"><i class="bi bi-house"></i></a>
-
-                <!-- Barra de búsqueda -->
-                <div class="search-container col-6 col-lg-6">
-                  <form id="form-busqueda" role="search">
-                    <input
-                      type="search"
-                      id="input-busqueda"
-                      class="form-control"
-                      name="q"
-                      placeholder="Buscar en Support In Bits"
-                      aria-label="Buscar"
-                    />
-                  </form>
-                  <div id="resultados-busqueda" class="results-dropdown"></div>
-                </div>
-
-                <!-- Botón subir -->
-                <i id="boton-up" class="bi bi-arrow-up-circle display-1"></i>
-
-                <!-- Botón hamburguesa -->
-                <button
-                  class="navbar-toggler"
-                  type="button"
-                  aria-label="boton navegador"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarNav"
-                  aria-controls="navbarNav"
-                  aria-expanded="false"
-                >
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Menú usuario -->
-                {% if user.is_authenticated %}
-                  <div class="d-none d-md-flex ms-auto">
-                    <div class="dropdown">
-                      <button
-                        class="btn dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{% url 'editar_perfil' %}" >Editar perfil</a></li>
-                        {% if user.is_superuser %}
-                          <li><a class="dropdown-item" href="/usuario/admin">Paneles</a></li>
-                        {% else %}
-                          <li><a class="dropdown-item" href="/usuario/perfil">Mi perfil</a></li>
-                        {% endif %}
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
-                      </ul>
+            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-lg-wrap " aria-label="Navegación principal">
+              <div class="container-fluid " id="navegador">
+                <div class="row align-items-center w-100 flex-nowrap">
+                  <!-- Icono Home -->
+                  <div class="col-auto">
+                    <a class="navbar-brand fs-1" href="/" aria-label="home"><i class="bi bi-house"></i></a>
+                  </div>
+                  <!-- Barra de búsqueda centrada -->
+                  <div class="col-7 col-md-4 col-lg-9 mx-auto my-2 my-md-0">
+                    <div class="search-container">
+                      <form id="form-busqueda" role="search">
+                        <input
+                          type="search"
+                          id="input-busqueda"
+                          class="form-control"
+                          name="q"
+                          placeholder="Buscar en Support In Bits"
+                          aria-label="Buscar"
+                        />
+                      </form>
+                      <div id="resultados-busqueda" class="results-dropdown"></div>
                     </div>
                   </div>
-                {% else %}
-                  <div class="d-none d-md-flex ms-auto">
-                    <div class="dropdown">
-                      <button
-                        class="btn dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <i class="bi bi-box-arrow-in-right"></i> Identifícate
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
-                        <li><a class="dropdown-item" href="{% url 'registro' %}">Regístrate</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                {% endif %}
-              </div>
 
-              <!-- Menú desplegable -->
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item"><a class="nav-link" href="/plantillas">Plantillas</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link disabled" href="#">Servicios</a></li>
-                  <li class="nav-item dropdown d-md-none">
+                  <!-- Menú usuario -->
+                  <div class="col-auto mx-auto d-none d-md-flex">
                     <div class="dropdown">
-                      <button
-                        class="btn dropdown-toggle"
-                        type="button"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        {% if user.is_authenticated %}
-                          Mi cuenta
-                        {% else %}
-                          Identifícate
-                        {% endif %}
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        {% if user.is_authenticated %}
-                          <li><a class="dropdown-item" href="{% url 'editar_perfil' %}" >Editar perfil</a></li>
+                      {% if user.is_authenticated %}
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-box-arrow-in-right"></i> Mi cuenta
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="{% url 'editar_perfil' %}">Editar perfil</a></li>
                           {% if user.is_superuser %}
-                            <li><a class="dropdown-item" href="/usuario/admin/">Paneles</a></li>
+                            <li><a class="dropdown-item" href="/usuario/admin">Paneles</a></li>
                           {% else %}
-                            <li><a class="dropdown-item" href="/usuario/perfil">Mis comentarios</a></li>
+                            <li><a class="dropdown-item" href="/usuario/perfil">Mi perfil</a></li>
                           {% endif %}
                           <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
-                        {% else %}
+                        </ul>
+                      {% else %}
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-box-arrow-in-right "></i> Identifícate
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
                           <li><a class="dropdown-item" href="{% url 'registro' %}">Regístrate</a></li>
-                        {% endif %}
-                      </ul>
+                        </ul>
+                      {% endif %}
                     </div>
-                  </li>
-                </ul>
-              </div>
+                  </div>
+                  
+                  <!-- Botón hamburguesa -->
+                  <button class="navbar-toggler col-auto mx-auto" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                </div><!--/row-->  
+
+                <!-- Menú desplegable -->
+                <div class="collapse navbar-collapse" id="navbarNav" role="navigation">
+                  <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/herramientas">Herramientas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+                    <li class="nav-item dropdown d-md-none mt-2">
+                      <div class="dropdown">
+                        <button
+                          class="btn dropdown-toggle"
+                          type="button"
+                          id="dropdownMenuButton1"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          {% if user.is_authenticated %}
+                            Mi cuenta
+                          {% else %}
+                            Identifícate
+                          {% endif %}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'editar_perfil' %}" >Editar perfil</a></li>
+                            {% if user.is_superuser %}
+                              <li><a class="dropdown-item" href="/usuario/admin/">Paneles</a></li>
+                            {% else %}
+                              <li><a class="dropdown-item" href="/usuario/perfil">Mis comentarios</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                          {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registro' %}">Regístrate</a></li>
+                          {% endif %}
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div><!--/container-fluid-->
             </nav>
           </div>
         </div>
       </header>
 
       <!-- Breadcrumbs -->
-      <nav aria-label="Migas de pan" class="container">
+      <nav aria-label="Migas de pan" class="container sticky-top p-2" id="breadcrumb-nav">
         <ol class="breadcrumb">
           {% for breadcrumb in breadcrumbs %}
             <li class="breadcrumb-item{% if forloop.last %} active{% endif %}" {% if forloop.last %}aria-current="page"{% endif %}>
@@ -226,7 +205,9 @@
         {% block content %}
         {% endblock %}
       </main>
+
     </div>
+
     
     <!-- Banner de cookies -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none;">
@@ -236,6 +217,7 @@
         Aceptar
       </button>
     </div>
+    
     <!--footer-->
     <footer class="mt-5" aria-label="Pie de pagina">
       <div class="container mt-auto py-3 ">
@@ -255,6 +237,11 @@
       </div>
     </footer>
 
+    <!-- Botón subir -->
+    <button id="boton-up" class="border-0" aria-label="Subir al inicio" style="display:none;" aria-hidden="true">
+      <i class="bi bi-arrow-up-circle display-1"></i>
+    </button>
+
     <script src="{% static 'supportinbits/js/global.js' %}" defer></script>
     <script src="{% static 'supportinbits/js/accessibility.js' %}" defer></script>
     <!-- Google Consent Mode v2 -->
@@ -270,7 +257,7 @@
     <script>
       // Función para obtener una cookie por nombre
       function getCookie(name) {
-        console.log("Obteniendo cookie: " + document.cookie);
+        // console.log("Obteniendo cookie: " + document.cookie); // debug
         let value = "; " + document.cookie;
         let parts = value.split("; " + name + "=");
         if (parts.length === 2) return parts.pop().split(";").shift();
@@ -360,13 +347,9 @@
         });
       });
     </script>
-    {% if user.is_authenticated %}
-      {% if user.is_superuser %}
-      <script src="{% static 'supportinbits/js/accessibility-audit.js' %}" defer></script>
-      {% endif %}
-    {% endif %}
-    {% block extra_scripts %}
-    {% endblock %}
 
+
+    <script src="{% static 'supportinbits/js/accessibility-audit.js' %}" defer></script>
   </body>
+
 </html>

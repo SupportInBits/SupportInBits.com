@@ -1,311 +1,355 @@
 {% extends "base.html" %} 
 {% block title %} 
-Plantillas - Support In Bits 
+Herramientas - Support In Bits 
 {%endblock %} 
 {% load static %} 
 {% block content %}
-<div
-  class="container"
-  id="container-plantillas"
-  aria-label="Contenido principal: Plantillas accesibles con lector de pantalla"
->
-  <h1 class="text-center">Plantillas accesibles</h1>
-  <p class="fs-3 text-start">
-    En esta página encontrarás plantillas accesibles con un lector de pantalla
-    incorporado. Cada una de las plantillas cuentan con un código que puedes
-    copiar para usarlo donde quieras. Tener en cuenta que se usa bootstrap para
-    dar formato a las plantillas, sin embargo el lector está implementado con
-    JavaScript puro.
-  </p>
-  <!--plantilla carta restaurante-->
-  <div id="menu-Restaurante">
-    <article class="row mt-4 align-items-center justify-content-center" aria-label="Menú del restaurante" >
-      <p class="text-center fs-1 border-bottom">Plantilla menú restaurante</p>
-      <!--botones de reproducción-->
-      <div id="controls" class="d-flex justify-content-around flex-wrap m-5"  role="region" aria-label="Controles de reproducción y velocidad">
-        <div class="col-6 d-flex justify-content-center">
-          
-          <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
-            <p class="fs-2 text-center">Reproducir</p>
-            <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="readAll" aria-label="Botón para empezar a reproducir" type="button" >
-              <i class="bi bi-play-circle" aria-hidden="true"></i>
-            </button>
-          </div>
-          
-          <div class="col-12 d-flex flex-column flex-wrap justify-content-center">
-            <p class="fs-2 text-center">Detener</p>
-            <button class="btn-primary rounded p-2 align-self-center col-auto display-3" id="stopReading" aria-label="Detener la lectura" type="button">
-              <i class="bi bi-stop" aria-hidden="true"></i>
-            </button>
-          </div>
-          
-        </div>
-        
-        <!--botones de control de velocidad-->
-        <fieldset class="speed-controls col-12 d-flex flex-wrap mt-5" aria-label="Controles de velocidad de lectura">
-          <legend class="visually-hidden">Controles de velocidad de lectura</legend>
-          <div class="col-12 d-flex justify-content-center">
-            <label for="speedValue" class="col-6 align-self-center fs-2 text-center">Velocidad de lectura</label>
-            <output class="speed-display col-6 col-md-3 display-4 p-2 align-self-center text-start" id="speedValue" aria-live="polite">1x</output>
-          </div>
-          <div class="col-12 d-flex justify-content-evenly flex-wrap">
-            <button
-              class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
-              id="decreaseSpeed"
-              aria-label="Disminuir velocidad" 
-              type="button"
-            >
-              <i class="bi bi-dash-circle" aria-hidden="true"></i>
-            </button>
-            <button
-              class="speed-button btn-primary rounded p-2 align-self-center col-auto display-3"
-              id="increaseSpeed"
-              aria-label="Aumentar velocidad" 
-              type="button"
-            >
-              <i class="bi bi-plus-circle" aria-hidden="true"></i>
-            </button>
-          </div>
-        </fieldset>
-      </div>
-  
+<div class="container" id="container-plantillas" aria-label="Contenido principal: Plantillas accesibles con lector de pantalla" >
+  <h1 class="text-center mb-4">Índice</h1>
+  <div class="col-auto col-md-4 mx-auto">
+    <div class="list-group list-group-flush">
+      <a href="#menu-Restaurante" class="list-group-item list-group-item-action fs-3 text-center">Carta restaurante accesible</a>
+      <a href="#informe-accesibilidad" class="list-group-item list-group-item-action fs-3 text-center">Generar informe accesibilidad</a>
+      <a href="#" class="list-group-item list-group-item-action fs-3 text-center">Menú de accesibilidad</a>  
+    </div>
+  </div>
+
+  <!--carta restaurante-->
+  <div id="menu-Restaurante">       
+    <article class="row mt-2 align-items-center justify-content-center" aria-label="Menú del restaurante" >
+      <div class="container mt-5 d-flex flex-column align-items-center">
         <!--carta menú-->
-        <hr class="hr mb-5 col-5" />
-        <h1 class="display-1 text-center">Menú de Restaurante</h1>
-        <h2 class="display-2 text-center mt-5">Menú del día</h2>
-        <hr class="hr col-2 align-self-center my-4" />
-        <p class="fs-4 text-center my-5">
+        <h2 class="display-1 text-center" tabindex="0">Carta de Restaurante</h2>
+        <p class="fs-3 text-start">
+          Esta carta de un menú de restaurante está diseñado para ser accesible con lectores de pantalla.
+          Incluye secciones para entradas, platos principales y postres, con descripciones detalladas de cada plato.
+          Además, cuenta con controles para reproducir el texto del menú y ajustar la velocidad de lectura.
+          Al final de la carta tienes el código HTML y JavaScript para que puedas copiarlo o descargarlo.
+          <strong>Es importante tener en cuenta que los estilos están hechos con Bootstrap 5, si quieres que
+            se apliquen tienes que incluir el enlace a bootstrap en tu proyecto.</strong>
+          </strong>
+        </p>
+
+        <p class="fs-4 text-center my-5"  "0">
           Exclusivo para disfrutar al medio día y entre semana
         </p>
-        <img
-          src="{% static 'img/plantillas/menudia.jpg' %}"
-          class="img-fluid rounded mb-5 d-block"
-          alt="Imagen del menú del día: primeros platos como leche de tigre, papa rellena, aguadito de pollo. Segundos: seco de ternera con frijoles, chicharrón de cerdo, 1/4 de pollo. Incluye bebida, postre o café. Precio: 12,50 euros."
-        />
-        <h2 class="display-2 text-center mt-5">Entradas</h2>
+        <img src="{% static 'img/plantillas/menudia.jpg' %}" class="img-fluid rounded mb-5 align-self-center" tabindex="0" alt="Imagen del menú del día: primeros platos como leche de tigre, papa rellena, aguadito de pollo. Segundos: seco de ternera con frijoles, chicharrón de cerdo, 1/4 de pollo. Incluye bebida, postre o café. Precio: 12,50 euros." />
+        <h2 class="display-2 text-center mt-5" tabindex="0">Entradas</h2>
         <hr class="hr col-2" />
-        <p class="fs-4 text-center my-5">
+        <p class="fs-4 text-center my-5" tabindex="0">
           Platos para comenzar a disfrutar de nuestra comida
         </p>
   
-      <!-- Sección de entradas del menú -->
-      <section class="container" aria-label="Entradas del menú">
-        <div class="row d-flex justify-content-around">
-          <!--Si deseas añadir más contenedores para los platos solo tienes que copar desde aquí-->
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Tamal Criollo</strong></p>
-              <p class="order-3 p-2"><strong>6.00€</strong></p>
+        <!-- Sección de entradas del menú -->
+        <section class="container" aria-label="Entradas del menú">
+          <div class="row d-flex justify-content-around">
+            <!--Si deseas añadir más contenedores para los platos solo tienes que copar desde aquí-->
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Tamal Criollo</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>6.00€</strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Masa de harina de maíz aderezado con especias, acompañado con
+                aceituna, cerdo o pollo, huevo y salsa criolla
+              </div>
             </div>
-            <div class="col px-3">
-              Masa de harina de maíz aderezado con especias, acompañado con
-              aceituna, cerdo o pollo, huevo y salsa criolla
+            <!--hasta aquí-->
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Papa a la Huancaína</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>6.00€ </strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Crema de salsa con ají amarillo, leche, galleta salada y queso
+                servido sobre patatas cocida
+              </div>
+            </div>
+    
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Tamal Verde (Preguntar)</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>6.00€</strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Masa de harina de maíz aderezado con cilantro, especias, acompañado
+                con pollo y salsa criolla
+              </div>
+            </div>
+    
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Causa Limeña</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>6.00€ </strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Pastel de patata amasada con ají amarillo, aceite, limón y sal,
+                relleno de atún o pollo, cebolla y mayonesa
+              </div>
             </div>
           </div>
-          <!--hasta aquí-->
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Papa a la Huancaína</strong></p>
-              <p class="order-3 p-2"><strong>6.00€ </strong></p>
-            </div>
-            <div class="col px-3">
-              Crema de salsa con ají amarillo, leche, galleta salada y queso
-              servido sobre patatas cocida
-            </div>
-          </div>
+        </section>
   
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Tamal Verde (Preguntar)</strong></p>
-              <p class="order-3 p-2"><strong>6.00€</strong></p>
-            </div>
-            <div class="col px-3">
-              Masa de harina de maíz aderezado con cilantro, especias, acompañado
-              con pollo y salsa criolla
-            </div>
-          </div>
-  
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Causa Limeña</strong></p>
-              <p class="order-3 p-2"><strong>6.00€ </strong></p>
-            </div>
-            <div class="col px-3">
-              Pastel de patata amasada con ají amarillo, aceite, limón y sal,
-              relleno de atún o pollo, cebolla y mayonesa
-            </div>
-          </div>
-        </div>
-      </section>
-  
-        <h2 class="display-2 text-center mt-5">Segundos</h2>
+        <h2 class="display-2 text-center mt-5" tabindex="0">Segundos</h2>
         <hr class="hr col-2" />
-        <p class="fs-4 text-center my-5">
+        <p class="fs-4 text-center my-5" tabindex="0">
           Platos principales y contundentes para comer bien
         </p>
         
-      <!-- Sección de platos principales del menú -->
-      <section class="container" aria-label="Platos principales del menú">
-        <div class="row d-flex justify-content-around">
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2">
-                <strong>Seco de Ternera con Frejoles (Preguntar)</strong>
-              </p>
-              <p class="order-3 p-2"><strong>12.00€</strong></p>
-            </div>
-            <div class="col px-3">
-              Guiso de ternera con cilantro, acompañado con frijoles, arroz y
-              salsa criolla
-            </div>
-          </div>
-  
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Ají de Pollo con Arroz</strong></p>
-              <p class="order-3 p-2"><strong>10.00€ </strong></p>
-            </div>
-            <div class="col px-3">
-              Pollo desmenuzado aderezado en salsa de ají con leche y pan
-              acompañado con arroz, patatas cocidas y huevo cocido
-            </div>
-          </div>
-  
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Arroz Chaufa de Pollo</strong></p>
-              <p class="order-3 p-2"><strong>10.00€</strong></p>
-            </div>
-            <div class="col px-3">
-              Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja
-            </div>
-          </div>
-  
-          <div class="col-md-6 mb-3">
-            <div class="d-flex justify-content-between">
-              <p class="order-1 p-2"><strong>Anticuchos</strong></p>
-              <p class="order-3 p-2"><strong>10.00€ </strong></p>
-            </div>
-            <div class="col px-3">
-              Filetitos de corazón de ternera aderezado con ají panca, salteados
-              al wok acompañado de patata cocida, choclo y ensalada
-            </div>
-          </div>
-        </div>
-      </section>
-  
-        <h2 class="display-2 text-center mt-5">Postres</h2>
-        <hr class="hr col-2" />
-        <p class="fs-4 text-center my-5">
-          Finaliza con un broche dulce (Se hacen tartas de cumpleaños por encargo
-          (Consultar Precio))
-        </p>
-      <!-- Sección de postres del menú -->
-      <section class="container" aria-label="Postres del menú">
-        <div class="row d-flex">
-            <div class="col-md-6">
+        <!-- Sección de platos principales del menú -->
+        <section class="container" aria-label="Platos principales del menú" >
+          <div class="row d-flex justify-content-around">
+            <div class="col-md-6 mb-3">
               <div class="d-flex justify-content-between">
-                <p class="order-1 p-2"><strong>Tarta Chocolate</strong></p>
-                <p class="order-3 p-2"><strong>4.00€</strong></p>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="d-flex justify-content-between">
-                <p class="order-1 p-2"><strong>Tarta Tres Leches</strong></p>
-                <p class="order-3 p-2"><strong>4.00€ </strong></p>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="d-flex justify-content-between">
-                <p class="order-1 p-2"><strong>Dulce de Leche</strong></p>
-                <p class="order-3 p-2"><strong>4.00€</strong></p>
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="d-flex justify-content-between">
-                <p class="order-1 p-2">
-                  <strong>Crema Volteada / Pie de Manzana</strong>
+                <p class="order-1 p-2" tabindex="0">
+                  <strong>Seco de Ternera con Frejoles (Preguntar)</strong>
                 </p>
-                <p class="order-3 p-2"><strong>3.50€ </strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>12.00€</strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Guiso de ternera con cilantro, acompañado con frijoles, arroz y
+                salsa criolla
               </div>
             </div>
+    
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Ají de Pollo con Arroz</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>10.00€ </strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Pollo desmenuzado aderezado en salsa de ají con leche y pan
+                acompañado con arroz, patatas cocidas y huevo cocido
+              </div>
+            </div>
+    
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Arroz Chaufa de Pollo</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>10.00€</strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Arroz frito salteado al wok con cebolleta, tortilla, pollo y soja
+              </div>
+            </div>
+    
+            <div class="col-md-6 mb-3">
+              <div class="d-flex justify-content-between">
+                <p class="order-1 p-2" tabindex="0"><strong>Anticuchos</strong></p>
+                <p class="order-3 p-2" tabindex="0"><strong>10.00€ </strong></p>
+              </div>
+              <div class="col px-3" tabindex="0">
+                Filetitos de corazón de ternera aderezado con ají panca, salteados
+                al wok acompañado de patata cocida, choclo y ensalada
+              </div>
+            </div>
+          </div>
+        </section>
   
-        </div><!--/row-->
-      </section>
+        <h2 class="display-2 text-center mt-5" tabindex="0">Postres</h2>
+        <hr class="hr col-2" />
+        <p class="fs-4 text-center my-5" tabindex="0">
+          Finaliza con un broche dulce
+        </p>
+      
+        <!-- Sección de postres del menú -->
+        <section class="container" aria-label="Postres del menú">
+          <div class="row d-flex">
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between">
+                  <p class="order-1 p-2" tabindex="0"><strong>Tarta Chocolate</strong></p>
+                  <p class="order-3 p-2" tabindex="0"><strong>4.00€</strong></p>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between">
+                  <p class="order-1 p-2" tabindex="0"><strong>Tarta Tres Leches</strong></p>
+                  <p class="order-3 p-2" tabindex="0"><strong>4.00€ </strong></p>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between">
+                  <p class="order-1 p-2" tabindex="0"><strong>Dulce de Leche</strong></p>
+                  <p class="order-3 p-2" tabindex="0"><strong>4.00€</strong></p>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="d-flex justify-content-between">
+                  <p class="order-1 p-2" tabindex="0">
+                    <strong>Crema Volteada / Pie de Manzana</strong>
+                  </p>
+                  <p class="order-3 p-2" tabindex="0"><strong>3.50€ </strong></p>
+                </div>
+              </div>
+    
+          </div><!--/row-->
+        </section>
+
+        <!--controles de reproducción-->
+        <div id="controls" role="region" aria-label="Controles de reproducción y velocidad" class="container">
+          <p class="text-center mb-3 fs-1 border-bottom">Controles de reproducción</p>
+          <p class="fs-1"></p>
+          <div class="d-flex flex-wrap flex-md-nowrap ">
+            <!--primera fila-->
+            <div class="col-12 col-md-6 align-self-center">
+              <!-- Títulos superiores -->
+              <div class="row justify-content-center mb-md-5 mb-lg-3">
+                <div class="col-6 text-center ">
+                  <p class="fs-3 fw-bold">Reproducir</p>
+                </div>
+                <div class="col-6 text-center">
+                  <p class="fs-3 fw-bold">Detener</p>
+                </div>
+              </div>
+              
+              <!-- botones reproducir y detener -->
+              <div class="row justify-content-center mb-4">
+                <!-- Botón Reproducir -->
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary p-3 rounded mb-2" id="readAll" aria-label="Botón para empezar a reproducir">
+                    <i class="bi bi-play-circle display-6" aria-hidden="true"></i>
+                  </button>
+                </div>
+                
+                <!-- Botón Detener -->
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary p-3 rounded mb-2" id="stopReading" aria-label="Detener la lectura">
+                    <i class="bi bi-stop display-6" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>              
+            </div>
+            
+            <!--segunda fila-->
+            <div class="col-12 col-md-6 align-self-center mt-2 ">
+              <!-- Velocidad de lectura -->
+              <div class="row justify-content-center mb-2">
+                <div class="col-12 text-center">
+                  <label for="speedValue" class="fs-3 fw-bold">Velocidad de lectura
+                    <output id="speedValue" class="fs-3 fw-bold ms-2" aria-live="polite">1X</output>
+                  </label>
+                </div>
+              </div>
+              <!-- botones dismunuir y aumentar velociad -->
+              <div class="row justify-content-center mb-5">
+                <!-- Botón Disminuir -->
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary p-3 rounded" id="decreaseSpeed" aria-label="Disminuir velocidad">
+                    <i class="bi bi-dash-circle display-6" aria-hidden="true"></i>
+                  </button>
+                </div>
+  
+                <!-- Botón Aumentar -->
+                <div class="col-6 text-center">
+                  <button class="btn btn-primary p-3 rounded" id="increaseSpeed" aria-label="Aumentar velocidad">
+                    <i class="bi bi-plus-circle display-6" aria-hidden="true"></i>
+                  </button>
+                </div>
+  
+              </div>
+            </div>
+
+          </div>          
+        </div>
+
+      </div>
     </article>
   </div>
+
+  <!-- Botón para mostrar el código y copiar -->
+  <div class="row" role="region" aria-label="Zona de código para copiar o descargar">
+    <div class="col-md-6 d-grid">
+      <button class="btn btn-primary mb-2" id="toggleCode" type="button" aria-controls="codeBlock" aria-expanded="false">
+        Mostrar código HTML
+      </button>
+    </div>
+    <div class="col-md-6 d-grid">
+      <button class="btn btn-primary mb-2" id="toggleJS"  type="button" aria-controls="jsBlock" aria-expanded="false">
+        Mostrar código JS
+      </button>
+    </div>
+    <div class="my-2 align-self-center">
+      <button
+        class="btn btn-outline-primary mb-2"
+        id="copyCode"
+        style="display: none"
+        type="button"
+      >
+        Copiar código
+      </button>
+      <pre
+        id="codeBlock"
+        style="
+          display: none;
+          background: #f8f9fa;
+          border: 1px solid #ccc;
+          padding: 1em;
+          border-radius: 6px;
+          overflow: auto;
+        "
+      >
+        <code id="htmlCode"></code>
+      </pre>
+    </div>
+    <!-- Botón para mostrar/copiar el JS -->
+    <div class="col">
+      <button class="btn btn-outline-primary mb-2" id="copyJS" style="display: none" >
+        Copiar código JS
+      </button>
+      <a href="{% static 'js/lector-menu.js' %}" class="btn btn-success mb-2" style="display: none" id="downloadJS" download >Descargar código JS</a>
+      <pre
+        id="jsBlock"
+        style="
+          display: none;
+          background: #f8f9fa;
+          border: 1px solid #ccc;
+          padding: 1em;
+          border-radius: 6px;
+          overflow: auto;
+        ">
+
+        <code id="jsCode"></code>
+      </pre>
+    </div>
+
+  </div>
+  
+  <hr class="hr col-12 mt-5" />
+
+  <div id="informe-accesibilidad" class="container mt-5">
+    <article class="row">
+      <h2 class="display-1 text-center ">Informe de Accesibilidad</h2>
+      <p class="fs-3 text-start">
+        Esta herramienta permite generar un informe de errores de accesibilidad de la URL actual.
+        El informe incluye una lista de errores que se han encontrado, así como recomendaciones para solucionarlos.
+        Cada error encontrado se explica con detalle, incluyendo el tipo de error, la ubicación  y una descripción del problema.
+        <strong>El informe se genera utilizando la API de AxeCore.</strong>
+        <strong>Para usarla tienes que hacer clic sobre el botón morado "Auditar Accesibilidad".</strong>
+        <h3 class="text-center mt-5">¿Cómo puedo implementar esta herramienta en mi web?</h3>
+        <p class="text-center mt-5 fs-3" >
+          Para implementarla tienes que hacer clic sobre <strong>Descargar herramienta</strong>
+          para descargar el fichero y colocarlo dentro de una carpeta de tu proyecto.
+          Después en tu fichero HTML tendrás que linkearlo justo antes del cierre de la etiqueta 
+          <code>&lt;body&gt;</code> de tu HTML.
+        </p>
+        <p class="fs-3 text-center">Por ejemplo</p>
+        <pre class="col-auto p-3 mx-auto bg-light p-3 rounded fs-5"  >
+          <code>&lt;body&gt;</code>
+          ** Aquí va el resto de tu HTML **
+          &lt;script src="ruta/a/tu/js/accessibility-audit.js"&gt;&lt;/script&gt;
+          <code>&lt;/body&gt;</code>
+        </pre>
+        <a href="{% static 'js/accessibility-audit.js' %}" class="btn btn-success mx-auto my-5 col-auto" download ><p class=" display-5 my-auto">Descargar herramienta</p></a>
+        
+      </p>
+    </article>
+  </div>
+  
 </div>
 
-<div class="row" role="region" aria-label="Zona de código para copiar o descargar">
-  <!-- Botón para mostrar el código y copiar -->
-  <div class="col-md-6 d-grid">
-    <button class="btn btn-primary mb-2" id="toggleCode" type="button" aria-controls="codeBlock" aria-expanded="false">
-      Mostrar código HTML
-    </button>
-  </div>
-  <div class="col-md-6 d-grid">
-    <button class="btn btn-primary mb-2" id="toggleJS"  type="button" aria-controls="jsBlock" aria-expanded="false">
-      Mostrar código JS
-    </button>
-  </div>
-  <div class="my-2 align-self-center">
-    <button
-      class="btn btn-outline-primary mb-2"
-      id="copyCode"
-      style="display: none"
-      type="button"
-    >
-      Copiar código
-    </button>
-    <pre
-      id="codeBlock"
-      style="
-        display: none;
-        background: #f8f9fa;
-        border: 1px solid #ccc;
-        padding: 1em;
-        border-radius: 6px;
-        overflow: auto;
-      "
-    >
-      <code id="htmlCode"></code>
-    </pre>
-  </div>
-  <!-- Botón para mostrar/copiar el JS -->
-  <div class="col">
-    <button
-      class="btn btn-outline-primary mb-2"
-      id="copyJS"
-      style="display: none"
-    >
-      Copiar código JS
-    </button>
-    <a
-      href="{% static 'js/lector-menu.js' %}"
-      class="btn btn-success mb-2"
-      style="display: none"
-      id="downloadJS"
-      download
-      >Descargar código JS</a
-    >
-    <pre
-      id="jsBlock"
-      style="
-        display: none;
-        background: #f8f9fa;
-        border: 1px solid #ccc;
-        padding: 1em;
-        border-radius: 6px;
-        overflow: auto;
-      "
-    >
-      <code id="jsCode"></code>
-    </pre>
-  </div>
-</div>
 
 <!--script-reproductor-->
 <script>

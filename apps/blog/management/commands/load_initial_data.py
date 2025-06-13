@@ -9,20 +9,12 @@ class Command(BaseCommand):
         # Cargar secciones y categorías (existente)
         secciones_data = [
             {
-                'nombre': 'Tutoriales DIY',
-                'categorias': ['Redes', 'Ordenadores','Informática']
+                'nombre': 'Recursos',
+                'categorias': ['Documentación', 'Guías oficiales', 'Software']
             },
             {
-                'nombre': 'Novedades y Tendencias',
-                'categorias': ['Programación', 'Inteligencia Artificial']
-            },
-            {
-                'nombre': 'Reviews',
-                'categorias': ['Software','Hardware']
-            },
-            {
-                'nombre': 'Compartiendo arte',
-                'categorias': ['Música','Libros','Metrajes']
+                'nombre': 'Accesibilidad',
+                'categorias': ['Novedades', 'Herramientas','Articulos']
             }
         ]
         
@@ -39,7 +31,7 @@ class Command(BaseCommand):
                 if created:
                     self.stdout.write(self.style.SUCCESS(f'Categoría creada: {categoria.nombre} en {seccion.nombre}'))
         
-        # Cargar páginas (nuevo)
+        # Cargar páginas 
         pages_data = [
             {
                 'titulo': 'Inicio - Support In Bits',

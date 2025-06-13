@@ -1,68 +1,30 @@
 {% extends "base.html" %} 
 {% load static %} 
 {% block content %}
-<div id="controls" class="d-flex justify-content-around flex-wrap m-5">
-         <button class="btn-primary rounded p-2 align-self-center col-12 col-md-4 mb-4 mb-sm-0" id="readAll">Leer todo el menú</button>
-         <button class="btn-primary rounded p-2 align-self-center col-12 col-md-4" id="stopReading">Detener lectura</button>
-         <div class="speed-controls col-12 d-flex flex-wrap mt-5">
-            <p class="col-6 align-self-center fs-2 text-end">Velocidad de lectura</p>
-            <p class="speed-display col-6 col-md-3 display-4 p-2 align-self-center text-start" id="speedValue">2.0x</p>
-            <div class="col-12 d-flex justify-content-evenly flex-wrap">
-              <button class="speed-button btn-primary rounded p-2 align-self-center col-auto fs-1 rotate-90" id="increaseSpeed"><i class="bi bi-fast-forward-circle"></i></button>
-              <button class="speed-button btn-primary rounded p-2 align-self-center col-auto fs-1" id="decreaseSpeed"><i class="bi bi-fast-forward-circle"></i></button>
-            </div>
-         </div>
-      </div>
-      <h1>Menú del Restaurante</h1>
-      <section class="menu-section" aria-label="Entradas">
-        <div class="table-responsive menu-item">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th>Plato</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Tamal Criollo</td>
-                <td>Masa de harina de maíz aderezado con especias, acompañado con aceituna, cerdo o pollo, huevo y salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
+ <!-- 1. Imagen sin atributo alt -->
+    <img src="logo.png">
 
-              <tr>
-                <td>Tamal Verde</td>
-                <td>Masa de harina de maíz aderezado con cilantro, especias, acompañado con pollo y salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Осора</td>
-                <td>Crema de salsa a base de huacatay, leche, galleta maría, cacahuete, queso y ají amarillo servido sobre patata cocida</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Aguadito de Pollo</td>
-                <td>Caldo de pollo y menudencia, arroz, zanahoria, guisantes y pasta de cilantro</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>Caldo de Gallina</td>
-                <td>Caldo de gallina con tallarín, patata y huevo</td>
-                <td>7.00€</td>
-              </tr>
-              <tr>
-                <td>Papa Rellena</td>
-                <td>Masa de patata, rellena de carne picada, cebolla, pasas, huevo, aceituna, acompañada con salsa criolla</td>
-                <td>6.00€</td>
-              </tr>
-              <tr>
-                <td>aquí</td>
-                <td>puedes colocar más platos...</td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+    <!-- 2. Enlace sin texto descriptivo -->
+    <a href="https://example.com"></a>
+
+    <!-- 3. Uso de colores sin contraste suficiente -->
+    <p style="color: #aaa; background: #fff;">
+      Texto con poco contraste
+    </p>
+
+    <!-- 4. Elementos interactivos sin roles ni etiquetas -->
+    <div onclick="alert('Haz clic')" >Haz clic aquí</div>
+
+    <!-- 5. No usar encabezados correctamente -->
+    <p>Ejemplo malas practicas</p>
+    <h1>Esto es H1</h1>
+    <h4>Esto es H4</h4>
+    <h2>Esto es H2</h2>
+
+    <!-- 6. Formularios sin etiquetas asociadas -->
+    <form>
+      <input type="text" id="nombre">
+      <input type="submit" value="Enviar">
+    </form>
+
 {% endblock content%}

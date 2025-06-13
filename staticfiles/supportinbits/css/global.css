@@ -198,14 +198,23 @@ header .btn:focus {
   box-shadow: var(--texto-boton);
 }
 
+.dropdown ul{
+  z-index: 1100;
+}
+
 /* ------------------ Breadcrumb ------------------ */
 .breadcrumb li,
 .breadcrumb a {
   color: var(--tx-nm-lg);
 }
 
+#breadcrumb-nav {
+  background-color: var(--bk_principal);
+}
+
 .breadcrumb .active {
   color: var(--indigoEnlaceBread);
+  
 }
 
 /* ------------------ Search ------------------ */
@@ -233,10 +242,9 @@ header .btn:focus {
 /* ------------------ Botón up ------------------ */
 #boton-up {
   position: fixed;
-  bottom: 100px;
-  right: 2%;
+  bottom: 70px;
+  right: 20px;
   cursor: pointer;
-  display: none;
   z-index: 1000;
 }
 

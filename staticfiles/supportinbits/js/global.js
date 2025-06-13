@@ -3,13 +3,13 @@ const body = document.body;
 
 // botón para ir arriba
 const botonUp = document.getElementById("boton-up");
-
-// Mostrar u ocultar el botón al hacer scroll
 window.addEventListener("scroll", () => {
   if (window.scrollY > 200) {
     botonUp.style.display = "block";
+    botonUp.setAttribute("aria-hidden", "false");
   } else {
     botonUp.style.display = "none";
+    botonUp.setAttribute("aria-hidden", "true");
   }
 });
 
