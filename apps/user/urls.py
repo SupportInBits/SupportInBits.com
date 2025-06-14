@@ -11,7 +11,6 @@ urlpatterns = [
     path('perfil/editar/', views.editar_perfil, name='editar_perfil'),
     path('perfil/eliminar/', views.eliminar_perfil, name='eliminar_perfil'),
     path('comentario/editar/<int:comentario_id>/', editar_comentario, name='editar_comentario'),
-    path('lista/', views.lista_usuarios, name='lista-usuarios'),
     path('check-username/', views.check_username, name='check_username'),
     path('check-email/', views.check_email, name='check_email'),
     path('check-superuser/', views.check_superuser, name='check-superuser'),

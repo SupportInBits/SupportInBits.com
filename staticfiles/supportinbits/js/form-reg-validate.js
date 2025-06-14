@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Configuración centralizada
-  
+  // requisitos para validar el formulario
   const config = {
     username: {
       minLength: 8,
@@ -51,30 +50,42 @@ document.addEventListener("DOMContentLoaded", () => {
     form: document.querySelector("form"),
   };
 
-  // Inicialización de eventos
+  /**
+   * @description función que inicializa los eventos sobre los campos del formulario
+   * y comprueba la disponibilidad del username y email
+   */
   function initEventListeners() {
+    // valida los campos
     elements.username.addEventListener("input", validateUsername);
     elements.email.addEventListener("input", validateEmail);
     elements.password1.addEventListener("input", validatePassword1);
     elements.password2.addEventListener("input", validatePassword2);
     elements.terms.addEventListener("change", validateTerms);
-
+    // comprueba que el username existe
     elements.username.addEventListener("blur", () =>
       checkAvailability("username")
     );
-    elements.email.addEventListener("blur", () => checkAvailability("email"));
+    // comprueba que el correo existe
+    elements.email.addEventListener("blur", () => 
+      checkAvailability("email"));
 
     elements.form.addEventListener("submit", handleSubmit);
   }
 
-  // Manejador de envío de formulario
+  /**
+   * @description maneja que el envío sea válido
+   * @param {*} e evento submit
+   */
   function handleSubmit(e) {
     if (!validateForm()) {
       e.preventDefault();
     }
   }
 
-  // Validación general del formulario
+  /**
+   * @description función que comprueba que todos los campos son válidos
+   * @returns True si todos son válidos. False si no lo son
+   */
   function validateForm() {
     return [
       validateUsername(),
@@ -85,7 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ].every((valid) => valid);
   }
 
-  // Validación de nombre de usuario
+  /**
+   * @description Obtiene el valor del input username sin espacios al inico y al final
+   * y comprueba que es válido
+   * @returns
+   * False en caso de que no exista el valor o no cumpla con la REGEX.
+   * True en caso de que pase ambas validaciones
+   */
   function validateUsername() {
     const value = elements.username.value.trim();
 
@@ -103,7 +120,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Validación de email
+  /**
+   * @description Obtiene el valor del input email sin espacios en blanco
+   * y comprueba que cumple el REFGEX
+   * @returns
+   * False en caso de que no exista el valor o no cumpla con la REGEX.
+   * True en caso de que pase ambas validaciones
+   */
   function validateEmail() {
     const value = elements.email.value.trim();
 
@@ -121,7 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Validación de contraseña principal
+  /**
+   * @description Obtiene el valor del input password1 sin espacios en blanco
+   * y comprueba que cumple el REFGEX
+   * @returns
+   * False en caso de que no exista el valor o no cumpla con la REGEX.
+   * True en caso de que pase ambas validaciones
+   */
   function validatePassword1() {
     const value = elements.password1.value;
     const usernameValue = elements.username.value.trim();
@@ -161,7 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Validación de confirmación de contraseña
+  /**
+   * @description Obtiene el valor del input password2 sin espacios en blanco
+   * y comprueba que cumple el REFGEX
+   * @returns
+   * False en caso de que no exista el valor o no cumpla con la REGEX.
+   * True en caso de que pase ambas validaciones
+   */
   function validatePassword2() {
     const value = elements.password2.value;
 
@@ -179,7 +214,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Validación de términos y condiciones
+  /**
+   * @description Comprueba que el chechbox esté marcado.
+   * Si está marcado llama a la función ShowSuccess.
+   * Sino está marcado llama a la función ShowError
+   * @returns
+   * False en caso de que no esté marcado
+   * True en caso de que pase ambas validaciones
+   */
   function validateTerms() {
     if (!elements.terms.checked) {
       showError(elements.terms, config.terms.errorMessage);
@@ -190,7 +232,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  // Verificación de disponibilidad (AJAX)
+  /**
+   * @description Verifica la disponibilidad usando fetch
+   * @param {*} field El campo del formulario a verificar
+   * @returns 
+   * Promesa en formato json
+   */
   function checkAvailability(field) {
     const inputElement = elements[field];
     const value = inputElement.value.trim();
@@ -229,7 +276,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Función auxiliar para validar campos específicos
+  /**
+   * @description función que valida expecificamente los campos username y email
+   * @param {*} field 
+   * @returns 
+   * validateUsername() = para validar el campo username
+   * validateEmail() = para validar el campo email
+   */
   function validateField(field) {
     switch (field) {
       case "username":
@@ -241,7 +294,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Mostrar mensaje de error
+  /**
+   * @description Añade la clase .is-invalid al input en caso de error
+   * @param {*} input = input al que se aplica la clase
+   * @param {*} message = mensaje que se va a mostrar
+   * @returns Sale de la función cuando no existe la clase
+   */
   function showError(input, message) {
     const formControl = input.closest(".form-floating, .form-check");
     if (!formControl) return;
@@ -255,7 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
     formControl.appendChild(errorElement);
   }
 
-  // Mostrar indicación de éxito
+  /**
+   * @description Añade la clase .is-valid en caso de éxito
+   * @param {*} input 
+   * @returns 
+   */
   function showSuccess(input) {
     const formControl = input.closest(".form-floating, .form-check");
     if (!formControl) return;
@@ -269,7 +331,11 @@ document.addEventListener("DOMContentLoaded", () => {
     formControl.appendChild(successElement);
   }
 
-  // Limpiar estados anteriores
+  /**
+   * @description limpia las clases .is-valid y .is-invalid
+   * @param {*} input 
+   * @returns 
+   */
   function clearFeedback(input) {
     const formControl = input.closest(".form-floating, .form-check");
     if (!formControl) return;

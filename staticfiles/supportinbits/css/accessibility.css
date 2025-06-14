@@ -131,3 +131,7 @@
 .font-size-large {
   font-size: 36px !important;
 }
+
+.search-container * {
+  font-size: inherit !important;
+}

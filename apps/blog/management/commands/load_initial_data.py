@@ -109,6 +109,12 @@ class Command(BaseCommand):
                 'm_handF': 'true',
                 'm_mobileOp': 'width',
                 'm_robots': 'noindex'
+            },{
+                'titulo': 'Herramientas - Support In Bits',
+                'm_descri': 'En esta página encontrarás herramientas y plantillas para ayudarte en el desarrollo de aplicaciones web accesibles',
+                'm_handF': 'true',
+                'm_mobileOp': 'width',
+                'm_robots': 'index'
             }
         ]
         

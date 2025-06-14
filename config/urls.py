@@ -29,7 +29,7 @@ from allauth.account import views as allauth_views
 urlpatterns = [
     path('', include('apps.page.urls')),
     path('cookies/', include('cookie_consent.urls')),
-    path('accounts/', include('allauth.urls')),  # rutas de allauth
+    path('accounts/', include('allauth.urls')), 
     path('accounts/password/reset/', allauth_views.password_reset, name='account_reset_password'),
     #path('accounts/password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
     #path('accounts/password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
@@ -37,7 +37,7 @@ urlpatterns = [
     #path('accounts/reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('blog/', include('apps.blog.urls')),
     path('api/user/', include('apps.user.urls')),
-    path('usuario/', include('apps.user.urls')),  # Unificar todas las URLs de usuario bajo /user/
+    path('usuario/', include('apps.user.urls')), 
     path('admin/', admin.site.urls),
     path('buscar/ajax/', buscar_entradas_ajax, name='buscar_entradas_ajax'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,20 +12,7 @@
                 <div class="alert alert-danger">
                     <strong>Error:</strong> Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.
                 </div>
-                {% endif %}
-                
-                {% if next %}
-                    {% if user.is_authenticated %}
-                    <div class="alert alert-warning">
-                        Tu cuenta no tiene acceso a esta página. Para continuar,
-                        por favor inicia sesión con una cuenta que tenga acceso.
-                    </div>
-                    {% else %}
-                    <div class="alert alert-info">
-                        Por favor inicia sesión para ver esta página.
-                    </div>
-                    {% endif %}
-                {% endif %}
+                {% endif %}          
                 
                 <form method="post" action="{% url 'login' %}"  id="login-form">
                     {% csrf_token %}
@@ -72,7 +59,7 @@
                     </a>
                     <hr class="hr mt-4 align-self-center" />
                     <p class="fs-3">Inicia sesión con Google</p>
-                    <a href="/accounts/google/login/" class="align-self-center ">
+                    <a href="/accounts/google/login/" class="align-self-center" aria-label="Iniciar sesión con Google">
                         
                         <i class="bi bi-google display-1"></i>
                     </a>           

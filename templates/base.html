@@ -43,9 +43,9 @@
                 <div class="row align-items-center w-100 flex-nowrap">
                   <!-- Icono Home -->
                   <div class="col-auto">
-                    <a class="navbar-brand fs-1" href="/" aria-label="home"><i class="bi bi-house"></i></a>
+                    <a class="navbar-brand fs-1" href="/" aria-label="inicio"><i class="bi bi-house"></i></a>
                   </div>
-                  <!-- Barra de búsqueda centrada -->
+                  <!-- Barra de búsqueda -->
                   <div class="col-7 col-md-4 col-lg-9 mx-auto my-2 my-md-0">
                     <div class="search-container">
                       <form id="form-busqueda" role="search">
@@ -54,14 +54,13 @@
                           id="input-busqueda"
                           class="form-control"
                           name="q"
-                          placeholder="Buscar en Support In Bits"
+                          placeholder="Buscar en una entrada en el blog"
                           aria-label="Buscar"
                         />
                       </form>
                       <div id="resultados-busqueda" class="results-dropdown"></div>
                     </div>
                   </div>
-
                   <!-- Menú usuario -->
                   <div class="col-auto mx-auto d-none d-md-flex">
                     <div class="dropdown">
@@ -89,9 +88,8 @@
                       {% endif %}
                     </div>
                   </div>
-                  
                   <!-- Botón hamburguesa -->
-                  <button class="navbar-toggler col-auto mx-auto" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" >
+                  <button class="navbar-toggler col-auto mx-auto" type="button" aria-label="boton navegador" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" name="hamburguesa" >
                     <span class="navbar-toggler-icon"></span>
                   </button>
 
@@ -208,12 +206,11 @@
 
     </div>
 
-    
     <!-- Banner de cookies -->
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none;">
+    <div id="cookie-banner" >
       Usamos cookies para mejorar tu experiencia.
-      <a href="{% url 'politica-cookies' %}" style="color: #ffd700;">Leer más</a>.
-      <button id="accept-cookies" style="margin-left: 20px; background: #ffd700; color: #222; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+      <a href="{% url 'politica-cookies' %}" style="color: #ffd700;">Leer más</a>
+      <button id="accept-cookies" >
         Aceptar
       </button>
     </div>
@@ -244,6 +241,7 @@
 
     <script src="{% static 'supportinbits/js/global.js' %}" defer></script>
     <script src="{% static 'supportinbits/js/accessibility.js' %}" defer></script>
+
     <!-- Google Consent Mode v2 -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -254,6 +252,7 @@
         'analytics_storage': 'denied'
       });
     </script>
+    <!--gestión cookies-->
     <script>
       // Función para obtener una cookie por nombre
       function getCookie(name) {
@@ -300,7 +299,7 @@
         }
       }
     </script>
-    
+    <!--barra búsqueda-->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const input = document.getElementById('input-busqueda');
@@ -348,8 +347,7 @@
       });
     </script>
 
-
     <script src="{% static 'supportinbits/js/accessibility-audit.js' %}" defer></script>
+    
   </body>
-
 </html>

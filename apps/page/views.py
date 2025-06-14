@@ -11,7 +11,7 @@ def home(request):
     return render(
         request,
         'home.html',
-        context={'page': pagina}  # Enviar la lista de objetos a la plantilla
+        context={'page': pagina}  
     )
 def cookies(request):
     pagina = Page.objects.get(id=2)
@@ -43,26 +43,13 @@ def faq(request):
         context={'page': pagina}
     )
 
-def acceso_denegado(request,exception=None):
-    pagina = Page.objects.get(id=11)
-
-    return render(
-        request, 
-        'templates/403.html', 
-        status=403,
-        context={'page': pagina}
-    )
-
-def csrf_failure(request,exception=None):
-    return HttpResponseForbidden
-
-
 def plantillas(request):
+    pagina = Page.objects.get(id=12)
     return render(
         request,
         'plantillas.html',
+        context={'page': pagina}
     )
-
 
 def test(request):
     return render(

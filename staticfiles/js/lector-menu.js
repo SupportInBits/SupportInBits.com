@@ -3,7 +3,9 @@
   const minRate = 0.9;
   const maxRate = 3;
 
-  // Actualizar display de velocidad
+  /**
+   * @description Actualiza el display de la velocidad de reproducción
+   */
   function updateSpeedDisplay() {
     document.getElementById("speedValue").textContent =
       currentRate.toFixed(1) + "x";
@@ -16,7 +18,10 @@
     updateSpeedDisplay();
   }
 
-  // función leerTexto
+  /**
+   * @description Lee un texto usando WebSpeechAPI
+   * @param {*} texto = cadena que se va a leer
+   */
   function leerTexto(texto) {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
@@ -50,10 +55,16 @@
         updateSpeedDisplay();
       }
     });
-  // Extraer texto de un elemento, incluyendo imágenes con alt
+  
+  /**
+   * @description Extrae todos los elentos hijos del elemento ingresado como parámetro
+   * @param {*} element El elemnto del cual se va a extraer el texto
+   * @returns = String con todo el texto obtenido
+   */
   function extraerTextoOrdenado(element) {
     let texto = "";
     for (const node of element.childNodes) {
+      // Si el nodo es texto lo añade a la variable texto
       if (node.nodeType === Node.TEXT_NODE) {
         texto += node.textContent.trim() + " ";
       } else if (node.nodeType === Node.ELEMENT_NODE) {
@@ -64,8 +75,8 @@
         }
       }
     }
-    texto += '.';
-    return texto;
+    texto = texto.replace(/\s+/g, ' ');
+    return texto ? texto + '.' : '';;
   }
   // Leer todo el menú
   document.getElementById("readAll").addEventListener("click", function () {

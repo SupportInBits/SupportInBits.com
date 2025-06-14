@@ -13,6 +13,11 @@ from apps.blog.models import Entrada, Seccion, Categoria, Comentario
 from apps.blog.forms import EntradaForm, ComentarioForm
 from django.http import JsonResponse
 
+"""
+Lista de comentarios del usuario autenticado.
+Solo usuarios con rol 'registrado' pueden acceder.
+Muestra los comentarios del usuario, con conteos por estado.
+"""
 @method_decorator(rol_requerido('registrado'), name='dispatch')
 class MisComentariosView(ListView):
     model = Comentario
@@ -21,7 +26,7 @@ class MisComentariosView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        # Solo mostrar los comentarios del usuario actual
+        
         return Comentario.objects.filter(
             autor=self.request.user
         ).order_by('-fecha_creacion')
@@ -34,6 +39,11 @@ class MisComentariosView(ListView):
         context['comentarios_pendientes'] = self.get_queryset().filter(aprobado=False).count()
         return context
 
+"""
+Vista para crear una nueva entrada de blog.
+Solo accesible para usuarios con rol 'administrador'.
+Muestra y procesa el formulario de creación.
+"""
 @rol_requerido('administrador')
 def crear_entrada(request):
     if request.method == 'POST':
@@ -49,6 +59,11 @@ def crear_entrada(request):
     
     return render(request, 'blog/crear_entrada.html', {'form': form})
 
+"""
+Vista para crear un comentario en una entrada.
+Solo accesible para usuarios autenticados.
+Si el usuario es moderador o admin, el comentario se aprueba automáticamente.
+"""
 @login_required
 @require_POST
 def crear_comentario(request, slug):
@@ -71,9 +86,11 @@ def crear_comentario(request, slug):
     
     return redirect('detalle_entrada', slug=entrada.slug)
 
-
-
-
+"""
+Vista de lista de entradas para administración.
+Solo accesible para usuarios con rol 'administrador'.
+Permite buscar y paginar entradas.
+"""
 @method_decorator(rol_requerido('administrador'), name='dispatch')
 class ListaEntradasView(ListView):
     model = Entrada
@@ -95,6 +112,11 @@ class ListaEntradasView(ListView):
         
         return queryset.order_by('-fecha_publicacion')
 
+"""
+Vista para eliminar una entrada.
+Solo accesible para administradores.
+Solo el autor o el superusuario pueden eliminar.
+"""
 @method_decorator(rol_requerido('administrador'), name='dispatch')
 class EliminarEntradaView(DeleteView):
     model = Entrada
@@ -102,7 +124,7 @@ class EliminarEntradaView(DeleteView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     success_url = reverse_lazy('lista_entradas_admin')
-    roles_requeridos = ['administrador']  # Solo administradores pueden eliminar
+    roles_requeridos = ['administrador']
 
     def delete(self, request, *args, **kwargs):
         entrada = self.get_object()
@@ -110,14 +132,16 @@ class EliminarEntradaView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
     def dispatch(self, request, *args, **kwargs):
-        # Verificación adicional: solo el autor o superusuario puede eliminar
         entrada = self.get_object()
         if not (request.user == entrada.autor or request.user.is_superuser):
             messages.error(request, "No tienes permiso para eliminar esta entrada")
             return redirect(entrada.get_absolute_url())
         return super().dispatch(request, *args, **kwargs)
          
-
+"""
+Vista para editar una entrada.
+Solo accesible para administradores o editores.
+"""
 @method_decorator(rol_requerido('administrador'), name='dispatch')
 class EditarEntradaView(UpdateView):
     model = Entrada
@@ -137,6 +161,11 @@ class EditarEntradaView(UpdateView):
         context['page'] = Page.objects.get(id=6)  # Ajusta el ID según tu configuración
         return context
     
+"""
+Vista de lista de comentarios para administración.
+Permite filtrar por búsqueda y estado de aprobación.
+Solo accesible para administradores.
+"""
 @method_decorator(rol_requerido('administrador'), name='dispatch') 
 class ListaComentariosView(ListView):
     model = Comentario
@@ -171,6 +200,10 @@ class ListaComentariosView(ListView):
         context['filtro_aprobacion'] = self.request.GET.get('aprobacion', '')
         return context    
 
+"""
+Vista para alternar la aprobación de un comentario.
+Solo accesible para administradores.
+"""
 rol_requerido('administrador')
 def toggle_aprobacion_comentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk)
@@ -180,6 +213,11 @@ def toggle_aprobacion_comentario(request, pk):
     messages.success(request, f'Comentario {"aprobado" if comentario.aprobado else "desaprobado"} correctamente.')
     return redirect('lista_comentarios')
 
+"""
+Vista para eliminar un comentario.
+Solo accesible para administradores.
+Muestra confirmación si es GET, elimina si es POST.
+"""
 rol_requerido('administrador')
 def eliminar_comentario(request, pk):
     comentario = get_object_or_404(Comentario, pk=pk)
@@ -192,19 +230,20 @@ def eliminar_comentario(request, pk):
     # Si es GET, mostrar confirmación (esto se manejaría con una plantilla modal)
     return redirect('lista_comentarios')
 
+"""
+Vista principal del blog.
+Muestra todas las entradas publicadas y las secciones para el sidebar.
+"""
 def home_blog(request):
-    # Obtener los datos de la página desde Page
-    pagina = Page.objects.get(id=6)  # Asegúrate de que el ID 6 corresponde a la página del blog
+    pagina = Page.objects.get(id=6)
     
-    # Obtener todas las entradas publicadas ordenadas por fecha (más recientes primero)
     entradas = Entrada.objects.filter(publicado=True).order_by('-fecha_publicacion')
     
-    # Obtener todas las secciones con sus categorías para el sidebar
     secciones = Seccion.objects.prefetch_related('categorias').all()
     
     return render(
         request,
-        'blog/home_blog.html',  # Asegúrate de que esta ruta es correcta
+        'blog/home_blog.html', 
         context={
             'page': pagina,
             'entradas': entradas,
@@ -212,6 +251,10 @@ def home_blog(request):
         }
     )
 
+"""
+Vista AJAX para buscar entradas por título o contenido.
+Devuelve HTML renderizado con los resultados.
+"""
 def buscar_entradas_ajax(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         consulta = request.GET.get('q', '')
@@ -230,6 +273,9 @@ def buscar_entradas_ajax(request):
     
     return JsonResponse({'error': 'Peticion no valida'}, status=400)
 
+"""
+Vista de entradas filtradas por categoría y sección.
+"""
 class EntradasPorCategoria(ListView):
     model = Entrada
     template_name = 'blog/entradas_por_categoria.html'
@@ -244,6 +290,10 @@ class EntradasPorCategoria(ListView):
             publicado=True
         )
 
+"""
+Vista de entradas filtradas por sección.
+Incluye paginación y conteo de entradas por categoría.
+"""
 class EntradasPorSeccion(ListView):
     template_name = 'blog/entradas_por_seccion.html'
     context_object_name = 'entradas'
@@ -268,6 +318,12 @@ class EntradasPorSeccion(ListView):
             )
         )
         return context
+
+"""
+Vista de detalle de una entrada.
+Muestra la entrada, comentarios aprobados y formulario para comentar.
+Si el usuario es staff, muestra también comentarios pendientes.
+"""
 class DetalleEntrada(DetailView):
     model = Entrada
     template_name = 'blog/detalle_entrada.html'
@@ -277,34 +333,28 @@ class DetalleEntrada(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-        # Configuración de la página
+                
         context['page'] = Page.objects.get(id=6)
         context['page'].titulo = self.object.meta_titulo
         context['page'].m_descri = self.object.meta_descripcion
         context['page'].m_robots = self.object.meta_robots
-        
-        
-        # Comentarios (solo aprobados o del usuario actual)
-        # Obtener solo comentarios aprobados para el conteo
+                
         comentarios_aprobados = self.object.comentarios.filter(aprobado=True)
         context['total_comentarios_aprobados'] = comentarios_aprobados.count()
-
-        # Si el usuario está autenticado, incluir también sus comentarios no aprobados
+        # muestra los comentarios del usuario autenticado si los tienes aprobados
         if self.request.user.is_authenticated:
             mis_comentarios = self.object.comentarios.filter(autor=self.request.user, aprobado=True)
             comentarios = comentarios_aprobados | mis_comentarios
-        else:
+        else: # sino muestra solo los aprobados
             comentarios = comentarios_aprobados
-        
+        # si es usuario administrador muestra los pendientes
         if self.request.user.is_staff:
             comentarios_no_aprobados = self.object.comentarios.filter(aprobado=False)
             context['comentarios_pendientes'] = comentarios_no_aprobados.order_by('fecha_creacion')
 
         context['comentarios'] = comentarios.order_by('fecha_creacion')
-        context['form_comentario'] = ComentarioForm()  # Asegúrate de importar ComentarioForm
-        
-        # Pasar el usuario al contexto para usar en los métodos del modelo
+        context['form_comentario'] = ComentarioForm()
+                
         for comentario in context['comentarios']:
             comentario.current_user = self.request.user
         

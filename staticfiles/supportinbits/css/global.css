@@ -58,16 +58,16 @@
 .high-contrast .list-group-item,
 .high-contrast .offcanvas,
 .high-contrast .dataTables_info,
-.high-contrast #comentariosTable_length ,
-.high-contrast #comentariosTable_length select ,
+.high-contrast #comentariosTable_length,
+.high-contrast #comentariosTable_length select,
 .high-contrast #comentariosTable_paginate a,
-.high-contrast #usuariosTable_length ,
+.high-contrast #usuariosTable_length,
 .high-contrast #usuariosTable_length select,
 .high-contrast #usuariosTable_paginate a,
-.high-contrast #paginasTable_length ,
+.high-contrast #paginasTable_length,
 .high-contrast #paginasTable_length select,
 .high-contrast #paginasTable_paginate a,
-.high-contrast #entradasTable_length ,
+.high-contrast #entradasTable_length,
 .high-contrast #entradasTable_length select,
 .high-contrast .panel-access,
 .high-contrast .lupa-clone,
@@ -198,7 +198,7 @@ header .btn:focus {
   box-shadow: var(--texto-boton);
 }
 
-.dropdown ul{
+.dropdown ul {
   z-index: 1100;
 }
 
@@ -214,7 +214,6 @@ header .btn:focus {
 
 .breadcrumb .active {
   color: var(--indigoEnlaceBread);
-  
 }
 
 /* ------------------ Search ------------------ */
@@ -345,36 +344,34 @@ footer a {
 }
 
 /* ------------------ Barra de cookies ------------------ */
-.cookie-bar {
+#cookie-banner {
   position: fixed;
-  top: 80%;
   bottom: 0;
+  left: 0;
   width: 100%;
-  height: 20%;
-  background: #333;
-  color: white;
-  text-align: center;
+  background: #222;
+  color: #fff;
   padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  display: none;
 }
 
-.cookie-bar a {
+#cookie-banner a {
   margin-left: 10px;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
 }
 
-.cookie-bar .cc-cookie-accept {
-  background-color: #4caf50;
-  color: white;
-}
-
-.cookie-bar .cc-cookie-decline {
-  background-color: #f44336;
-  color: white;
+#cookie-banner button {
+  margin-left: 20px;
+  background: #ffd700;
+  color: #222;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 .img-thumbnail {
   max-width: 150px;

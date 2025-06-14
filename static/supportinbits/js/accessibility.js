@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Variables de accesibilidad ---
+  // --- obtener los elementos necesarios ---
   const accBtn = document.getElementById("accessibility-btn");
   const accPanel = document.getElementById("accessibility-panel");
   const highContrast = document.getElementById("high-contrast");
@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const MAX_SPACING_LEVEL = 4;
 
   
-  // --- Panel de accesibilidad ---
+  // --- evento click sobre el botón de acceesibilidad ---
   accBtn?.addEventListener("click", () => {
-    accPanel?.classList.toggle("hidden");
+    if (accPanel) {
+      accPanel.classList.toggle("hidden");
+    }
     if (!accPanel.classList.contains("hidden")) {
       // Espera un "tick" para que el panel se muestre y tenga ancho real
       setTimeout(() => {
@@ -23,10 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 0);
     }
   });
-  // --- Contraste alto ---
+
+  // --- eventos de alto contraste y reiniciar contraste ---
   highContrast?.addEventListener("click", () => setHighContrast(true));
   resetContrast?.addEventListener("click", () => setHighContrast(false));
-
+  
+  /**
+   * @description Función que aplica o reinicia el contraste
+   * @param {*} enable 
+   */
   function setHighContrast(enable) {
     document.body.classList.toggle("high-contrast", enable);
     if (enable) {
@@ -36,13 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // --- Espaciado accesible ---
+  // --- evento sobre el botón de espaciado ---
   toggleSpacing?.addEventListener("click", () => {
     let currentLevel = parseInt(localStorage.getItem("spacingLevel")) || 0;
     let nextLevel = (currentLevel + 1) % (MAX_SPACING_LEVEL + 1);
     applySpacingLevel(nextLevel);
   });
 
+  /**
+   * @description Función que aplica el nivel de espaciado
+   * @param {*} level 
+   */
   function applySpacingLevel(level) {
     for (let i = 1; i <= MAX_SPACING_LEVEL; i++) {
       document.body.classList.remove(`accessible-spacing-${i}`);
@@ -56,11 +67,18 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSpacingButtonText(level);
   }
 
+  /**
+   * @description Función que actualiza el texto del botón de espaciado
+   * @param {*} level 
+   */
   function updateSpacingButtonText(level) {
     if (toggleSpacing) toggleSpacing.textContent = `Espaciado (${level})`;
   }
 
-  // --- Preferencias al cargar ---
+  /**
+   * @description función que carga las preferencias del usuario
+   * y las almacena en localstorage
+   */
   function loadPreferences() {
     setHighContrast(localStorage.getItem("highContrast") === "true");
     const savedSpacing = parseInt(localStorage.getItem("spacingLevel")) || 0;
@@ -68,27 +86,39 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   loadPreferences();
 
-  // --- Tamaño de fuente ---
+  // --- clases que se aplican para el tamaño de fuente ---
   const fontSizes = ["font-size-small", "font-size-medium", "font-size-large"];
   let currentSizeIndex = 0;
 
+  /**
+   * función que aplica una clase con un tamaño de fuente definido
+   * a los difentes contenedores
+   * @param {*} className font-size-small font-size-medium font-size-large
+   * @returns 
+   */
   function applyFontSize(className) {
     const contenido = document.getElementById("contenido");
     const nav = document.getElementById("navegador");
     const header = document.querySelector("header");
     const html = document.documentElement;
-    const btn = document.getElementById("accessibility-btn");
+    const formBusqueda = document.getElementById("form-busqueda");
+    const accorSecciones = document.getElementById("acco-secciones");
+    const resultadosBusqueda = document.getElementById("resultados-busqueda");
+    const searchContainer = document.querySelector(".search-container");
     const userDropdownBtns = document.querySelectorAll(".dropdown-toggle");
     const botones = document.querySelectorAll(".btn");
     const userDropdownBtnsitem = document.querySelectorAll(".dropdown-item");
-    if (!contenido || !btn) return;
+    if (!contenido) return;
     fontSizes.forEach((cls) => {
       document.body.classList.remove(cls);
       contenido.classList.remove(cls);
       nav?.classList.remove(cls);
       header?.classList.remove(cls);
       html.classList.remove(cls);
-      btn.classList.remove(cls);
+      formBusqueda?.classList.remove(cls);
+      accorSecciones?.classList.remove(cls);
+      resultadosBusqueda?.classList.remove(cls);
+      searchContainer?.classList.remove(cls);
       userDropdownBtns.forEach((b) => b.classList.remove(cls));
       botones.forEach((b) => b.classList.remove(cls));
       userDropdownBtnsitem.forEach((b) => b.classList.remove(cls));
@@ -96,6 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add(className);
     contenido.classList.add(className);
     nav?.classList.add(className);
+    formBusqueda?.classList.add(className);
+    accorSecciones?.classList.add(className);
+    resultadosBusqueda?.classList.add(className);
+    searchContainer?.classList.add(className);
     header?.classList.add(className);
     userDropdownBtns.forEach((b) => b.classList.add(className));
     userDropdownBtnsitem.forEach((b) => b.classList.add(className));
@@ -103,6 +137,10 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("fontSizeClass", className);
   }
 
+  /**
+   * @description función que aplica el tamaño y comprueba que está dentro los limites válidos
+   * @param {*} direction entero +1 o -1
+   */
   function changeFontSize(direction) {
     currentSizeIndex += direction;
     currentSizeIndex = Math.max(
@@ -112,12 +150,17 @@ document.addEventListener("DOMContentLoaded", function () {
     applyFontSize(fontSizes[currentSizeIndex]);
   }
 
+  /**
+   * @description función para reiniciar el tamaño de letra
+   */
   function resetFontSize() {
     currentSizeIndex = 0;
     applyFontSize(fontSizes[currentSizeIndex]);
   }
 
-  // Inicializar tamaño de fuente
+  /**
+   * @description comprueba si se ha guardado un tamaño de fuente y lo aplica
+   */
   (function initFontSize() {
     const savedClass = localStorage.getItem("fontSizeClass");
     if (savedClass && fontSizes.includes(savedClass)) {
@@ -128,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   })();
 
-  // --- Lupa ---
+  // --- variables para la lupa ---
   const lupa = document.getElementById("lupa");
   const lupaContent = document.getElementById("lupa-content");
   let lupaActiva = false;
@@ -138,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
 
-  // Solo un listener para mousemove
+  // listener para mousemove
   document.addEventListener(
     "mousemove",
     (e) => {
@@ -260,7 +303,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("keydown", function (e) {
-  // Control + f (tecla superior, no del teclado numérico)
   if (e.ctrlKey && e.key === "f") {
     console.log("Tecla presionada:", e.key);
     const accBtn = document.getElementById("accessibility-btn");

@@ -96,11 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const errorPanel = document.createElement("div");
   errorPanel.className = "axe-error-panel";
   errorPanel.innerHTML = `
-        <button id="axe-close-panel">×</button>
-        <p role="region" class="fs-3">Errores de Accesibilidad</p>
-        <div id="axe-errors-container"></div>
-        <button id="generate-report-btn" class="generate-report-btn">Generar Informe PDF</button>
-    `;
+      <button id="axe-close-panel" class="fs-4" aria-label="botón para cerrar el panel de auditar accesibilidad" ><i class="bi bi-x-lg"></i></button>
+      <p role="region" class="fs-3 mt-5">Errores de Accesibilidad</p>
+      <div id="axe-errors-container"></div>
+      <button id="generate-report-btn" class="generate-report-btn" aria-label="botón para generar el informe PDF"  >Generar Informe PDF</button>
+  `;
   document.body.appendChild(errorPanel);
 
   // Botón de auditoría (flotante)
@@ -143,6 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (auditBtn) auditBtn.addEventListener('click', runAudit);
       if (closePanelBtn) closePanelBtn.addEventListener('click', () => {
           errorPanel.classList.remove('visible');
+          errorPanel.setAttribute('aria-hidden', 'true'); 
+          reportBtn.setAttribute('aria-hidden', 'true');
           clearHighlights();
       });
       if (reportBtn) reportBtn.addEventListener('click', generatePDFFromResults);
@@ -153,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
    */
   async function runAudit() {
     const btn = document.getElementById("accessibility-audit-btn");
+    const reportBtn = document.getElementById('generate-report-btn');
     btn.textContent = "Analizando...";
     btn.disabled = true;
     try {
@@ -168,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Mostrar panel
       errorPanel.classList.add("visible");
+      errorPanel.setAttribute('aria-hidden', 'false'); 
+      reportBtn.setAttribute('aria-hidden', 'false'); 
     } catch (error) {
       console.error("Error en la auditoría:", error);
       alert("Error al realizar la auditoría: " + error.message);
@@ -176,9 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.disabled = false;
     }
   }
+
   /**
-   * @param {*} str cadena a formatear
    * @description Esta función reemplaza caracteres especiales como &, <, >, ", y ' por sus entidades HTML correspondientes.
+   * @param {*} str cadena a formatear
    * @returns 
    */
   function escapeHTML(str) {
@@ -189,9 +195,10 @@ document.addEventListener("DOMContentLoaded", function () {
               .replace(/"/g, "&quot;")
               .replace(/'/g, "&#039;");
   }
+
   /**
-   * @param {*} results Resultados de la auditoría obtenidos de axe-core
    * @description Esta función recorre los errores encontrados por axe-core y las muestra en el panel de errores.
+   * @param {*} results Resultados de la auditoría obtenidos de axe-core
    * @returns 
    */
   function displayResultsInPanel(results) {
@@ -208,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const description = violation.description || "Sin detalles";
       const helpUrl = violation.helpUrl || "#";
       const nodesCount = violation.nodes ? violation.nodes.length : 0;
-      console.log(help);
+      
       let detailsHtml = `
           <p><strong>Descripción:</strong> ${description}</p>
           <p><strong>Elementos afectados:</strong> ${nodesCount}</p>
@@ -252,8 +259,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /**
-   * @returns Genera un informe en PDF a partir de los resultados de la auditoría.
    * @description Esta función utiliza la librería jsPDF para crear un informe PDF con los resultados de la auditoría de accesibilidad.
+   * @returns Genera un informe en PDF a partir de los resultados de la auditoría.
    */
   async function generatePDFFromResults() {
     if (!auditResults) {

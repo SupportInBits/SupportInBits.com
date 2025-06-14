@@ -2,6 +2,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from user.managers import UsuarioManager
 
+"""
+Modelo usuario que hereda de AbstractUser.
+Incluye campos adicionales como rol, avatar, biografía y sitio web.
+Además, define propiedades para verificar roles de usuario.
+"""
 class Usuario(AbstractUser):
     ROLES = (
         ('visitante', 'Visitante'),
