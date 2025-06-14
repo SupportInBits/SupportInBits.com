@@ -35,7 +35,9 @@ Gestionar Entradas - Support In Bits
                 <td>{{ pagina.m_handF }}</td>
                 <td>{{ pagina.m_mobileOp }}</td>
                 <td>
-                    <a href="{% url 'editar_pagina' pagina.id %}" class="btn btn-sm btn-primary">Editar</a>
+                    <div class="d-flex align-items-center">
+                        <a href="{% url 'editar_pagina' pagina.id %}" class="btn btn-sm btn-primary mx-auto ">Editar</a>
+                    </div>
                 </td>
             </tr>
             {% endfor %}

@@ -90,14 +90,13 @@ class Entrada(models.Model):
     )
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     contenido = models.TextField()
-    
-    #contenido = HTMLField()  # Reemplaza el TextField original
     resumen = models.TextField(max_length=500, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, related_name='entradas')
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     publicado = models.BooleanField(default=False)
     imagen_portada = models.ImageField(upload_to='blog/', blank=True, null=True)
+    alt_img = models.CharField(max_length=255,default="alt imagen")  
     
     class Meta:
         verbose_name = "Entrada"

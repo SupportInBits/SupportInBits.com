@@ -21,6 +21,7 @@
   --bg-color: #ffffff;
   --text-color: #333333;
   --banner-bg: #f0f0f0;
+  --bg-col-pre: #283142
 }
 
 /* ------------------ Alto contraste ------------------ */
@@ -116,11 +117,6 @@
 }
 
 /* ------------------ Utilidades ------------------ */
-.rotate-90 {
-  transform: rotate(180deg);
-  display: inline-block;
-}
-
 .hidden {
   display: none;
 }
@@ -150,6 +146,12 @@ p {
   line-height: 1.5;
 }
 
+pre{
+  background-color: var(--bg-col-pre);
+  padding: 5%;
+  color: var(--lemon-lime);
+
+}
 /* ------------------ Header y botones ------------------ */
 header .toggle-btn {
   padding: 0.5rem 1rem;
@@ -201,6 +203,9 @@ header .btn:focus {
 .dropdown ul {
   z-index: 1100;
 }
+#resultados-busqueda{
+  z-index: 1101;
+}
 
 /* ------------------ Breadcrumb ------------------ */
 .breadcrumb li,
@@ -210,6 +215,7 @@ header .btn:focus {
 
 #breadcrumb-nav {
   background-color: var(--bk_principal);
+  z-index: 1;
 }
 
 .breadcrumb .active {

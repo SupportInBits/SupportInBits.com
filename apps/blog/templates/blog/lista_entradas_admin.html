@@ -50,11 +50,11 @@ Gestionar Entradas - Support In Bits
                         {% endif %}
                     </td>
                     <td>
-                        <div class="d-flex justify-content-around flex-md-wrap align-items-center">
-                            <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary col-sm-8 mb-sm-2">Ver</a>
+                        <div class="d-flex justify-content-around flex-wrap align-items-center">
+                            <a href="{{ entrada.get_absolute_url }}" class="btn btn-sm btn-primary col-12 col-sm-8 mb-2">Ver</a>
                             {% if request.user == entrada.autor or request.user.is_staff %}
-                            <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary col-sm-8 mb-sm-2">Editar</a>
-                            <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger col-sm-8">Eliminar</a>
+                            <a href="{% url 'editar_entrada' entrada.slug %}" class="btn btn-sm btn-secondary col-12 col-sm-8 mb-2">Editar</a>
+                            <a href="{% url 'eliminar_entrada' entrada.slug %}" class="btn btn-sm btn-danger col-auto col-sm-8">Eliminar</a>
                             {% endif %}
                         </div>
                     </td>
@@ -80,16 +80,4 @@ $(document).ready(function() {
     });
 });
 </script>
-
-{% comment %} <style>
-    /* Personalización opcional */
-    #entradasTable_wrapper .dataTables_filter {
-        display: none; /* Ocultamos el buscador nativo de DataTables */
-    }
-    .dataTables_length select {
-        width: 75px;
-        display: inline-block;
-    }
-</style> {% endcomment %}
-
 {% endblock %}

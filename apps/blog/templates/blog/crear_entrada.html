@@ -10,7 +10,7 @@ Crear Nueva Entrada | Support In Bits
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}    
-        <!--titulos-->      
+        <!--titulo-->      
         <div class="mb-3">
             {{ form.titulo.label_tag }}
             {{ form.titulo }}
@@ -52,13 +52,25 @@ Crear Nueva Entrada | Support In Bits
                     </div>
                 {% endif %}
             </div>
-            <!--imagen portada-->
+        </div>
+
+        <!--imagen portada-->
+        <div class="mb-3">
             <div class="col-md-6 mb-3">
                 {{ form.imagen_portada.label_tag }}
                 {{ form.imagen_portada }}
                 {% if form.imagen_portada.errors %}
                     <div class="invalid-feedback d-block">
                         {{ form.imagen_portada.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.alt_img.label_tag }}
+                {{ form.alt_img }}
+                {% if form.alt_img.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.alt_img.errors }}
                     </div>
                 {% endif %}
             </div>

@@ -11,7 +11,7 @@ import os
 class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
-        fields = ['titulo', 'contenido', 'resumen', 'categoria', 'publicado', 'imagen_portada']
+        fields = ['titulo', 'contenido', 'resumen', 'categoria', 'publicado', 'imagen_portada','alt_img']
         widgets = {
             'titulo': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -34,8 +34,12 @@ class EntradaForm(forms.ModelForm):
             }),
             'imagen_portada': forms.ClearableFileInput(attrs={
                 'class': 'form-control',
-                'accept': 'image/*'  # Acepta solo imágenes
+                'accept': 'image/*'  
             }),
+            'alt_img': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Título de la entrada' 
+            })
         }
         labels = {
             'publicado': 'Publicar entrada',

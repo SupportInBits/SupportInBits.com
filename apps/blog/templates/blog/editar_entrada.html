@@ -9,7 +9,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.media }}
-        
+        <!--titulo-->
         <div class="mb-3">
             {{ form.titulo.label_tag }}
             {{ form.titulo }}
@@ -19,28 +19,35 @@
                 </div>
             {% endif %}
         </div>
-        
+        <!--contenido-->
         <div class="mb-3">
             {{ form.contenido.label_tag }}
             {{ form.contenido }}
         </div>
-        
+        <!--categoría select-->
         <div class="row">
             <div class="col-md-6 mb-3">
                 {{ form.categoria.label_tag }}
                 {{ form.categoria }}
-            </div>
-            
+            </div>    
+        </div>
+
+        <div class="mb-3">
             <div class="col-md-6 mb-3">
                 {{ form.imagen_portada.label_tag }}
                 {{ form.imagen_portada }}
                 {% if form.imagen_portada.value %}
                     <div class="mt-2">
                         <img src="{{ form.imagen_portada.value.url }}" alt="Portada actual" style="max-height: 100px;">
-                        <label class="form-check-label ms-2">
-                            <input type="checkbox" name="imagen_portada-clear" class="form-check-input">
-                            Eliminar imagen actual
-                        </label>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.alt_img.label_tag }}
+                {{ form.alt_img }}
+                {% if form.alt_img.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ form.alt_img.errors }}
                     </div>
                 {% endif %}
             </div>

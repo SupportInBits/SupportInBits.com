@@ -53,13 +53,19 @@ Gestionar Usuarios - Support In Bits
                     <td>
                         <form method="POST" action="{% url 'cambiar_estado_usuario' user.id %}" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-secondary mb-2 col-12 col-lg-7">
-                                {% if user.is_active %}Desactivar{% else %}Activar{% endif %}
-                            </button>
+                            <div class="d-flex align-items-center">
+                                <button type="submit" class="btn btn-sm btn-secondary mb-2 col-12 col-lg-7 mx-auto">
+                                    {% if user.is_active %}Desactivar{% else %}Activara{% endif %}
+                                </button>
+                            </div>
                         </form>
                         <form method="POST" action="{% url 'eliminar_usuario' user.id %}" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" onclick="return confirm('¿Seguro que quieres eliminar este usuario?')" class="btn btn-sm btn-danger col-12 col-lg-7">Eliminar</button>
+                            <div class="d-flex align-items-center">
+                                <button type="submit" onclick="return confirm('¿Seguro que quieres eliminar este usuario?')" class="btn btn-sm btn-danger col-12 col-lg-7 mx-auto">
+                                    Eliminar
+                                </button>
+                            </div>
                         </form>
                     </td>
                 </tr>

@@ -57,7 +57,7 @@
     });
   
   /**
-   * @description Extrae todos los elentos hijos del elemento ingresado como parámetro
+   * @description Extrae todos los elentos hijos del elemento incluyendo imágenes ingresado como parámetro
    * @param {*} element El elemnto del cual se va a extraer el texto
    * @returns = String con todo el texto obtenido
    */

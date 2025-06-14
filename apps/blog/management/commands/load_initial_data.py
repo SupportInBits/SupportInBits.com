@@ -10,11 +10,11 @@ class Command(BaseCommand):
         secciones_data = [
             {
                 'nombre': 'Recursos',
-                'categorias': ['Documentación', 'Guías oficiales', 'Software']
+                'categorias': ['Guías oficiales', 'Legislación y Normativas']
             },
             {
                 'nombre': 'Accesibilidad',
-                'categorias': ['Novedades', 'Herramientas','Articulos']
+                'categorias': ['Fundamentos', 'Diseño y Desarrollo','Novedades', 'Herramientas y Tests']
             }
         ]
         
