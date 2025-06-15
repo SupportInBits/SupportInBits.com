@@ -2,22 +2,9 @@
 
 **autor: Andres Martin Bravo Castro**
 
-
 Este fichero es una guía detallada de cómo instalar las herramientas necesarias para instalar
 la aplicación en local. 
 
-# Índice
-
-- ## [Instalación](#install)
-  - ### [Requisitos previos](#require-prev)
-    - #### [Instalación de requisitos previos](#install-req)
-- ## [Despliegue de app](#deploy)
-- ## [Desarrollo de la app](#dev)
-  - ### [placeholder](#placeholder)
-    - #### [placeholder](#placeholder)
-      - ##### [placeholder](#placeholder)
-        - ###### [placeholder](#placeholder)
-- ## [Webgrafia](#docs)
 
 <div id='install' />
 
@@ -33,6 +20,8 @@ Docker está disponible tanto para Windows Como Linux.
 <div id='dev' />
 
 ## Ejecutar la aplicación en modo desarrollo
+
+***NOTA: TENDRÁS QUE SOLICITAR EL ARCHIVO .env PARA QUE SE PUEDA EJECUTAR***
 
 Una vez tengas instalado Docker, tienes que abrirlo y tiene que estar corriendo en tu Sistema Operativo.
 Descarga o clona el repositorio en la carpeta que desees. Cuando lo tengas todo solo tienes que ejecutar
