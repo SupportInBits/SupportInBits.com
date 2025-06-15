@@ -111,15 +111,6 @@
   word-spacing: 0.14em;
 }
 
-/* Nivel 4 (nivel AAA recomendado) */
-.accessible-spacing-4 p,
-.accessible-spacing-4 li {
-  line-height: 2;
-  margin-bottom: 2em;
-  letter-spacing: 0.12em;
-  word-spacing: 0.16em;
-}
-
 .font-size-small {
   font-size: 16px !important;
 }
