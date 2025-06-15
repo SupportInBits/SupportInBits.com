@@ -33,7 +33,7 @@ docker-compose up -d --build
 
 En la terminal de tu IDE se mostrará los mensajes de los contenedores. Una vez hecho esto en tu navegador
 favorito ve al la direccion 
-***localhost:8000 *** 
+***localhost:8000*** 
 Y listo la aplicación ya está instalado.
 
 ---
