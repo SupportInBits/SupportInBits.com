@@ -54,7 +54,7 @@
                           id="input-busqueda"
                           class="form-control"
                           name="q"
-                          placeholder="Buscar en una entrada en el blog"
+                          placeholder="Buscar una entrada en el blog"
                           aria-label="Buscar"
                         />
                       </form>
@@ -159,42 +159,42 @@
       <button id="accessibility-btn" aria-label="Opciones de accesibilidad">
         <i class="bi bi-universal-access-circle"></i>
       </button>
-      
+     
       <!-- Menú accesibilidad -->
-      <div id="accessibility-panel" class="hidden ">
+      <div id="accessibility-panel" class="hidden" role="region" aria-label="Panel de accesibilidad" aria-hidden="true">
         <div class="container justify-content-center panel-access">
           <div class="row">
-            <span class="fs-1 text-dark text-center" role="banner">Opciones de accesibilidad</span>
-            <span class="fs-5 text-dark text-center my-3" role="info">(Control + F para desactivar/activar)</span>
+            <span class="fs-1 text-dark text-center" id="accessibility-title">Opciones de accesibilidad</span>
+            <span class="fs-5 text-dark text-center my-3" role="info" id="accessibility-instructions">(Control + F para desactivar/activar)</span>
           </div>
-          <div class="row">
+          <div class="row" role="group" aria-labelledby="font-size-group-label">
+            <span id="font-size-group-label" class="visually-hidden">Controles de tamaño de fuente</span>
             <div class="col-4">
-              <button onclick="changeFontSize(-1)">A-</button>
+              <button onclick="changeFontSize(-1)" aria-label="Reducir tamaño de fuente">A-</button>
             </div>
             <div class="col-4">
-              <button onclick="changeFontSize(1)">A+</button>
+              <button onclick="changeFontSize(1)" aria-label="Aumentar tamaño de fuente">A+</button>
             </div>
             <div class="col-4">
-              <button onclick="resetFontSize()">Restablecer</button>
+              <button onclick="resetFontSize()" aria-label="Restablecer tamaño de fuente">Restablecer</button>
             </div>
           </div>
-          <div class="row">
+          <div class="row" role="group" aria-labelledby="contrast-group-label">
+            <span id="contrast-group-label" class="visually-hidden">Controles de contraste</span>
             <div class="col-4">
-              <button id="high-contrast">Alto contraste</button>
+              <button id="high-contrast" aria-label="Activar alto contraste">Alto contraste</button>
             </div>
             <div class="col-4">
-              <button id="reset-contrast">Contraste normal</button>
+              <button id="reset-contrast" aria-label="Restablecer contraste normal">Restablecer contraste</button>
             </div>
             <div class="col-4 d-none d-md-flex" style=" overflow:hidden; z-index:9999;">
-              <button id="toggle-lupa">Activar lupa</button>
+              <button id="toggle-lupa" aria-pressed="false" aria-label="Activar o desactivar lupa">Activar lupa</button>
             </div>
           </div>
           <div class="row">
             <div class="col-4">
-              <button id="toggle-spacing">Espaciado accesible</button>
+              <button id="toggle-spacing" aria-label="Activar o desactivar espaciado accesible">Espaciado accesible</button>
             </div>
-            <div class="col-4"></div>
-            <div class="col-4"></div>
           </div>
         </div>
       </div>
@@ -227,8 +227,7 @@
         <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
           <p>© 2025 SupportInBits.com</p>
           <ul class="list-unstyled d-flex fs-4">
-            <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a></li>
-            <li class="ms-3"><a class="link-body-emphasis" href="#" aria-label="Facebook"><i class="bi bi-github"></i></a></li>
+            <li class="ms-3"><a class="link-body-emphasis" href="https://github.com/SupportInBits/SupportInBits.com" aria-label="Enlace a github" target="blank"><i class="bi bi-github"></i></a></li>
           </ul>
         </div>
       </div>
