@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
   auditBtn.textContent = "Auditar Accesibilidad";
   auditBtn.style.position = "fixed";
   // posición del botón
-  auditBtn.style.bottom = "20px";
+  auditBtn.style.bottom = "100px";
   auditBtn.style.right = "20px";
   auditBtn.style.zIndex = "9999";
   auditBtn.style.padding = "10px 15px";

@@ -58,6 +58,8 @@
 .high-contrast .list-group,
 .high-contrast .list-group-item,
 .high-contrast .offcanvas,
+.high-contrast #breadcrumb-nav,
+.high-contrast #boton-up,
 .high-contrast .dataTables_info,
 .high-contrast #comentariosTable_length,
 .high-contrast #comentariosTable_length select,
@@ -144,6 +146,11 @@ a:hover {
 
 p {
   line-height: 1.5;
+}
+
+code{
+  background-color: var(--bg-col-pre);
+  color: var(--lemon-lime);
 }
 
 pre{
@@ -247,7 +254,7 @@ header .btn:focus {
 /* ------------------ Botón up ------------------ */
 #boton-up {
   position: fixed;
-  bottom: 70px;
+  bottom: 150px;
   right: 20px;
   cursor: pointer;
   z-index: 1000;
