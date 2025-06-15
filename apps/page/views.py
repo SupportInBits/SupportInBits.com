@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth import login
-from django.http import JsonResponse, HttpResponseForbidden
+from django.http import JsonResponse
 from apps.page.models import Page
-from apps.user.forms import RegistroForm
-from django.core.exceptions import PermissionDenied
+from django.core.mail import send_mail
+from django.conf import settings
+from apps.page.forms import ContactoForm
 
 def home(request):
     pagina = Page.objects.get(id=1)
@@ -60,3 +59,15 @@ def test(request):
 def getAllPages(request):
     paginas = Page.objects.all().values('id','titulo','m_descri','m_robots','m_handF','m_mobileOp')
     return JsonResponse(list(paginas), safe=False,  content_type="application/json")
+
+def contacto_vista(request):
+    success = False
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            success = True
+            return redirect('inicio')  # Asegúrate de tener esta URL configurada
+    else:
+        form = ContactoForm()
+    return render(request, 'contacto.html', {'form': form, 'success': success})

@@ -13,7 +13,6 @@ from apps.user.decorators import rol_requerido
 from apps.user.forms import RegistroForm,  EditarPerfilForm
 from apps.user.models import Usuario
 
-
 """
 Verifica si el nombre de usuario proporcionado ya está registrado.
 Si el nombre de usuario ya existe, devuelve un JSON con 'available': False.
@@ -346,3 +345,4 @@ def eliminar_usuario(request, user_id):
     usuario.delete()
     messages.success(request, f"El usuario {usuario.username} ha sido eliminado.")
     return redirect('gestionar_usuarios')
+

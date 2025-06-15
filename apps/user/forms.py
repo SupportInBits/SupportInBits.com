@@ -117,3 +117,4 @@ class EditarPerfilForm(forms.ModelForm):
             'email': 'El correro eletrónico no se puede cambiar una vez registrado.',
             
         }
+

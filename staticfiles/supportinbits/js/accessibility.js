@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const highContrast = document.getElementById("high-contrast");
   const resetContrast = document.getElementById("reset-contrast");
   const toggleSpacing = document.getElementById("toggle-spacing");
-  const MAX_SPACING_LEVEL = 4;
+  const MAX_SPACING_LEVEL = 3;
 
   
   // --- evento click sobre el botón de acceesibilidad ---
