@@ -13,3 +13,5 @@ django-allauth==65.8.0
 gunicorn
 requests
 PyJWT>=2.0.0
+boto3
+django-storages

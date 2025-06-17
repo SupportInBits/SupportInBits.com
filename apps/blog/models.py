@@ -114,7 +114,6 @@ class Entrada(models.Model):
     def __str__(self):
         return self.titulo
     
-    # Propiedades calculadas para los metadatos
     @property
     def meta_titulo(self):
         return f"{self.titulo}"

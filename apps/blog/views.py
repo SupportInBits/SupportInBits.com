@@ -268,7 +268,7 @@ def buscar_entradas_ajax(request):
             'resultados': resultados,
             'consulta': consulta
         })
-        #return JsonResponse({'html': html})
+
         return JsonResponse({'html': html})
     
     return JsonResponse({'error': 'Peticion no valida'}, status=400)

@@ -1,7 +1,6 @@
 from django.urls import path
 from apps.user.views import editar_comentario
 from apps.user import views
-from apps.user.api_views import UserProfileView
 urlpatterns = [
     path('', views.perfil_registrado, name='perfil_registrado'),
     path('registrate/', views.registro, name='registro'),
@@ -22,5 +21,5 @@ urlpatterns = [
     path('admin/usuarios/<int:user_id>/cambiar-estado/', views.cambiar_estado_usuario, name='cambiar_estado_usuario'),
     path('admin/usuarios/<int:user_id>/cambiar-rol/', views.cambiar_rol_usuario, name='cambiar_rol_usuario'),
     path('admin/usuarios/<int:user_id>/eliminar/', views.eliminar_usuario, name='eliminar_usuario'),
-    path('profile/', UserProfileView.as_view(), name='user-profile'),
+    
 ]
