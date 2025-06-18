@@ -25,7 +25,7 @@ jobs:
 
       - name: Collect static files
         env:
-          DJANGO_SETTINGS_MODULE: myproject.settings.prod
+          DJANGO_SETTINGS_MODULE: config.settings.prod
         run: |
           python manage.py collectstatic --noinput
 
