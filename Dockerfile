@@ -6,18 +6,24 @@ ENV PYTHONPATH=/app/apps
 
 WORKDIR /app
 
+# Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
+    libpq-dev gcc curl \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Instalar dependencias de Python
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-RUN mkdir -p /app/media && chmod -R 755 /app/media
+# Crear carpetas necesarias
+RUN mkdir -p /app/media /app/staticfiles && chmod -R 755 /app/media /app/staticfiles
 
+# Copiar el proyecto
 COPY . .
 
+# Exponer puerto interno (usado por Gunicorn)
 EXPOSE 8000
 
-CMD ["bash", "-c", "python /app/manage.py makemigrations && python /app/manage.py migrate && python /app/manage.py load_initial_data && python /app/manage.py collectstatic --no-input && python /app/manage.py runserver 0.0.0.0:8000"]
+# Comando de inicio con Gunicorn
+CMD ["bash", "-c", "python manage.py collectstatic --no-input && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"]
