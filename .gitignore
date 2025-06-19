@@ -178,4 +178,5 @@ backup_*.json
 media/
 backup_data/
 docker-compose.override.yml
-# .env.*
+*.pem
+To-Do.md
