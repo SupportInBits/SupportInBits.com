@@ -118,3 +118,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+SESSION_COOKIE_SECURE = True   # ✔️ si usas HTTPS
+CSRF_COOKIE_SECURE = True      # ✔️ si usas HTTPS
+CSRF_TRUSTED_ORIGINS = ['https://supportinbits.com']  # ✔️ importante
